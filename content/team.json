@@ -1,0 +1,24 @@
+{
+  "members": [
+    {
+      "name": "Rudi Keller",
+      "role": "Präsident",
+      "photo": "/media/verein/rosa-brockenhaus-verein-rudi-keller.jpg"
+    },
+    {
+      "name": "Saim Agca",
+      "role": "Geschäftsführer",
+      "photo": "/media/verein/rosa-brockenhaus-verein-saim-agca.jpg"
+    },
+    {
+      "name": "Willy Wihler",
+      "role": "Kassier",
+      "photo": "/media/verein/rosa-brockenhaus-verein-willy-wihler.jpg"
+    },
+    {
+      "name": "Mürside Agca",
+      "role": "Leiterin",
+      "photo": "/media/verein/rosa-brockenhaus-verein-mürside-agca.jpg"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "services": [
+    {
+      "id": "umzug",
+      "slug": "umzug",
+      "title": "Umzug",
+      "subtitle": "Wir bewegen Ihr Zuhause – mit Sorgfalt und Respekt",
+      "icon": "Truck",
+      "description": "Ob kleiner Wohnungswechsel oder grosser Firmenumzug — wir begleiten Sie zuverlässig, mit Herzblut, als gemeinnütziger Verein.",
+      "features": [
+        "Kostenlose Besichtigung und Offerte vor Ort",
+        "Transport mit eigenem Fahrzeug",
+        "Auf- und Abbau von Möbeln",
+        "Faire Preise – direkt in den Verein investiert"
+      ],
+      "faq": [
+        {
+          "question": "Wie lange im Voraus muss ich einen Umzug anfragen?",
+          "answer": "Wir empfehlen, uns mindestens 2–3 Wochen vor dem geplanten Umzugsdatum zu kontaktieren. In dringenden Fällen versuchen wir jedoch immer, eine Lösung zu finden."
+        },
+        {
+          "question": "Gibt es eine Mindestanzahl an Stunden?",
+          "answer": "Ja, wir rechnen mindestens 2 Stunden pro Einsatz. Der genaue Stundensatz wird bei der Offerte mitgeteilt."
+        },
+        {
+          "question": "Transportiert ihr auch Klaviere oder schwere Gegenstände?",
+          "answer": "Ja, wir haben Erfahrung mit schweren und sperriger Gegenständen. Sprechen Sie uns bitte bei der Anfrage explizit darauf an."
+        },
+        {
+          "question": "Seid ihr versichert?",
+          "answer": "Ja, wir sind haftpflichtversichert. Schäden, die während des Umzugs entstehen, werden durch unsere Versicherung gedeckt."
+        }
+      ]
+    },
+    {
+      "id": "raeumung",
+      "slug": "raeumung",
+      "title": "Räumung",
+      "subtitle": "Klarer Raum, freier Kopf – wir räumen für Sie",
+      "icon": "Home",
+      "description": "Nachlässe, Entrümpelungen, Wohnungsauflösungen — wir räumen Keller, Estrich, Wohnungen und Liegenschaften jeder Grösse. Brauchbares fliesst direkt in unseren Shop.",
+      "features": [
+        "Wohnungsauflösungen und Nachlässe",
+        "Sortenreine Trennung von Wertstoffen",
+        "Direktübernahme brauchbarer Waren für den Shop",
+        "Diskrete und respektvolle Abwicklung"
+      ],
+      "faq": [
+        {
+          "question": "Nehmt ihr auch Gegenstände an, die ihr nicht brauchen könnt?",
+          "answer": "Ja, wir entsorgen auch Gegenstände, die nicht mehr verwendbar sind – umweltgerecht und nach gesetzlichen Vorschriften."
+        },
+        {
+          "question": "Kann ich bei der Räumung dabei sein?",
+          "answer": "Selbstverständlich. Viele Kunden möchten persönliche Gegenstände selbst aussortieren. Wir passen uns Ihren Wünschen an."
+        },
+        {
+          "question": "Wie schnell kann eine Räumung durchgeführt werden?",
+          "answer": "Das hängt von Grösse und Zustand des zu räumenden Objekts ab. Ein Keller kann oft innerhalb eines Tages geräumt werden, eine ganze Wohnung braucht manchmal 2–3 Tage."
+        }
+      ]
+    },
+    {
+      "id": "reinigung",
+      "slug": "reinigung",
+      "title": "Reinigung",
+      "subtitle": "Blitzsauber – mit Abgabegarantie",
+      "icon": "Sparkles",
+      "description": "Professionelle Endreinigung mit Abgabegarantie — wir sind erst fertig, wenn der Vermieter zufrieden ist.",
+      "features": [
+        "Endreinigung mit Abgabegarantie",
+        "Küchen- und Badreinigung inkl. Kalkentfernung",
+        "Fenster- und Rahmenreinigung",
+        "Flexible Terminvereinbarung"
+      ],
+      "faq": [
+        {
+          "question": "Was bedeutet Abgabegarantie?",
+          "answer": "Wir reinigen Ihre Wohnung so gründlich, dass sie bei der Übergabe an den Vermieter akzeptiert wird. Gibt es Beanstandungen, kommen wir nochmals kostenlos nach."
+        },
+        {
+          "question": "Bringt ihr das Reinigungsmaterial mit?",
+          "answer": "Ja, wir kommen mit allem notwendigen Material und Reinigungsmitteln. Sie müssen nichts vorbereiten."
+        },
+        {
+          "question": "Wie lange dauert eine Endreinigung?",
+          "answer": "Das hängt von der Grösse und dem Zustand der Wohnung ab. Eine 2-Zimmer-Wohnung dauert in der Regel 3–4 Stunden, eine grössere Wohnung entsprechend länger."
+        }
+      ]
+    },
+    {
+      "id": "entsorgung",
+      "slug": "entsorgung",
+      "title": "Entsorgung",
+      "subtitle": "Umweltbewusst entsorgen – für eine saubere Zukunft",
+      "icon": "Recycle",
+      "description": "Alte Möbel, Elektrogeräte, Sperrgut oder Bauschutt — wir entsorgen umweltgerecht und nach gesetzlichen Vorschriften.",
+      "features": [
+        "Sperrgut, Elektroschrott und Altgeräte",
+        "Bauschutt und Renovationsabfälle",
+        "Sortenreine Trennung nach Materialien",
+        "Entsorgungsnachweis auf Anfrage"
+      ],
+      "faq": [
+        {
+          "question": "Entsorgt ihr auch gefährliche Abfälle wie Farben oder Chemikalien?",
+          "answer": "Nein, für Sondermüll wie Farben, Chemikalien oder Asbestmaterial müssen Sie die Sonderabfallsammelstellen der Gemeinde nutzen. Wir helfen Ihnen aber gerne bei der Orientierung."
+        },
+        {
+          "question": "Gibt es eine Mindestmenge?",
+          "answer": "Wir nehmen grundsätzlich auch kleinere Mengen an. Der Mindestbetrag für einen Einsatz beträgt CHF 80.–."
+        },
+        {
+          "question": "Kann ich auch einfach Sachen abgeben?",
+          "answer": "Wenn Sie brauchbare Gegenstände haben, nehmen wir diese gerne für unseren Shop entgegen. Kontaktieren Sie uns für eine Vorabkontrolle."
+        }
+      ]
+    },
+    {
+      "id": "abholung",
+      "slug": "abholung",
+      "title": "Abholung",
+      "subtitle": "Wir kommen zu Ihnen — unkompliziert und flexibel",
+      "icon": "PackageCheck",
+      "description": "Möbel, Kleider, Elektrogeräte oder anderes, das Sie nicht mehr brauchen — wir holen es direkt bei Ihnen ab.",
+      "features": [
+        "Möbel, Kleider, Elektro, Geschirr, Fahrräder & mehr",
+        "Flexible Terminvereinbarung",
+        "Wiederverwertung: brauchbares wird im Shop verkauft",
+        "Kostenlos (je nach Menge und Distanz)"
+      ],
+      "faq": [
+        {
+          "question": "Ist die Abholung kostenlos?",
+          "answer": "Für kleinere Mengen und in der Nähe von Bern ist die Abholung in der Regel kostenlos. Bei grösseren Mengen oder weiteren Distanzen nennen wir Ihnen vorher einen Preis."
+        },
+        {
+          "question": "Welche Gegenstände nehmt ihr mit?",
+          "answer": "Wir nehmen Möbel, Kleider, Elektrogeräte, Geschirr, Bücher, Fahrräder und vieles mehr. Gegenstände sollten grundsätzlich noch verwendbar oder reparierbar sein."
+        },
+        {
+          "question": "Wie schnell kann eine Abholung organisiert werden?",
+          "answer": "In der Regel können wir innerhalb von wenigen Werktagen einen Termin finden. Kontaktieren Sie uns telefonisch oder per E-Mail."
+        }
+      ]
+    }
+  ]
+}
