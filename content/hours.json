@@ -1,0 +1,9 @@
+{
+  "label": "Brocki-Öffnungszeiten",
+  "note": "Für unsere Services (Umzug, Räumung, Reinigung, Entsorgung, Abholung) sind wir auch ausserhalb dieser Zeiten erreichbar.",
+  "hours": [
+    { "days": "Mo–Fr", "time": "12:00–18:00" },
+    { "days": "Sa", "time": "10:00–17:00" },
+    { "days": "So", "time": "geschlossen" }
+  ]
+}

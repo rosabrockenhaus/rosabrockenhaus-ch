@@ -1,0 +1,67 @@
+{
+  "categories": [
+    {
+      "id": "kleidung",
+      "name": "Kleidung & Textilien",
+      "description": "Jacken, Hosen, Kleider, Wäsche, Bettwäsche und Vorhänge — für alle Jahreszeiten.",
+      "image": "/media/rosa-brockenhaus-bern-kleidung-secondhand.jpg",
+      "alt": "Secondhand Kleidung und Textilien im Rosa Brockenhaus Bern",
+      "examples": ["Jacken & Mäntel", "Hosen & Röcke", "Bettwäsche", "Accessoires"],
+      "featured": true
+    },
+    {
+      "id": "buecher",
+      "name": "Bücher & Medien",
+      "description": "Tausende Bücher, DVDs, CDs und Videospiele — alphabetisch geordnet und leicht zu finden.",
+      "image": "/media/rosa-brockenhaus-bern-buecher-secondhand.jpg",
+      "alt": "Secondhand Bücher und Medien im Rosa Brockenhaus Bern",
+      "examples": ["Romane & Sachbücher", "DVDs & Blu-rays", "CDs & Vinyl", "Videospiele"],
+      "featured": true
+    },
+    {
+      "id": "elektronik",
+      "name": "Elektronik & HiFi",
+      "description": "Vintage HiFi-Anlagen, Verstärker, Tuner und Plattenspieler — für echte Audiophile.",
+      "image": "/media/rosa-brockenhaus-bern-elektronik-hifi-secondhand.jpg",
+      "alt": "Secondhand Elektronik und HiFi im Rosa Brockenhaus Bern",
+      "examples": ["HiFi-Anlagen", "Verstärker & Tuner", "Plattenspieler", "Lautsprecher"],
+      "featured": true
+    },
+    {
+      "id": "elektrogeraete",
+      "name": "Elektrogeräte",
+      "description": "Staubsauger, Mikrowellen, Kaffeemaschinen und alles für den Haushalt — geprüft und funktionsfähig.",
+      "image": "/media/rosa-brockenhaus-bern-elektrogeraete-secondhand.jpg",
+      "alt": "Secondhand Elektrogeräte im Rosa Brockenhaus Bern",
+      "examples": ["Kaffeemaschinen", "Mikrowellen", "Staubsauger", "Küchengeräte"],
+      "featured": true
+    },
+    {
+      "id": "kueche",
+      "name": "Küche & Haushalt",
+      "description": "Töpfe, Pfannen, Geschirr, Besteck und Küchengeräte — alles für Ihren gedeckten Tisch.",
+      "image": "/media/rosa-brockenhaus-bern-kueche-haushalt-secondhand.jpg",
+      "alt": "Secondhand Küche und Haushalt im Rosa Brockenhaus Bern",
+      "examples": ["Töpfe & Pfannen", "Geschirr & Besteck", "Küchengeräte", "Vorratsgläser"],
+      "featured": false
+    },
+    {
+      "id": "velos",
+      "name": "Velos & Sport",
+      "description": "Stadt- und Tourenvelòs, Sportgeräte und Zubehör — günstig und direkt zur Probefahrt.",
+      "image": "/media/rosa-brockenhaus-bern-velo-fahrrad-secondhand-2.jpg",
+      "alt": "Secondhand Velos und Fahrräder im Rosa Brockenhaus Bern",
+      "examples": ["Stadtvelos", "Tourenräder", "Sportgeräte", "Velozubehör"],
+      "featured": false
+    },
+    {
+      "id": "moebel",
+      "name": "Möbel & Wohnen",
+      "description": "Sofas, Tische, Stühle, Schränke, Lampen und Dekoration — das Sortiment wechselt täglich.",
+      "image": "/media/rosa-brockenhaus-bern-moebel-wohnen-secondhand-1.jpg",
+      "alt": "Secondhand Möbel und Wohnaccessoires im Rosa Brockenhaus Bern — Sessel, Sofas, Lampen und Bilder",
+      "examples": ["Sofas & Sessel", "Tische & Stühle", "Schränke & Regale", "Lampen & Deko"],
+      "featured": false
+    }
+  ]
+}

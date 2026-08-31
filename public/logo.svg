@@ -1,0 +1,6 @@
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- House silhouette -->
+  <path d="M16 2L30 14H27V30H5V14H2L16 2Z" fill="#993556"/>
+  <!-- Arched door -->
+  <path d="M12 30V23C12 20.79 13.79 19 16 19C18.21 19 20 20.79 20 23V30H12Z" fill="white"/>
+</svg>
