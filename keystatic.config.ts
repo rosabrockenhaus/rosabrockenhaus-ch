@@ -5,7 +5,14 @@ import { config, fields, collection, singleton } from '@keystatic/core'
 // GitHub App credentials aren't set yet), /keystatic would be world-readable/writable with no login
 // gate. src/app/keystatic/layout.tsx and src/app/api/keystatic/[...params]/route.ts both check this
 // flag and 404 the whole admin UI in production until real GitHub-backed storage is configured.
-export const isGithubStorageConfigured = Boolean(process.env.KEYSTATIC_GITHUB_CLIENT_ID)
+//
+// This must read a NEXT_PUBLIC_ variable, not KEYSTATIC_GITHUB_CLIENT_ID directly: this file is
+// also imported by src/app/keystatic/keystatic.ts, a 'use client' component, and Next.js only
+// inlines NEXT_PUBLIC_ vars into the browser bundle — a non-public var would resolve to `undefined`
+// client-side, making the browser think storage is 'local' while the server thinks 'github' (the
+// client then calls the local-only /api/keystatic/tree route, which 404s on a github-mode server).
+// The client ID itself isn't secret — it's already visible in the GitHub OAuth redirect URL.
+export const isGithubStorageConfigured = Boolean(process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID)
 
 export default config({
   // Falls back to 'local' storage whenever the GitHub App credentials aren't set yet (local dev,
