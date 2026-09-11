@@ -51,6 +51,19 @@ export default config({
   },
 
   singletons: {
+    banner: singleton({
+      label: 'Ankündigungsbanner',
+      path: 'content/banner',
+      format: { data: 'json' },
+      schema: {
+        enabled: fields.checkbox({ label: 'Banner anzeigen', defaultValue: true }),
+        discount: fields.text({ label: "Rabatt-Highlight (z.B. '50%')" }),
+        message: fields.text({ label: 'Nachricht', multiline: true }),
+        ctaLabel: fields.text({ label: 'Button-Text' }),
+        ctaHref: fields.text({ label: 'Button-Link (z.B. /shop)' }),
+      },
+    }),
+
     team: singleton({
       label: 'Vorstand',
       path: 'content/team',

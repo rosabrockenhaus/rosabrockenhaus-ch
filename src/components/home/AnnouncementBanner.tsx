@@ -4,7 +4,19 @@ import Link from 'next/link'
 import { Tag, ArrowRight, X } from 'lucide-react'
 import { useBanner } from '@/contexts/BannerContext'
 
-export default function AnnouncementBanner() {
+type AnnouncementBannerProps = {
+  discount: string
+  message: string
+  ctaLabel: string
+  ctaHref: string
+}
+
+export default function AnnouncementBanner({
+  discount,
+  message,
+  ctaLabel,
+  ctaHref,
+}: AnnouncementBannerProps) {
   const { visible, dismiss } = useBanner()
   if (!visible) return null
 
@@ -13,14 +25,14 @@ export default function AnnouncementBanner() {
       <div className="container-base h-full flex items-center justify-center gap-4 text-sm font-medium pr-12">
         <Tag size={14} className="shrink-0 opacity-80" aria-hidden />
         <span>
-          <strong>50% auf alles</strong>
-          <span className="hidden sm:inline text-white/85"> — Gesamtes Sortiment reduziert. Jetzt vorbeikommen!</span>
+          <strong>{discount} auf alles</strong>
+          <span className="hidden sm:inline text-white/85"> — {message}</span>
         </span>
         <Link
-          href="/shop"
+          href={ctaHref}
           className="hidden sm:inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 border border-white/30 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 shrink-0"
         >
-          Shop ansehen <ArrowRight size={11} />
+          {ctaLabel} <ArrowRight size={11} />
         </Link>
       </div>
       <button

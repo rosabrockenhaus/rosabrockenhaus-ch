@@ -1,7 +1,18 @@
+import bannerData from '../../content/banner.json'
 import teamData from '../../content/team.json'
 import hoursData from '../../content/hours.json'
 import categoriesData from '../../content/categories.json'
 import servicesData from '../../content/services.json'
+
+export type Banner = {
+  enabled: boolean
+  discount: string
+  message: string
+  ctaLabel: string
+  ctaHref: string
+}
+
+export const banner: Banner = bannerData
 
 export type TeamMember = {
   name: string

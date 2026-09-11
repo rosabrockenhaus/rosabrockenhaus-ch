@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "discount": "50%",
+  "message": "Gesamtes Sortiment reduziert. Jetzt vorbeikommen!",
+  "ctaLabel": "Shop ansehen",
+  "ctaHref": "/shop"
+}
