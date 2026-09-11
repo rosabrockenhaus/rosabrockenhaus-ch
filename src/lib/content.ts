@@ -1,4 +1,5 @@
 import bannerData from '../../content/banner.json'
+import homepageData from '../../content/homepage.json'
 import teamData from '../../content/team.json'
 import hoursData from '../../content/hours.json'
 import categoriesData from '../../content/categories.json'
@@ -13,6 +14,32 @@ export type Banner = {
 }
 
 export const banner: Banner = bannerData
+
+export type HeroContent = {
+  headlineHighlight: string
+  headlineRest: string
+  subcopy: string
+  primaryCtaLabel: string
+  primaryCtaHref: string
+  secondaryCtaLabel: string
+  secondaryCtaHref: string
+  contactPhone: string
+  contactEmail: string
+}
+
+export type Promo = {
+  icon: string
+  eyebrow: string
+  summary: string
+  details: string[]
+}
+
+export type Homepage = {
+  hero: HeroContent
+  promos: Promo[]
+}
+
+export const homepage: Homepage = homepageData
 
 export type TeamMember = {
   name: string

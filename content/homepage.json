@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "headlineHighlight": "Rosa",
+    "headlineRest": "räumt Ihr Haus aus.",
+    "subcopy": "Secondhand-Shop · Werkstätten · Umzug · Räumung · Reinigung · Abholung — gemeinnützig in Bern.",
+    "primaryCtaLabel": "Services",
+    "primaryCtaHref": "/services",
+    "secondaryCtaLabel": "Shop",
+    "secondaryCtaHref": "/shop",
+    "contactPhone": "031 991 77 00",
+    "contactEmail": "mail@rosabrockenhaus.ch"
+  },
+  "promos": [
+    {
+      "icon": "GraduationCap",
+      "eyebrow": "Studentenrabatt",
+      "summary": "20% Rabatt für Studierende",
+      "details": [
+        "Gültig mit einem aktuellen Studentenausweis",
+        "Gilt auf alle Artikel im gesamten Sortiment",
+        "Direkt an der Kasse einlösbar — kein Bon nötig"
+      ]
+    },
+    {
+      "icon": "CreditCard",
+      "eyebrow": "Kundenkarte",
+      "summary": "Fr. 20.– Rabatt nach 10 Einkäufen",
+      "details": [
+        "Fr. 20.– Rabatt nach 10 Einkäufen",
+        "Mindesteinkauf Fr. 10.– pro Besuch",
+        "Karte kostenlos und sofort an der Kasse erhältlich"
+      ]
+    },
+    {
+      "icon": "Gift",
+      "eyebrow": "Bon",
+      "summary": "Gutscheine kaufen & verschenken",
+      "details": [
+        "Erhältlich in verschiedenen Beträgen",
+        "Einlösbar auf das gesamte Sortiment im Shop",
+        "Das ideale Geschenk — sinnvoll und nachhaltig",
+        "Direkt an der Kasse erhältlich"
+      ]
+    }
+  ]
+}

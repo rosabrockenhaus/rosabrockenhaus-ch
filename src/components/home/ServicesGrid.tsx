@@ -4,61 +4,34 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { Truck, Home, Sparkles, Recycle, PackageCheck, ArrowRight } from 'lucide-react'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
+import { services as cmsServices } from '@/lib/content'
 
-const services = [
-  {
-    id: 'umzug',
-    icon: Truck,
-    title: 'Umzug',
-    description:
-      'Professioneller Umzugsservice für Privatpersonen und Firmen. Wir packen, transportieren und richten ein — zuverlässig.',
-    badge: null,
-    accent: 'bg-rosa-100',
-    size: 'large',
-    href: '/services#umzug',
-  },
-  {
-    id: 'raeumung',
-    icon: Home,
-    title: 'Räumung',
-    description:
-      'Wohnungsauflösungen, Nachlässe, Keller- und Estrichräumungen. Brauchbares fliesst direkt in unseren Shop.',
-    badge: null,
-    accent: 'bg-cream-100',
-    size: 'large',
-    href: '/services#raeumung',
-  },
-  {
-    id: 'reinigung',
-    icon: Sparkles,
-    title: 'Reinigung',
-    description: 'Endreinigung mit Abgabegarantie. Wir sind erst fertig, wenn der Vermieter zufrieden ist.',
-    badge: 'Abgabegarantie',
-    accent: 'bg-rosa-50',
-    size: 'small',
-    href: '/services#reinigung',
-  },
-  {
-    id: 'entsorgung',
-    icon: Recycle,
-    title: 'Entsorgung',
-    description: 'Umweltgerechte Entsorgung aller Materialien nach Schweizer Recht.',
-    badge: 'Umweltbewusst',
-    accent: 'bg-cream-100',
-    size: 'small',
-    href: '/services#entsorgung',
-  },
-  {
-    id: 'abholung',
-    icon: PackageCheck,
-    title: 'Abholung',
-    description: 'Wir kommen direkt zu Ihnen — Möbel, Kleider, Elektro und mehr. Kostenlos ab Bern.',
-    badge: null,
-    accent: 'bg-rosa-50',
-    size: 'small',
-    href: '/services#abholung',
-  },
-]
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  Truck,
+  Home,
+  Sparkles,
+  Recycle,
+  PackageCheck,
+}
+
+// Bento-grid layout (size/accent/badge) is a curated design decision, not shop-owner content —
+// it's keyed by service id and merged with the CMS-editable title/description/icon below.
+const layoutById: Record<string, { badge: string | null; accent: string; size: 'large' | 'small' }> = {
+  umzug: { badge: null, accent: 'bg-rosa-100', size: 'large' },
+  raeumung: { badge: null, accent: 'bg-cream-100', size: 'large' },
+  reinigung: { badge: 'Abgabegarantie', accent: 'bg-rosa-50', size: 'small' },
+  entsorgung: { badge: 'Umweltbewusst', accent: 'bg-cream-100', size: 'small' },
+  abholung: { badge: null, accent: 'bg-rosa-50', size: 'small' },
+}
+
+const services = cmsServices.map((s) => ({
+  id: s.id,
+  icon: iconMap[s.icon] ?? Truck,
+  title: s.title,
+  description: s.description,
+  href: `/services#${s.slug}`,
+  ...(layoutById[s.id] ?? { badge: null, accent: 'bg-rosa-50', size: 'small' as const }),
+}))
 
 export default function ServicesGrid() {
   const prefersReducedMotion = useReducedMotion()

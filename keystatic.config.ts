@@ -64,6 +64,48 @@ export default config({
       },
     }),
 
+    homepage: singleton({
+      label: 'Startseite',
+      path: 'content/homepage',
+      format: { data: 'json' },
+      schema: {
+        hero: fields.object(
+          {
+            headlineHighlight: fields.text({ label: "Titel-Highlight (z.B. 'Rosa')" }),
+            headlineRest: fields.text({ label: 'Titel (Rest des Satzes)' }),
+            subcopy: fields.text({ label: 'Untertext', multiline: true }),
+            primaryCtaLabel: fields.text({ label: 'Haupt-Button Text' }),
+            primaryCtaHref: fields.text({ label: 'Haupt-Button Link' }),
+            secondaryCtaLabel: fields.text({ label: 'Zweiter Button Text' }),
+            secondaryCtaHref: fields.text({ label: 'Zweiter Button Link' }),
+            contactPhone: fields.text({ label: 'Kontaktkarte: Telefon' }),
+            contactEmail: fields.text({ label: 'Kontaktkarte: E-Mail' }),
+          },
+          { label: 'Hero (oberster Bereich)' }
+        ),
+        promos: fields.array(
+          fields.object({
+            icon: fields.select({
+              label: 'Icon',
+              options: [
+                { label: 'Studierende (GraduationCap)', value: 'GraduationCap' },
+                { label: 'Kundenkarte (CreditCard)', value: 'CreditCard' },
+                { label: 'Bon (Gift)', value: 'Gift' },
+              ],
+              defaultValue: 'Gift',
+            }),
+            eyebrow: fields.text({ label: 'Kategorie (kurz)' }),
+            summary: fields.text({ label: 'Zusammenfassung' }),
+            details: fields.array(fields.text({ label: 'Detail' }), {
+              label: 'Details',
+              itemLabel: (p) => p.value,
+            }),
+          }),
+          { label: 'Aktionen & Treuevorteile', itemLabel: (p) => p.fields.eyebrow.value },
+        ),
+      },
+    }),
+
     team: singleton({
       label: 'Vorstand',
       path: 'content/team',
