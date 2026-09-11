@@ -4,6 +4,10 @@ import teamData from '../../content/team.json'
 import hoursData from '../../content/hours.json'
 import categoriesData from '../../content/categories.json'
 import servicesData from '../../content/services.json'
+import vereinData from '../../content/verein.json'
+import vereinAngebotData from '../../content/verein-angebot.json'
+import vereinWerkstaettenData from '../../content/verein-werkstaetten.json'
+import vereinTransparenzData from '../../content/verein-transparenz.json'
 
 export type Banner = {
   enabled: boolean
@@ -83,3 +87,50 @@ export type Service = {
 }
 
 export const services: Service[] = (servicesData as { services: Service[] }).services
+
+export type Verein = {
+  eyebrow: string
+  title: string
+  intro: string
+  missionEyebrow: string
+  missionHeading: string
+  missionParagraphs: string[]
+  quoteText: string
+  quoteAttribution: string
+  stats: { value: string; sub: string }[]
+  ctaHeading: string
+  ctaText: string
+}
+
+export const verein: Verein = vereinData
+
+export type VereinAngebot = {
+  title: string
+  intro: string
+  profiles: { title: string; description: string }[]
+}
+
+export const vereinAngebot: VereinAngebot = vereinAngebotData
+
+export type VereinWerkstaetten = {
+  title: string
+  intro: string
+  workshops: { name: string; description: string }[]
+}
+
+export const vereinWerkstaetten: VereinWerkstaetten = vereinWerkstaettenData
+
+export type VereinTransparenz = {
+  disclosureText: string
+  years: { year: string; docs: string[] }[]
+  membershipIntro: string
+  membershipOptions: { title: string; price: string; description: string }[]
+  donationIntro: string
+  iban: string
+  bankName: string
+  beneficiaryName: string
+  beneficiaryAddress: string
+  donationConfirmationEmail: string
+}
+
+export const vereinTransparenz: VereinTransparenz = vereinTransparenzData

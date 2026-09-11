@@ -106,6 +106,102 @@ export default config({
       },
     }),
 
+    verein: singleton({
+      label: 'Verein — Über uns',
+      path: 'content/verein',
+      format: { data: 'json' },
+      schema: {
+        eyebrow: fields.text({ label: 'Eyebrow (klein, über dem Titel)' }),
+        title: fields.text({ label: 'Titel' }),
+        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        missionEyebrow: fields.text({ label: 'Mission: Eyebrow' }),
+        missionHeading: fields.text({ label: 'Mission: Titel' }),
+        missionParagraphs: fields.array(fields.text({ label: 'Absatz', multiline: true }), {
+          label: 'Mission: Absätze',
+          itemLabel: (p) => p.value.slice(0, 60),
+        }),
+        quoteText: fields.text({ label: 'Zitat', multiline: true }),
+        quoteAttribution: fields.text({ label: 'Zitat-Quelle' }),
+        stats: fields.array(
+          fields.object({
+            value: fields.text({ label: 'Wert (z.B. "2010")' }),
+            sub: fields.text({ label: 'Beschriftung (z.B. "gegründet")' }),
+          }),
+          { label: 'Statistiken', itemLabel: (p) => `${p.fields.value.value} — ${p.fields.sub.value}` },
+        ),
+        ctaHeading: fields.text({ label: 'Abschluss-CTA: Titel' }),
+        ctaText: fields.text({ label: 'Abschluss-CTA: Text', multiline: true }),
+      },
+    }),
+
+    vereinAngebot: singleton({
+      label: 'Verein — Angebot',
+      path: 'content/verein-angebot',
+      format: { data: 'json' },
+      schema: {
+        title: fields.text({ label: 'Titel' }),
+        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        profiles: fields.array(
+          fields.object({
+            title: fields.text({ label: 'Titel' }),
+            description: fields.text({ label: 'Beschreibung', multiline: true }),
+          }),
+          { label: 'Zielgruppen', itemLabel: (p) => p.fields.title.value },
+        ),
+      },
+    }),
+
+    vereinWerkstaetten: singleton({
+      label: 'Verein — Werkstätten',
+      path: 'content/verein-werkstaetten',
+      format: { data: 'json' },
+      schema: {
+        title: fields.text({ label: 'Titel' }),
+        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        workshops: fields.array(
+          fields.object({
+            name: fields.text({ label: 'Name' }),
+            description: fields.text({ label: 'Beschreibung', multiline: true }),
+          }),
+          { label: 'Werkstätten', itemLabel: (p) => p.fields.name.value },
+        ),
+      },
+    }),
+
+    vereinTransparenz: singleton({
+      label: 'Verein — Transparenz',
+      path: 'content/verein-transparenz',
+      format: { data: 'json' },
+      schema: {
+        disclosureText: fields.text({ label: 'Offenlegungstext (ZGB-Hinweis)', multiline: true }),
+        years: fields.array(
+          fields.object({
+            year: fields.text({ label: 'Jahr' }),
+            docs: fields.array(fields.text({ label: 'Dokument' }), {
+              label: 'Dokumente',
+              itemLabel: (p) => p.value,
+            }),
+          }),
+          { label: 'Geschäftsjahre', itemLabel: (p) => p.fields.year.value },
+        ),
+        membershipIntro: fields.text({ label: 'Mitgliedschaft: Einleitung', multiline: true }),
+        membershipOptions: fields.array(
+          fields.object({
+            title: fields.text({ label: 'Titel' }),
+            price: fields.text({ label: 'Preis' }),
+            description: fields.text({ label: 'Beschreibung' }),
+          }),
+          { label: 'Mitgliedschaftsarten', itemLabel: (p) => p.fields.title.value },
+        ),
+        donationIntro: fields.text({ label: 'Spenden: Einleitung', multiline: true }),
+        iban: fields.text({ label: 'IBAN' }),
+        bankName: fields.text({ label: 'Bank' }),
+        beneficiaryName: fields.text({ label: 'Begünstigter' }),
+        beneficiaryAddress: fields.text({ label: 'Adresse des Begünstigten' }),
+        donationConfirmationEmail: fields.text({ label: 'E-Mail für Spendenbestätigung' }),
+      },
+    }),
+
     team: singleton({
       label: 'Vorstand',
       path: 'content/team',
