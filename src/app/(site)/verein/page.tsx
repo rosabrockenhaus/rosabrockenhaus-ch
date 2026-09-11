@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Heart, Wrench, Briefcase } from 'lucide-react'
-import { team } from '@/lib/content'
+import { team, verein } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Über uns – Verein',
@@ -33,14 +33,10 @@ export default function VereinPage() {
       <section className="pt-28 pb-16 bg-rosa-50 border-b border-rosa-100">
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">
-            Wer wir sind
+            {verein.eyebrow}
           </p>
-          <h1 className="text-gray-900 mb-5">Der Verein</h1>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Rosa Brockenhaus ist der gemeinnützige Verein hinter dem Brockenhaus-Shop und den
-            Werkstätten — seit 2010 geben wir Menschen in schwierigen Lebenssituationen eine
-            sinnvolle Aufgabe, und Dingen ein zweites Leben.
-          </p>
+          <h1 className="text-gray-900 mb-5">{verein.title}</h1>
+          <p className="text-gray-600 text-lg leading-relaxed">{verein.intro}</p>
         </div>
       </section>
 
@@ -65,40 +61,23 @@ export default function VereinPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">
-                Unsere Mission
+                {verein.missionEyebrow}
               </p>
-              <h2 className="text-gray-900 mb-5">Integration durch Arbeit</h2>
+              <h2 className="text-gray-900 mb-5">{verein.missionHeading}</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>
-                  Wir glauben, dass Arbeit mehr ist als ein Lohn: Sie gibt Struktur, Würde und
-                  soziale Einbindung. Deshalb beschäftigen wir Menschen, die aus dem regulären
-                  Arbeitsmarkt herausgefallen sind — wegen psychischer Erkrankung, Migration oder
-                  Langzeitarbeitslosigkeit.
-                </p>
-                <p>
-                  In unseren fünf Werkstätten arbeiten Teilnehmende mit Alltagsgegenständen,
-                  lernen neue Fertigkeiten und finden ihren Rhythmus zurück. Der
-                  Brockenhaus-Shop ist unser Schaufenster nach aussen — und Ihr direkter Beitrag
-                  zu diesem Engagement.
-                </p>
-                <p>
-                  Gegründet am 22. März 2010, zogen wir 2011 nach Bern-Bethlehem und 2016 an
-                  unseren heutigen Standort im Wankdorf.
-                </p>
+                {verein.missionParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
 
               <blockquote className="mt-8 border-l-4 border-rosa-300 bg-rosa-50 rounded-r-2xl px-6 py-5 text-gray-700 italic leading-relaxed">
-                «Der Verein hat gemeinnützigen, selbsttragenden Charakter und verfolgt keinen
-                wirtschaftlichen Zweck.»
-                <footer className="mt-2 not-italic text-sm text-rosa-600">— aus den Statuten</footer>
+                {verein.quoteText}
+                <footer className="mt-2 not-italic text-sm text-rosa-600">{verein.quoteAttribution}</footer>
               </blockquote>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: '2010', sub: 'gegründet' },
-                { value: '5', sub: 'Werkstätten' },
-              ].map((stat) => (
+              {verein.stats.map((stat) => (
                 <div
                   key={stat.sub}
                   className="bg-rosa-50 border border-rosa-100 rounded-2xl p-6 text-center"
@@ -162,10 +141,8 @@ export default function VereinPage() {
       <section className="section-padding bg-rosa-600">
         <div className="container-base text-center">
           <Heart size={32} className="text-rosa-200 mx-auto mb-4" />
-          <h2 className="text-white mb-4">Teil der Gemeinschaft werden</h2>
-          <p className="text-rosa-200 mb-8 max-w-md mx-auto">
-            Als Mitglied oder Spender unterstützen Sie direkt die Arbeit des Rosa Brockenhaus.
-          </p>
+          <h2 className="text-white mb-4">{verein.ctaHeading}</h2>
+          <p className="text-rosa-200 mb-8 max-w-md mx-auto">{verein.ctaText}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/verein/transparenz#mitglied"

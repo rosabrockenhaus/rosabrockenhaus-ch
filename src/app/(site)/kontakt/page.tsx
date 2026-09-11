@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { MapPin, Phone, Mail, Clock, Check, Loader2, MessageCircle } from 'lucide-react'
+import { contact, shopHours } from '@/lib/content'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name erforderlich'),
@@ -26,8 +27,21 @@ export default function KontaktPage() {
     reset,
   } = useForm<ContactForm>({ resolver: zodResolver(contactSchema) })
 
-  const onSubmit = async (data: ContactForm) => {
-    await new Promise((r) => setTimeout(r, 1200))
+  const onSubmit = (data: ContactForm) => {
+    const subject = `${data.subject}`
+    const bodyLines = [
+      `Name: ${data.name}`,
+      `E-Mail: ${data.email}`,
+      data.phone ? `Telefon: ${data.phone}` : null,
+      '',
+      data.message,
+    ].filter((line): line is string => line !== null)
+
+    const mailtoUrl = `mailto:${contact.email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`
+
+    window.location.href = mailtoUrl
     setSubmitted(true)
     reset()
   }
@@ -58,9 +72,10 @@ export default function KontaktPage() {
                   <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Check size={26} className="text-green-600" />
                   </div>
-                  <h3 className="text-gray-900 mb-2">Nachricht erhalten!</h3>
+                  <h3 className="text-gray-900 mb-2">E-Mail-Programm geöffnet</h3>
                   <p className="text-gray-600 text-sm mb-5">
-                    Danke für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.
+                    Ihre Nachricht wurde in Ihrem E-Mail-Programm vorbereitet. Bitte senden Sie sie
+                    von dort aus ab, damit wir sie erhalten.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -168,25 +183,25 @@ export default function KontaktPage() {
                 <h3 className="text-gray-900 mb-2">Kontaktdaten</h3>
                 <div className="space-y-3 text-sm">
                   <a
-                    href="tel:+41319917700"
+                    href={`tel:${contact.phone.replace(/\s+/g, '').replace(/^0/, '+41')}`}
                     className="flex items-center gap-3 text-gray-700 hover:text-rosa-600 transition-colors"
                   >
                     <Phone size={15} className="text-rosa-400 shrink-0" />
-                    031 991 77 00
+                    {contact.phone}
                   </a>
                   <a
-                    href="mailto:mail@rosabrockenhaus.ch"
+                    href={`mailto:${contact.email}`}
                     className="flex items-center gap-3 text-gray-700 hover:text-rosa-600 transition-colors"
                   >
                     <Mail size={15} className="text-rosa-400 shrink-0" />
-                    mail@rosabrockenhaus.ch
+                    {contact.email}
                   </a>
                   <div className="flex items-start gap-3 text-gray-700">
                     <MapPin size={15} className="text-rosa-400 shrink-0 mt-0.5" />
                     <span>
-                      Wankdorffeldstrasse 96
+                      {contact.addressLine1}
                       <br />
-                      3014 Bern
+                      {contact.addressLine2}
                     </span>
                   </div>
                 </div>
@@ -196,32 +211,26 @@ export default function KontaktPage() {
               <div className="bg-white border border-rosa-100 rounded-2xl p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <Clock size={15} className="text-rosa-400" />
-                  <h3 className="text-gray-900 text-sm font-medium">Öffnungszeiten Shop</h3>
+                  <h3 className="text-gray-900 text-sm font-medium">{shopHours.label}</h3>
                 </div>
                 <div className="space-y-2 text-sm">
-                  {[
-                    { day: 'Montag–Freitag', hours: '12:00–18:00' },
-                    { day: 'Samstag', hours: '10:00–17:00' },
-                    { day: 'Sonntag', hours: 'geschlossen' },
-                  ].map((row) => (
-                    <div key={row.day} className="flex justify-between text-gray-700">
-                      <span>{row.day}</span>
+                  {shopHours.hours.map((row) => (
+                    <div key={row.days} className="flex justify-between text-gray-700">
+                      <span>{row.days}</span>
                       <span
-                        className={row.hours === 'geschlossen' ? 'text-gray-400' : 'font-medium'}
+                        className={row.time === 'geschlossen' ? 'text-gray-400' : 'font-medium'}
                       >
-                        {row.hours}
+                        {row.time}
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-xs text-gray-500">
-                  Services (Umzug, Räumung etc.) auf Anfrage auch ausserhalb der Öffnungszeiten.
-                </p>
+                <p className="mt-4 text-xs text-gray-500">{contact.serviceNote}</p>
               </div>
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/41319917700"
+                href={`https://wa.me/${contact.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-2xl p-5 hover:bg-green-100 transition-colors group"
@@ -238,7 +247,7 @@ export default function KontaktPage() {
               {/* Map embed */}
               <div className="rounded-2xl overflow-hidden border border-rosa-100">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.4!2d7.4652!3d46.9673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDU4JzAyLjMiTiA3wrAyNycxNC43IkU!5e0!3m2!1sde!2sch!4v1"
+                  src={contact.mapEmbedUrl}
                   width="100%"
                   height="200"
                   style={{ border: 0 }}

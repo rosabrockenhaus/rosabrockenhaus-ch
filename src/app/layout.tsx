@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Playfair_Display, Inter } from 'next/font/google'
 import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const geistMono = Geist_Mono({
@@ -91,7 +92,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

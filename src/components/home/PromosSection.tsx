@@ -3,45 +3,15 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { GraduationCap, CreditCard, Gift, ChevronDown } from 'lucide-react'
+import type { Promo } from '@/lib/content'
 
-const promos = [
-  {
-    id: 'student',
-    icon: GraduationCap,
-    eyebrow: 'Studentenrabatt',
-    summary: '20% Rabatt für Studierende',
-    details: [
-      'Gültig mit einem aktuellen Studentenausweis',
-      'Gilt auf alle Artikel im gesamten Sortiment',
-      'Direkt an der Kasse einlösbar — kein Bon nötig',
-    ],
-  },
-  {
-    id: 'kundenkarte',
-    icon: CreditCard,
-    eyebrow: 'Kundenkarte',
-    summary: 'Fr. 20.– Rabatt nach 10 Einkäufen',
-    details: [
-      'Fr. 20.– Rabatt nach 10 Einkäufen',
-      'Mindesteinkauf Fr. 10.– pro Besuch',
-      'Karte kostenlos und sofort an der Kasse erhältlich',
-    ],
-  },
-  {
-    id: 'bon',
-    icon: Gift,
-    eyebrow: 'Bon',
-    summary: 'Gutscheine kaufen & verschenken',
-    details: [
-      'Erhältlich in verschiedenen Beträgen',
-      'Einlösbar auf das gesamte Sortiment im Shop',
-      'Das ideale Geschenk — sinnvoll und nachhaltig',
-      'Direkt an der Kasse erhältlich',
-    ],
-  },
-]
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  GraduationCap,
+  CreditCard,
+  Gift,
+}
 
-export default function PromosSection() {
+export default function PromosSection({ promos }: { promos: Promo[] }) {
   const [open, setOpen] = useState<string | null>(null)
   const reduced = useReducedMotion()
 
@@ -49,12 +19,13 @@ export default function PromosSection() {
     <section className="bg-rosa-50 border-y border-rosa-100" aria-label="Aktionen & Treuevorteile">
       <div className="container-base py-5">
         <div className="grid sm:grid-cols-3 gap-3">
-          {promos.map(({ id, icon: Icon, eyebrow, summary, details }) => {
-            const isOpen = open === id
+          {promos.map(({ eyebrow, summary, details, icon }) => {
+            const Icon = iconMap[icon] ?? Gift
+            const isOpen = open === eyebrow
             return (
               <button
-                key={id}
-                onClick={() => setOpen(isOpen ? null : id)}
+                key={eyebrow}
+                onClick={() => setOpen(isOpen ? null : eyebrow)}
                 aria-expanded={isOpen}
                 className="text-left bg-white rounded-2xl px-5 py-4 border border-rosa-100 hover:border-rosa-300 transition-colors cursor-pointer w-full min-h-[44px]"
               >

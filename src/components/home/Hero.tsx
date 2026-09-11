@@ -6,8 +6,9 @@ import Image from 'next/image'
 import { fadeUpVariant, staggerContainer, noAnimation } from '@/lib/animations'
 import { ArrowRight, Play, ExternalLink } from 'lucide-react'
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from '@/components/ui/dialog'
+import type { HeroContent, Contact } from '@/lib/content'
 
-export default function Hero() {
+export default function Hero({ content, contact }: { content: HeroContent; contact: Contact }) {
   const prefersReducedMotion = useReducedMotion()
 
   const containerVariants = prefersReducedMotion ? noAnimation : staggerContainer
@@ -38,8 +39,8 @@ export default function Hero() {
               variants={itemVariants}
               className="font-display text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] font-medium leading-[1.1] tracking-[-0.03em] text-gray-900 mb-6"
             >
-              <em className="not-italic text-rosa-600">Rosa</em>{' '}
-              räumt Ihr Haus aus.
+              <em className="not-italic text-rosa-600">{content.headlineHighlight}</em>{' '}
+              {content.headlineRest}
             </motion.h1>
 
             <motion.p
@@ -47,24 +48,23 @@ export default function Hero() {
               className="text-gray-600 text-lg leading-[1.7] mb-10"
               style={{ maxWidth: '52ch' }}
             >
-              Secondhand-Shop · Werkstätten · Umzug · Räumung ·{' '}
-              Reinigung · Abholung — gemeinnützig in Bern.
+              {content.subcopy}
             </motion.p>
 
             {/* CTAs — min 44px height, WCAG-compliant */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
-                href="/services"
+                href={content.primaryCtaHref}
                 className="inline-flex items-center justify-center gap-2.5 bg-rosa-600 hover:bg-rosa-800 text-white rounded-full px-8 py-3.5 text-base font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 group min-h-[48px]"
               >
-                Services
+                {content.primaryCtaLabel}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
               <Link
-                href="/shop"
+                href={content.secondaryCtaHref}
                 className="inline-flex items-center justify-center gap-2 border-2 border-rosa-200 text-rosa-700 hover:bg-rosa-50 hover:border-rosa-400 rounded-full px-8 py-3.5 text-base font-medium transition-all duration-200 min-h-[48px]"
               >
-                Shop
+                {content.secondaryCtaLabel}
               </Link>
             </motion.div>
 
@@ -129,8 +129,18 @@ export default function Hero() {
             {/* Contact card */}
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl p-4 border border-rosa-50 w-44">
               <p className="text-xs font-medium text-rosa-600 mb-2 uppercase tracking-wide">Kontakt</p>
-              <a href="tel:+41319917700" className="text-sm text-gray-800 font-medium flex items-center min-h-[44px]">031 991 77 00</a>
-              <a href="mailto:mail@rosabrockenhaus.ch" className="text-xs text-gray-400 flex items-center truncate min-h-[44px]">mail@rosabrockenhaus.ch</a>
+              <a
+                href={`tel:${contact.phone.replace(/\s+/g, '').replace(/^0/, '+41')}`}
+                className="text-sm text-gray-800 font-medium flex items-center min-h-[44px]"
+              >
+                {contact.phone}
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="text-xs text-gray-400 flex items-center truncate min-h-[44px]"
+              >
+                {contact.email}
+              </a>
             </div>
           </motion.div>
         </div>

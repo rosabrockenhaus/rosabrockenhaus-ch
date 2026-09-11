@@ -1,0 +1,26 @@
+{
+  "title": "Unsere Werkstätten",
+  "intro": "In fünf Werkstätten geben wir Gegenständen eine zweite Chance — und Menschen die Möglichkeit, neue Fähigkeiten zu entwickeln und in den Arbeitsmarkt zurückzufinden.",
+  "workshops": [
+    {
+      "name": "Textilwerkstatt",
+      "description": "Sortierung, Aufbereitung und Verkauf von Kleidung und Textilien."
+    },
+    {
+      "name": "Elektrowerkstatt",
+      "description": "Prüfung, Reparatur und Instandsetzung von Elektrogeräten und HiFi-Anlagen."
+    },
+    {
+      "name": "Möbelwerkstatt",
+      "description": "Aufbereitung, Reparatur und Restaurierung von Möbeln aller Art."
+    },
+    {
+      "name": "Geschirrwerkstatt",
+      "description": "Kontrolle, Reinigung und Sortierung von Haushaltswaren und Geschirr."
+    },
+    {
+      "name": "Velowerkstatt",
+      "description": "Service, Reparatur und Aufbereitung von Fahrrädern und Velozubehör."
+    }
+  ]
+}

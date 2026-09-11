@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { MapPin, Phone, Mail, Clock, Share2, Users, Heart } from 'lucide-react'
 import { StampLogo } from '@/components/ui/Logo'
-import { shopHours } from '@/lib/content'
+import { shopHours, contact } from '@/lib/content'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -32,32 +32,40 @@ export default function Footer() {
               <Link href="/" className="inline-flex mb-5" aria-label="Rosa Brockenhaus — Startseite">
                 <StampLogo size="sm" />
               </Link>
-              <p className="text-sm text-gray-500 leading-relaxed mb-6">
-                Gemeinnütziger Verein in Bern. Secondhand mit Herz — für Nachhaltigkeit und Integration.
-              </p>
+              <p className="text-sm text-gray-500 leading-relaxed mb-6">{contact.footerTagline}</p>
 
               <ul className="space-y-3 text-sm">
                 <li className="flex items-start gap-2.5">
                   <MapPin size={14} className="mt-0.5 text-rosa-400 shrink-0" />
-                  <span className="text-gray-400">Wankdorffeldstrasse 96<br />3014 Bern</span>
+                  <span className="text-gray-400">
+                    {contact.addressLine1}
+                    <br />
+                    {contact.addressLine2}
+                  </span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Phone size={14} className="text-rosa-400 shrink-0" />
-                  <a href="tel:+41319917700" className="hover:text-white transition-colors duration-200 min-h-[44px] flex items-center">
-                    031 991 77 00
+                  <a
+                    href={`tel:${contact.phone.replace(/\s+/g, '').replace(/^0/, '+41')}`}
+                    className="hover:text-white transition-colors duration-200 min-h-[44px] flex items-center"
+                  >
+                    {contact.phone}
                   </a>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Mail size={14} className="text-rosa-400 shrink-0" />
-                  <a href="mailto:mail@rosabrockenhaus.ch" className="hover:text-white transition-colors duration-200 min-h-[44px] flex items-center text-xs sm:text-sm break-all">
-                    mail@rosabrockenhaus.ch
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="hover:text-white transition-colors duration-200 min-h-[44px] flex items-center text-xs sm:text-sm break-all"
+                  >
+                    {contact.email}
                   </a>
                 </li>
               </ul>
 
               <div className="flex gap-2 mt-6">
                 <a
-                  href="https://instagram.com"
+                  href={contact.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -66,7 +74,7 @@ export default function Footer() {
                   <Share2 size={15} />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href={contact.facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"

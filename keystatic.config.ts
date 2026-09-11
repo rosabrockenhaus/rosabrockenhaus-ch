@@ -1,11 +1,25 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
 
+// 'local' storage needs zero authentication — it just reads/writes the filesystem directly. That's
+// fine on a developer's own machine, but if a production deploy ever falls back to it (because the
+// GitHub App credentials aren't set yet), /keystatic would be world-readable/writable with no login
+// gate. src/app/keystatic/layout.tsx and src/app/api/keystatic/[...params]/route.ts both check this
+// flag and 404 the whole admin UI in production until real GitHub-backed storage is configured.
+//
+// This must read a NEXT_PUBLIC_ variable, not KEYSTATIC_GITHUB_CLIENT_ID directly: this file is
+// also imported by src/app/keystatic/keystatic.ts, a 'use client' component, and Next.js only
+// inlines NEXT_PUBLIC_ vars into the browser bundle — a non-public var would resolve to `undefined`
+// client-side, making the browser think storage is 'local' while the server thinks 'github' (the
+// client then calls the local-only /api/keystatic/tree route, which 404s on a github-mode server).
+// The client ID itself isn't secret — it's already visible in the GitHub OAuth redirect URL.
+export const isGithubStorageConfigured = Boolean(process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID)
+
 export default config({
   // Falls back to 'local' storage whenever the GitHub App credentials aren't set yet (local dev,
   // or a production deploy before the GitHub App is created) — Keystatic's 'github' storage mode
   // throws a hard error at build time if KEYSTATIC_GITHUB_CLIENT_ID/SECRET/KEYSTATIC_SECRET are
   // missing, which would break `next build` for the whole site, not just /keystatic.
-  storage: process.env.KEYSTATIC_GITHUB_CLIENT_ID
+  storage: isGithubStorageConfigured
     ? { kind: 'github', repo: { owner: 'rosabrockenhaus', name: 'rosabrockenhaus-ch' } }
     : { kind: 'local' },
 
@@ -37,6 +51,178 @@ export default config({
   },
 
   singletons: {
+    banner: singleton({
+      label: 'Ankündigungsbanner',
+      path: 'content/banner',
+      format: { data: 'json' },
+      schema: {
+        enabled: fields.checkbox({ label: 'Banner anzeigen', defaultValue: true }),
+        discount: fields.text({ label: "Rabatt-Highlight (z.B. '50%')" }),
+        message: fields.text({ label: 'Nachricht', multiline: true }),
+        ctaLabel: fields.text({ label: 'Button-Text' }),
+        ctaHref: fields.text({ label: 'Button-Link (z.B. /shop)' }),
+      },
+    }),
+
+    homepage: singleton({
+      label: 'Startseite',
+      path: 'content/homepage',
+      format: { data: 'json' },
+      schema: {
+        hero: fields.object(
+          {
+            headlineHighlight: fields.text({ label: "Titel-Highlight (z.B. 'Rosa')" }),
+            headlineRest: fields.text({ label: 'Titel (Rest des Satzes)' }),
+            subcopy: fields.text({ label: 'Untertext', multiline: true }),
+            primaryCtaLabel: fields.text({ label: 'Haupt-Button Text' }),
+            primaryCtaHref: fields.text({ label: 'Haupt-Button Link' }),
+            secondaryCtaLabel: fields.text({ label: 'Zweiter Button Text' }),
+            secondaryCtaHref: fields.text({ label: 'Zweiter Button Link' }),
+          },
+          { label: 'Hero (oberster Bereich)' }
+        ),
+        promos: fields.array(
+          fields.object({
+            icon: fields.select({
+              label: 'Icon',
+              options: [
+                { label: 'Studierende (GraduationCap)', value: 'GraduationCap' },
+                { label: 'Kundenkarte (CreditCard)', value: 'CreditCard' },
+                { label: 'Bon (Gift)', value: 'Gift' },
+              ],
+              defaultValue: 'Gift',
+            }),
+            eyebrow: fields.text({ label: 'Kategorie (kurz)' }),
+            summary: fields.text({ label: 'Zusammenfassung' }),
+            details: fields.array(fields.text({ label: 'Detail' }), {
+              label: 'Details',
+              itemLabel: (p) => p.value,
+            }),
+          }),
+          { label: 'Aktionen & Treuevorteile', itemLabel: (p) => p.fields.eyebrow.value },
+        ),
+      },
+    }),
+
+    verein: singleton({
+      label: 'Verein — Über uns',
+      path: 'content/verein',
+      format: { data: 'json' },
+      schema: {
+        eyebrow: fields.text({ label: 'Eyebrow (klein, über dem Titel)' }),
+        title: fields.text({ label: 'Titel' }),
+        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        missionEyebrow: fields.text({ label: 'Mission: Eyebrow' }),
+        missionHeading: fields.text({ label: 'Mission: Titel' }),
+        missionParagraphs: fields.array(fields.text({ label: 'Absatz', multiline: true }), {
+          label: 'Mission: Absätze',
+          itemLabel: (p) => p.value.slice(0, 60),
+        }),
+        quoteText: fields.text({ label: 'Zitat', multiline: true }),
+        quoteAttribution: fields.text({ label: 'Zitat-Quelle' }),
+        stats: fields.array(
+          fields.object({
+            value: fields.text({ label: 'Wert (z.B. "2010")' }),
+            sub: fields.text({ label: 'Beschriftung (z.B. "gegründet")' }),
+          }),
+          { label: 'Statistiken', itemLabel: (p) => `${p.fields.value.value} — ${p.fields.sub.value}` },
+        ),
+        ctaHeading: fields.text({ label: 'Abschluss-CTA: Titel' }),
+        ctaText: fields.text({ label: 'Abschluss-CTA: Text', multiline: true }),
+      },
+    }),
+
+    vereinAngebot: singleton({
+      label: 'Verein — Angebot',
+      path: 'content/verein-angebot',
+      format: { data: 'json' },
+      schema: {
+        title: fields.text({ label: 'Titel' }),
+        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        profiles: fields.array(
+          fields.object({
+            title: fields.text({ label: 'Titel' }),
+            description: fields.text({ label: 'Beschreibung', multiline: true }),
+          }),
+          { label: 'Zielgruppen', itemLabel: (p) => p.fields.title.value },
+        ),
+      },
+    }),
+
+    vereinWerkstaetten: singleton({
+      label: 'Verein — Werkstätten',
+      path: 'content/verein-werkstaetten',
+      format: { data: 'json' },
+      schema: {
+        title: fields.text({ label: 'Titel' }),
+        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        workshops: fields.array(
+          fields.object({
+            name: fields.text({ label: 'Name' }),
+            description: fields.text({ label: 'Beschreibung', multiline: true }),
+          }),
+          { label: 'Werkstätten', itemLabel: (p) => p.fields.name.value },
+        ),
+      },
+    }),
+
+    vereinTransparenz: singleton({
+      label: 'Verein — Transparenz',
+      path: 'content/verein-transparenz',
+      format: { data: 'json' },
+      schema: {
+        disclosureText: fields.text({ label: 'Offenlegungstext (ZGB-Hinweis)', multiline: true }),
+        years: fields.array(
+          fields.object({
+            year: fields.text({ label: 'Jahr' }),
+            docs: fields.array(fields.text({ label: 'Dokument' }), {
+              label: 'Dokumente',
+              itemLabel: (p) => p.value,
+            }),
+          }),
+          { label: 'Geschäftsjahre', itemLabel: (p) => p.fields.year.value },
+        ),
+        membershipIntro: fields.text({ label: 'Mitgliedschaft: Einleitung', multiline: true }),
+        membershipOptions: fields.array(
+          fields.object({
+            title: fields.text({ label: 'Titel' }),
+            price: fields.text({ label: 'Preis' }),
+            description: fields.text({ label: 'Beschreibung' }),
+          }),
+          { label: 'Mitgliedschaftsarten', itemLabel: (p) => p.fields.title.value },
+        ),
+        donationIntro: fields.text({ label: 'Spenden: Einleitung', multiline: true }),
+        iban: fields.text({ label: 'IBAN' }),
+        bankName: fields.text({ label: 'Bank' }),
+        beneficiaryName: fields.text({ label: 'Begünstigter' }),
+        beneficiaryAddress: fields.text({ label: 'Adresse des Begünstigten' }),
+        donationConfirmationEmail: fields.text({ label: 'E-Mail für Spendenbestätigung' }),
+      },
+    }),
+
+    contact: singleton({
+      label: 'Kontaktdaten',
+      path: 'content/contact',
+      format: { data: 'json' },
+      schema: {
+        phone: fields.text({ label: "Telefon (Anzeige, z.B. '031 991 77 00')" }),
+        email: fields.text({ label: 'E-Mail' }),
+        addressLine1: fields.text({ label: 'Adresse Zeile 1 (Strasse)' }),
+        addressLine2: fields.text({ label: 'Adresse Zeile 2 (PLZ Ort)' }),
+        whatsappNumber: fields.text({
+          label: "WhatsApp-Nummer (nur Ziffern mit Landesvorwahl, z.B. '41319917700')",
+        }),
+        mapEmbedUrl: fields.text({ label: 'Google Maps Embed-URL', multiline: true }),
+        instagramUrl: fields.text({ label: 'Instagram-Link' }),
+        facebookUrl: fields.text({ label: 'Facebook-Link' }),
+        footerTagline: fields.text({ label: 'Footer: Kurzbeschreibung', multiline: true }),
+        serviceNote: fields.text({
+          label: 'Hinweis unter Öffnungszeiten (z.B. Services ausserhalb der Öffnungszeiten)',
+          multiline: true,
+        }),
+      },
+    }),
+
     team: singleton({
       label: 'Vorstand',
       path: 'content/team',

@@ -1,45 +1,21 @@
 import type { Metadata } from 'next'
+import { vereinAngebot } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Angebot — Rosa Brockenhaus Bern',
   description: 'Arbeits- und Praktikumsplätze für Menschen in Reintegration, nach Burnout, mit Behinderung oder in beruflicher Neuorientierung.',
 }
 
-const profiles = [
-  {
-    title: 'Nach einem Burnout',
-    description: 'Sanfter Wiedereinstieg ins Berufsleben in einem unterstützenden Umfeld — in Ihrem Tempo.',
-  },
-  {
-    title: 'Mit körperlicher oder psychischer Behinderung',
-    description: 'Angepasste Aufgaben und ein respektvoller Arbeitsplatz für Menschen mit besonderen Bedürfnissen.',
-  },
-  {
-    title: 'In beruflicher Reintegration',
-    description: 'Praktische Erfahrung sammeln und die Arbeitsfähigkeit nach einer Auszeit wiederherstellen.',
-  },
-  {
-    title: 'Migrantinnen und Migranten',
-    description: 'Lokale Berufserfahrung aufbauen, Sprache üben und sich in Bern einleben.',
-  },
-  {
-    title: 'Langzeitarbeitslose',
-    description: 'Den Weg zurück in die Arbeitswelt finden — mit Begleitung und echten Aufgaben.',
-  },
-]
-
 export default function AngebotPage() {
+  const { title, intro, profiles } = vereinAngebot
+
   return (
     <>
       <section className="pt-28 pb-12 bg-rosa-50 border-b border-rosa-100">
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">Verein</p>
-          <h1 className="text-gray-900 mb-4">Für wen wir da sind</h1>
-          <p className="text-gray-600">
-            Rosa Brockenhaus bietet Arbeits- und Praktikumsplätze für Menschen, die einen
-            begleiteten Wiedereinstieg ins Berufsleben suchen. Wir glauben an zweite Chancen —
-            für Menschen genauso wie für Gegenstände.
-          </p>
+          <h1 className="text-gray-900 mb-4">{title}</h1>
+          <p className="text-gray-600">{intro}</p>
         </div>
       </section>
 

@@ -12,13 +12,7 @@ import {
 } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
 import { Download, FileText, Check, Loader2, Scale } from 'lucide-react'
-
-const years = [
-  { year: '2025', docs: ['Jahresbericht', 'Jahresrechnung', 'Protokoll GV'] },
-  { year: '2024', docs: ['Jahresbericht', 'Jahresrechnung', 'Protokoll GV'] },
-  { year: '2023', docs: ['Jahresbericht', 'Jahresrechnung', 'Protokoll GV'] },
-  { year: '2022', docs: ['Jahresbericht', 'Jahresrechnung', 'Protokoll GV'] },
-]
+import { vereinTransparenz } from '@/lib/content'
 
 const memberSchema = z.object({
   name: z.string().min(2, 'Name erforderlich'),
@@ -29,6 +23,18 @@ const memberSchema = z.object({
 type MemberForm = z.infer<typeof memberSchema>
 
 export default function TransparenzPage() {
+  const {
+    disclosureText,
+    years,
+    membershipIntro,
+    membershipOptions,
+    donationIntro,
+    iban,
+    bankName,
+    beneficiaryName,
+    beneficiaryAddress,
+    donationConfirmationEmail,
+  } = vereinTransparenz
   const [memberSubmitted, setMemberSubmitted] = useState(false)
 
   const {
@@ -58,11 +64,7 @@ export default function TransparenzPage() {
           <h1 className="text-gray-900 mb-4">Transparenz</h1>
           <div className="flex items-start gap-3 bg-white border border-rosa-100 rounded-xl p-4 text-sm text-gray-600">
             <Scale size={16} className="text-rosa-400 shrink-0 mt-0.5" />
-            <p>
-              Als Verein nach Art. 69 ZGB sind wir zur Offenlegung unserer Vereinstätigkeit
-              verpflichtet. Alle Jahresberichte, Jahresrechnungen und GV-Protokolle stehen zum
-              Download bereit.
-            </p>
+            <p>{disclosureText}</p>
           </div>
         </div>
       </section>
@@ -117,24 +119,18 @@ export default function TransparenzPage() {
         <div className="container-base max-w-3xl">
           <div className="mb-8">
             <h2 className="text-gray-900 mb-3">Mitglied werden</h2>
-            <p className="text-gray-600">
-              Als Vereinsmitglied unterstützen Sie unsere Arbeit direkt und haben Stimmrecht an
-              der Generalversammlung.
-            </p>
+            <p className="text-gray-600">{membershipIntro}</p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
-            {[
-              { title: 'Einzelperson', price: 'CHF 100.–/Jahr', desc: 'Persönliche Mitgliedschaft mit Stimmrecht.' },
-              { title: 'Firma / Organisation', price: 'CHF 250.–/Jahr', desc: 'Unterstützungsmitgliedschaft für Unternehmen.' },
-            ].map((opt) => (
+            {membershipOptions.map((opt) => (
               <div
                 key={opt.title}
                 className="bg-white border border-rosa-100 rounded-2xl p-5"
               >
                 <p className="font-medium text-gray-900 mb-1">{opt.title}</p>
                 <p className="text-rosa-600 text-lg font-medium mb-2">{opt.price}</p>
-                <p className="text-sm text-gray-500">{opt.desc}</p>
+                <p className="text-sm text-gray-500">{opt.description}</p>
               </div>
             ))}
           </div>
@@ -219,26 +215,22 @@ export default function TransparenzPage() {
       <section id="spenden" className="section-padding bg-white">
         <div className="container-base max-w-3xl">
           <h2 className="text-gray-900 mb-4">Spenden</h2>
-          <p className="text-gray-600 mb-8">
-            Jede Spende fliesst direkt in die Beschäftigung und Integration von Menschen in Bern.
-            Als gemeinnütziger Verein sind wir von der Steuerpflicht befreit – Spenden sind
-            steuerabzugsfähig.
-          </p>
+          <p className="text-gray-600 mb-8">{donationIntro}</p>
           <div className="bg-rosa-50 border border-rosa-100 rounded-2xl p-7 space-y-4">
             <div className="flex items-center gap-3">
               <FileText size={18} className="text-rosa-600 shrink-0" />
               <div>
                 <p className="text-sm font-medium text-gray-700">Kontoverbindung</p>
                 <p className="text-gray-900">
-                  IBAN: <strong>CH36 0079 0042 4848 2986 8</strong>
+                  IBAN: <strong>{iban}</strong>
                 </p>
-                <p className="text-gray-600 text-sm">Berner Kantonalbank</p>
+                <p className="text-gray-600 text-sm">{bankName}</p>
               </div>
             </div>
             <div className="border-t border-rosa-200 pt-4">
               <p className="text-sm font-medium text-gray-700 mb-1">Begünstigter</p>
-              <p className="text-gray-900">Rosa Brockenhaus Hilfswerkverein</p>
-              <p className="text-gray-600 text-sm">Wankdorffeldstrasse 96, 3014 Bern</p>
+              <p className="text-gray-900">{beneficiaryName}</p>
+              <p className="text-gray-600 text-sm">{beneficiaryAddress}</p>
             </div>
             <div className="border-t border-rosa-200 pt-4">
               <div className="w-32 h-32 bg-white border border-rosa-200 rounded-xl flex items-center justify-center mx-auto">
@@ -252,8 +244,8 @@ export default function TransparenzPage() {
           </div>
           <p className="mt-5 text-sm text-gray-500">
             Für eine Spendenbestätigung schreiben Sie uns an{' '}
-            <a href="mailto:mail@rosabrockenhaus.ch" className="text-rosa-600 hover:underline">
-              mail@rosabrockenhaus.ch
+            <a href={`mailto:${donationConfirmationEmail}`} className="text-rosa-600 hover:underline">
+              {donationConfirmationEmail}
             </a>
             .
           </p>

@@ -1,0 +1,20 @@
+{
+  "disclosureText": "Als Verein nach Art. 69 ZGB sind wir zur Offenlegung unserer Vereinstätigkeit verpflichtet. Alle Jahresberichte, Jahresrechnungen und GV-Protokolle stehen zum Download bereit.",
+  "years": [
+    { "year": "2025", "docs": ["Jahresbericht", "Jahresrechnung", "Protokoll GV"] },
+    { "year": "2024", "docs": ["Jahresbericht", "Jahresrechnung", "Protokoll GV"] },
+    { "year": "2023", "docs": ["Jahresbericht", "Jahresrechnung", "Protokoll GV"] },
+    { "year": "2022", "docs": ["Jahresbericht", "Jahresrechnung", "Protokoll GV"] }
+  ],
+  "membershipIntro": "Als Vereinsmitglied unterstützen Sie unsere Arbeit direkt und haben Stimmrecht an der Generalversammlung.",
+  "membershipOptions": [
+    { "title": "Einzelperson", "price": "CHF 100.–/Jahr", "description": "Persönliche Mitgliedschaft mit Stimmrecht." },
+    { "title": "Firma / Organisation", "price": "CHF 250.–/Jahr", "description": "Unterstützungsmitgliedschaft für Unternehmen." }
+  ],
+  "donationIntro": "Jede Spende fliesst direkt in die Beschäftigung und Integration von Menschen in Bern. Als gemeinnütziger Verein sind wir von der Steuerpflicht befreit – Spenden sind steuerabzugsfähig.",
+  "iban": "CH36 0079 0042 4848 2986 8",
+  "bankName": "Berner Kantonalbank",
+  "beneficiaryName": "Rosa Brockenhaus Hilfswerkverein",
+  "beneficiaryAddress": "Wankdorffeldstrasse 96, 3014 Bern",
+  "donationConfirmationEmail": "mail@rosabrockenhaus.ch"
+}

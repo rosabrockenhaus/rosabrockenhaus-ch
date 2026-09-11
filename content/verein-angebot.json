@@ -1,0 +1,26 @@
+{
+  "title": "Für wen wir da sind",
+  "intro": "Rosa Brockenhaus bietet Arbeits- und Praktikumsplätze für Menschen, die einen begleiteten Wiedereinstieg ins Berufsleben suchen. Wir glauben an zweite Chancen — für Menschen genauso wie für Gegenstände.",
+  "profiles": [
+    {
+      "title": "Nach einem Burnout",
+      "description": "Sanfter Wiedereinstieg ins Berufsleben in einem unterstützenden Umfeld — in Ihrem Tempo."
+    },
+    {
+      "title": "Mit körperlicher oder psychischer Behinderung",
+      "description": "Angepasste Aufgaben und ein respektvoller Arbeitsplatz für Menschen mit besonderen Bedürfnissen."
+    },
+    {
+      "title": "In beruflicher Reintegration",
+      "description": "Praktische Erfahrung sammeln und die Arbeitsfähigkeit nach einer Auszeit wiederherstellen."
+    },
+    {
+      "title": "Migrantinnen und Migranten",
+      "description": "Lokale Berufserfahrung aufbauen, Sprache üben und sich in Bern einleben."
+    },
+    {
+      "title": "Langzeitarbeitslose",
+      "description": "Den Weg zurück in die Arbeitswelt finden — mit Begleitung und echten Aufgaben."
+    }
+  ]
+}
