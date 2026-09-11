@@ -8,6 +8,7 @@ import vereinData from '../../content/verein.json'
 import vereinAngebotData from '../../content/verein-angebot.json'
 import vereinWerkstaettenData from '../../content/verein-werkstaetten.json'
 import vereinTransparenzData from '../../content/verein-transparenz.json'
+import contactData from '../../content/contact.json'
 
 export type Banner = {
   enabled: boolean
@@ -27,8 +28,6 @@ export type HeroContent = {
   primaryCtaHref: string
   secondaryCtaLabel: string
   secondaryCtaHref: string
-  contactPhone: string
-  contactEmail: string
 }
 
 export type Promo = {
@@ -134,3 +133,18 @@ export type VereinTransparenz = {
 }
 
 export const vereinTransparenz: VereinTransparenz = vereinTransparenzData
+
+export type Contact = {
+  phone: string
+  email: string
+  addressLine1: string
+  addressLine2: string
+  whatsappNumber: string
+  mapEmbedUrl: string
+  instagramUrl: string
+  facebookUrl: string
+  footerTagline: string
+  serviceNote: string
+}
+
+export const contact: Contact = contactData

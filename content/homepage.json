@@ -6,9 +6,7 @@
     "primaryCtaLabel": "Services",
     "primaryCtaHref": "/services",
     "secondaryCtaLabel": "Shop",
-    "secondaryCtaHref": "/shop",
-    "contactPhone": "031 991 77 00",
-    "contactEmail": "mail@rosabrockenhaus.ch"
+    "secondaryCtaHref": "/shop"
   },
   "promos": [
     {

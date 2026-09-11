@@ -78,8 +78,6 @@ export default config({
             primaryCtaHref: fields.text({ label: 'Haupt-Button Link' }),
             secondaryCtaLabel: fields.text({ label: 'Zweiter Button Text' }),
             secondaryCtaHref: fields.text({ label: 'Zweiter Button Link' }),
-            contactPhone: fields.text({ label: 'Kontaktkarte: Telefon' }),
-            contactEmail: fields.text({ label: 'Kontaktkarte: E-Mail' }),
           },
           { label: 'Hero (oberster Bereich)' }
         ),
@@ -199,6 +197,29 @@ export default config({
         beneficiaryName: fields.text({ label: 'Begünstigter' }),
         beneficiaryAddress: fields.text({ label: 'Adresse des Begünstigten' }),
         donationConfirmationEmail: fields.text({ label: 'E-Mail für Spendenbestätigung' }),
+      },
+    }),
+
+    contact: singleton({
+      label: 'Kontaktdaten',
+      path: 'content/contact',
+      format: { data: 'json' },
+      schema: {
+        phone: fields.text({ label: "Telefon (Anzeige, z.B. '031 991 77 00')" }),
+        email: fields.text({ label: 'E-Mail' }),
+        addressLine1: fields.text({ label: 'Adresse Zeile 1 (Strasse)' }),
+        addressLine2: fields.text({ label: 'Adresse Zeile 2 (PLZ Ort)' }),
+        whatsappNumber: fields.text({
+          label: "WhatsApp-Nummer (nur Ziffern mit Landesvorwahl, z.B. '41319917700')",
+        }),
+        mapEmbedUrl: fields.text({ label: 'Google Maps Embed-URL', multiline: true }),
+        instagramUrl: fields.text({ label: 'Instagram-Link' }),
+        facebookUrl: fields.text({ label: 'Facebook-Link' }),
+        footerTagline: fields.text({ label: 'Footer: Kurzbeschreibung', multiline: true }),
+        serviceNote: fields.text({
+          label: 'Hinweis unter Öffnungszeiten (z.B. Services ausserhalb der Öffnungszeiten)',
+          multiline: true,
+        }),
       },
     }),
 

@@ -5,7 +5,7 @@ import PromosSection from '@/components/home/PromosSection'
 import ServicesGrid from '@/components/home/ServicesGrid'
 import ShopTeaser from '@/components/home/ShopTeaser'
 import { getAllBlogPosts } from '@/lib/blog'
-import { homepage } from '@/lib/content'
+import { homepage, contact } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Rosa Brockenhaus Bern – Shop, Werkstätten & Services',
@@ -18,7 +18,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Hero content={homepage.hero} />
+      <Hero content={homepage.hero} contact={contact} />
       <Aktuell posts={posts} />
       <PromosSection promos={homepage.promos} />
       <ServicesGrid />
