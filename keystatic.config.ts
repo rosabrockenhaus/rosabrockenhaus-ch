@@ -1,11 +1,18 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
 
+// 'local' storage needs zero authentication — it just reads/writes the filesystem directly. That's
+// fine on a developer's own machine, but if a production deploy ever falls back to it (because the
+// GitHub App credentials aren't set yet), /keystatic would be world-readable/writable with no login
+// gate. src/app/keystatic/layout.tsx and src/app/api/keystatic/[...params]/route.ts both check this
+// flag and 404 the whole admin UI in production until real GitHub-backed storage is configured.
+export const isGithubStorageConfigured = Boolean(process.env.KEYSTATIC_GITHUB_CLIENT_ID)
+
 export default config({
   // Falls back to 'local' storage whenever the GitHub App credentials aren't set yet (local dev,
   // or a production deploy before the GitHub App is created) — Keystatic's 'github' storage mode
   // throws a hard error at build time if KEYSTATIC_GITHUB_CLIENT_ID/SECRET/KEYSTATIC_SECRET are
   // missing, which would break `next build` for the whole site, not just /keystatic.
-  storage: process.env.KEYSTATIC_GITHUB_CLIENT_ID
+  storage: isGithubStorageConfigured
     ? { kind: 'github', repo: { owner: 'rosabrockenhaus', name: 'rosabrockenhaus-ch' } }
     : { kind: 'local' },
 

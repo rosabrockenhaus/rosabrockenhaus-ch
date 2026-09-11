@@ -26,8 +26,21 @@ export default function KontaktPage() {
     reset,
   } = useForm<ContactForm>({ resolver: zodResolver(contactSchema) })
 
-  const onSubmit = async (data: ContactForm) => {
-    await new Promise((r) => setTimeout(r, 1200))
+  const onSubmit = (data: ContactForm) => {
+    const subject = `${data.subject}`
+    const bodyLines = [
+      `Name: ${data.name}`,
+      `E-Mail: ${data.email}`,
+      data.phone ? `Telefon: ${data.phone}` : null,
+      '',
+      data.message,
+    ].filter((line): line is string => line !== null)
+
+    const mailtoUrl = `mailto:mail@rosabrockenhaus.ch?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`
+
+    window.location.href = mailtoUrl
     setSubmitted(true)
     reset()
   }
@@ -58,9 +71,10 @@ export default function KontaktPage() {
                   <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Check size={26} className="text-green-600" />
                   </div>
-                  <h3 className="text-gray-900 mb-2">Nachricht erhalten!</h3>
+                  <h3 className="text-gray-900 mb-2">E-Mail-Programm geöffnet</h3>
                   <p className="text-gray-600 text-sm mb-5">
-                    Danke für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.
+                    Ihre Nachricht wurde in Ihrem E-Mail-Programm vorbereitet. Bitte senden Sie sie
+                    von dort aus ab, damit wir sie erhalten.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
