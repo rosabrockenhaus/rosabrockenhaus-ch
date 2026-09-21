@@ -1,6 +1,6 @@
 {
   "eyebrow": "Wer wir sind",
-  "title": "Der Verein",
+  "title": "Der Verein Rosa Brockenhaus",
   "intro": "Rosa Brockenhaus ist der gemeinnützige Verein hinter dem Brockenhaus-Shop und den Werkstätten — seit 2010 geben wir Menschen in schwierigen Lebenssituationen eine sinnvolle Aufgabe, und Dingen ein zweites Leben.",
   "missionEyebrow": "Unsere Mission",
   "missionHeading": "Integration durch Arbeit",
@@ -12,8 +12,14 @@
   "quoteText": "«Der Verein hat gemeinnützigen, selbsttragenden Charakter und verfolgt keinen wirtschaftlichen Zweck.»",
   "quoteAttribution": "— aus den Statuten",
   "stats": [
-    { "value": "2010", "sub": "gegründet" },
-    { "value": "5", "sub": "Werkstätten" }
+    {
+      "value": "2010",
+      "sub": "gegründet"
+    },
+    {
+      "value": "5",
+      "sub": "Werkstätten"
+    }
   ],
   "ctaHeading": "Teil der Gemeinschaft werden",
   "ctaText": "Als Mitglied oder Spender unterstützen Sie direkt die Arbeit des Rosa Brockenhaus."
