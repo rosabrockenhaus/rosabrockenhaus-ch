@@ -1,26 +1,5 @@
 {
   "title": "Unsere Angebote",
   "intro": "Der Verein Rosa bietet Arbeits-, Beschäftigungs- und Praktikumsplätze für Migranten/innen und von Arbeitslosigkeit und Krankheit betroffenen Personen an.\nArbeitssuchende Menschen haben die Möglichkeit, einer Arbeit oder Beschäftigung in einem geschützten Rahmen nachzugehen, welche ihren Fähigkeiten und Ressourcen entspricht.",
-  "profiles": [
-    {
-      "title": "Nach einem Burnout",
-      "description": "Sanfter Wiedereinstieg ins Berufsleben in einem unterstützenden Umfeld — in Ihrem Tempo."
-    },
-    {
-      "title": "Mit körperlicher oder psychischer Behinderung",
-      "description": "Angepasste Aufgaben und ein respektvoller Arbeitsplatz für Menschen mit besonderen Bedürfnissen."
-    },
-    {
-      "title": "In beruflicher Reintegration",
-      "description": "Praktische Erfahrung sammeln und die Arbeitsfähigkeit nach einer Auszeit wiederherstellen."
-    },
-    {
-      "title": "Migrantinnen und Migranten",
-      "description": "Lokale Berufserfahrung aufbauen, Sprache üben und sich in Bern einleben."
-    },
-    {
-      "title": "Langzeitarbeitslose",
-      "description": "Den Weg zurück in die Arbeitswelt finden — mit Begleitung und echten Aufgaben."
-    }
-  ]
+  "profiles": []
 }
