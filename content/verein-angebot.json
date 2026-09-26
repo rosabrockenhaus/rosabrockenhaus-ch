@@ -1,18 +1,5 @@
 {
   "title": "Unsere Angebote",
   "intro": "Der Verein Rosa bietet Arbeits-, Beschäftigungs- und Praktikumsplätze für Migranten/innen und von Arbeitslosigkeit und Krankheit betroffenen Personen an.\nArbeitssuchende Menschen haben die Möglichkeit, einer Arbeit oder Beschäftigung in einem geschützten Rahmen nachzugehen, welche ihren Fähigkeiten und Ressourcen entspricht.",
-  "profiles": [
-    {
-      "title": "test",
-      "description": "test"
-    },
-    {
-      "title": "test 2",
-      "description": "test 2"
-    },
-    {
-      "title": "test 3",
-      "description": "testest stest gsegfsef "
-    }
-  ]
+  "profiles": []
 }
