@@ -227,7 +227,7 @@ export default config({
       path: 'content/contact',
       format: { data: 'json' },
       schema: {
-        phone: fields.text({ label: "Telefon (Anzeige, z.B. '031 991 77 00')" }),
+        phone: fields.text({ label: "Telefon (international, z.B. '+41 31 991 77 00')" }),
         email: fields.text({ label: 'E-Mail' }),
         addressLine1: fields.text({ label: 'Adresse Zeile 1 (Strasse)' }),
         addressLine2: fields.text({ label: 'Adresse Zeile 2 (PLZ Ort)' }),

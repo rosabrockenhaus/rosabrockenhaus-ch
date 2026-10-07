@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { MapPin, Phone, Mail, Clock, Check, Loader2, MessageCircle } from 'lucide-react'
 import { contact, shopHours } from '@/lib/content'
+import { telHref } from '@/lib/utils'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name erforderlich'),
@@ -183,7 +184,7 @@ export default function KontaktPage() {
                 <h3 className="text-gray-900 mb-2">Kontaktdaten</h3>
                 <div className="space-y-3 text-sm">
                   <a
-                    href={`tel:${contact.phone.replace(/\s+/g, '').replace(/^0/, '+41')}`}
+                    href={telHref(contact.phone)}
                     className="flex items-center gap-3 text-gray-700 hover:text-rosa-600 transition-colors"
                   >
                     <Phone size={15} className="text-rosa-400 shrink-0" />

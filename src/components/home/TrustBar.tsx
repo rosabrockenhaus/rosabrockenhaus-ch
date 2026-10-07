@@ -7,7 +7,7 @@ import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/li
 const items = [
   { icon: Heart,  value: 'Verein', label: 'Gemeinnützig',        sublabel: 'Non-profit · Bern' },
   { icon: Radio,  value: 'SRF',    label: 'Mitenand',            sublabel: 'In den Medien' },
-  { icon: Phone,  value: '031',    label: '991 77 00',           sublabel: 'Jetzt anrufen' },
+  { icon: Phone,  value: '+41 31', label: '991 77 00',           sublabel: 'Jetzt anrufen' },
   { icon: MapPin, value: 'Bern',   label: 'Wankdorffeldstr. 96', sublabel: '3014 Bern' },
 ]
 

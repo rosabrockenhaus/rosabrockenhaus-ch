@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { MapPin, Phone, Mail, Clock, Heart } from 'lucide-react'
 import { StampLogo } from '@/components/ui/Logo'
 import { shopHours, contact } from '@/lib/content'
+import { telHref } from '@/lib/utils'
 
 function InstagramIcon({ size = 15 }: { size?: number }) {
   return (
@@ -62,7 +63,7 @@ export default function Footer() {
                 <li className="flex items-center gap-2.5">
                   <Phone size={14} className="text-rosa-400 shrink-0" />
                   <a
-                    href={`tel:${contact.phone.replace(/\s+/g, '').replace(/^0/, '+41')}`}
+                    href={telHref(contact.phone)}
                     className="hover:text-white transition-colors duration-200 min-h-[44px] flex items-center"
                   >
                     {contact.phone}
