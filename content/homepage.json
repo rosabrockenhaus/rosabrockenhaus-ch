@@ -2,11 +2,11 @@
   "hero": {
     "headlineHighlight": "Rosa",
     "headlineRest": "räumt Ihr Haus aus.",
-    "subcopy": "Secondhand-Shop · Werkstätten · Umzug · Räumung · Reinigung · Abholung — gemeinnützig in Bern.",
+    "subcopy": "Brockenhaus · Werkstätte · Umzug · Räumung · Reinigung · Abholung — gemeinnützig in Bern.",
     "primaryCtaLabel": "Services",
     "primaryCtaHref": "/services",
-    "secondaryCtaLabel": "Shop",
-    "secondaryCtaHref": "/shop"
+    "secondaryCtaLabel": "Brockenhaus",
+    "secondaryCtaHref": "/brockenhaus"
   },
   "promos": [
     {
@@ -35,7 +35,7 @@
       "summary": "Gutscheine kaufen & verschenken",
       "details": [
         "Erhältlich in verschiedenen Beträgen",
-        "Einlösbar auf das gesamte Sortiment im Shop",
+        "Einlösbar auf das gesamte Sortiment im Brockenhaus",
         "Das ideale Geschenk — sinnvoll und nachhaltig",
         "Direkt an der Kasse erhältlich"
       ]

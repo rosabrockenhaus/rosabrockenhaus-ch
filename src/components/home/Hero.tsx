@@ -6,9 +6,9 @@ import Image from 'next/image'
 import { fadeUpVariant, staggerContainer, noAnimation } from '@/lib/animations'
 import { ArrowRight, Play, ExternalLink } from 'lucide-react'
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from '@/components/ui/dialog'
-import type { HeroContent, Contact } from '@/lib/content'
+import type { HeroContent } from '@/lib/content'
 
-export default function Hero({ content, contact }: { content: HeroContent; contact: Contact }) {
+export default function Hero({ content }: { content: HeroContent }) {
   const prefersReducedMotion = useReducedMotion()
 
   const containerVariants = prefersReducedMotion ? noAnimation : staggerContainer
@@ -124,23 +124,6 @@ export default function Hero({ content, contact }: { content: HeroContent; conta
                 priority
                 sizes="420px"
               />
-            </div>
-
-            {/* Contact card */}
-            <div className="absolute -left-8 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl p-4 border border-rosa-50 w-44">
-              <p className="text-xs font-medium text-rosa-600 mb-2 uppercase tracking-wide">Kontakt</p>
-              <a
-                href={`tel:${contact.phone.replace(/\s+/g, '').replace(/^0/, '+41')}`}
-                className="text-sm text-gray-800 font-medium flex items-center min-h-[44px]"
-              >
-                {contact.phone}
-              </a>
-              <a
-                href={`mailto:${contact.email}`}
-                className="text-xs text-gray-400 flex items-center truncate min-h-[44px]"
-              >
-                {contact.email}
-              </a>
             </div>
           </motion.div>
         </div>

@@ -3,7 +3,7 @@ title: "Neue Nähkurse im Nähatelier"
 excerpt: "Ab Juli bieten wir im Nähatelier regelmässige Kurse für Anfänger und Fortgeschrittene an. Anmeldung ab sofort möglich."
 date: "15. Mai 2026"
 dateISO: "2026-05-15"
-category: "Werkstätten"
+category: "Werkstätte"
 readingTime: 2
 ---
 Das Nähatelier des Rosa Brockenhaus öffnet seine Türen für externe Teilnehmerinnen und Teilnehmer! Ab Juli 2026 bieten wir regelmässige Nähkurse an.

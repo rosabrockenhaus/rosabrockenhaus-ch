@@ -21,7 +21,7 @@ function FacebookIcon({ size = 15 }: { size?: number }) {
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/shop', label: 'Shop' },
+  { href: '/brockenhaus', label: 'Brockenhaus' },
   { href: '/services', label: 'Services' },
   { href: '/blog', label: 'Blog' },
   { href: '/kontakt', label: 'Kontakt' },
@@ -29,7 +29,7 @@ const navLinks = [
 
 const vereinLinks = [
   { href: '/verein', label: 'Über uns' },
-  { href: '/verein/werkstaetten', label: 'Werkstätten' },
+  { href: '/verein/werkstaette', label: 'Werkstätte' },
   { href: '/verein/angebot', label: 'Angebote' },
   { href: '/verein/transparenz#mitglied', label: 'Mitglied werden' },
   { href: '/verein/transparenz#spenden', label: 'Spenden' },

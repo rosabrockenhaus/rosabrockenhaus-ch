@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Heart, Wrench, Briefcase } from 'lucide-react'
+import { ArrowRight, Heart, Wrench, Briefcase, FileText } from 'lucide-react'
 import { team, verein } from '@/lib/content'
 
 export const metadata: Metadata = {
@@ -9,28 +9,17 @@ export const metadata: Metadata = {
   description: 'Erfahren Sie mehr über den gemeinnützigen Rosa Brockenhaus Hilfswerkverein Bern.',
 }
 
-const links = [
-  {
-    icon: Wrench,
-    title: 'Werkstätten',
-    description: 'Textil, Elektro, Möbel, Geschirr, Velo — fünf Werkstätten für eine zweite Chance.',
-    href: '/verein/werkstaetten',
-    cta: 'Unsere Werkstätten',
-  },
-  {
-    icon: Briefcase,
-    title: 'Angebot',
-    description: 'Wir bieten Arbeits- und Praktikumsplätze für Menschen nach Burnout, mit Behinderung oder in Reintegration.',
-    href: '/verein/angebot',
-    cta: 'Für wen wir da sind',
-  },
-]
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  Wrench,
+  Briefcase,
+  Heart,
+}
 
 export default function VereinPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-28 pb-16 bg-rosa-50 border-b border-rosa-100">
+      <section className="pt-40 pb-16 bg-rosa-50 border-b border-rosa-100">
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">
             {verein.eyebrow}
@@ -46,7 +35,7 @@ export default function VereinPage() {
           <div className="relative rounded-3xl overflow-hidden aspect-[21/9]">
             <Image
               src="/media/verein/rosa-brockenhaus-verein-source-01.jpg"
-              alt="Team der Werkstätten im Rosa Brockenhaus bei der Arbeit"
+              alt="Team der Werkstätte im Rosa Brockenhaus bei der Arbeit"
               fill
               className="object-cover"
               sizes="1000px"
@@ -69,26 +58,23 @@ export default function VereinPage() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-
-              <blockquote className="mt-8 border-l-4 border-rosa-300 bg-rosa-50 rounded-r-2xl px-6 py-5 text-gray-700 italic leading-relaxed">
-                {verein.quoteText}
-                <footer className="mt-2 not-italic text-sm text-rosa-600">{verein.quoteAttribution}</footer>
-              </blockquote>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               {verein.stats.map((stat) => (
                 <div
                   key={stat.sub}
-                  className="bg-rosa-50 border border-rosa-100 rounded-2xl p-6 text-center"
+                  className={`${verein.stats.length % 2 === 1 ? 'col-span-2' : ''} bg-rosa-50 border border-rosa-100 rounded-2xl p-6 text-center`}
                 >
                   <p className="text-3xl font-medium text-rosa-600">{stat.value}</p>
                   <p className="text-sm text-gray-600 mt-1">{stat.sub}</p>
                 </div>
               ))}
 
-              {/* Werkstätten / Angebot links */}
-              {links.map(({ icon: Icon, title, description, href, cta }) => (
+              {/* Link cards (Werkstätte / Angebot) — editable in Keystatic */}
+              {verein.links.map(({ icon, title, description, href, cta }) => {
+                const Icon = iconMap[icon] ?? Wrench
+                return (
                 <Link
                   key={title}
                   href={href}
@@ -103,7 +89,8 @@ export default function VereinPage() {
                     {cta} <ArrowRight size={14} />
                   </span>
                 </Link>
-              ))}
+                )
+              })}
             </div>
           </div>
         </div>
@@ -134,6 +121,24 @@ export default function VereinPage() {
               </div>
             ))}
           </div>
+
+          {verein.statutenPdf && (
+            <a
+              href={verein.statutenPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-8 flex items-center gap-4 p-4 bg-white border border-gray-100 hover:border-rosa-300 rounded-xl transition-colors"
+            >
+              <div className="w-11 h-11 rounded-xl bg-rosa-50 flex items-center justify-center shrink-0">
+                <FileText size={20} className="text-rosa-600" />
+              </div>
+              <div className="flex-1">
+                <p className="font-medium text-gray-900 text-sm">Statuten</p>
+                <p className="text-xs text-gray-500">PDF herunterladen</p>
+              </div>
+              <ArrowRight size={16} className="text-rosa-600 group-hover:translate-x-1 transition-transform" />
+            </a>
+          )}
         </div>
       </section>
 

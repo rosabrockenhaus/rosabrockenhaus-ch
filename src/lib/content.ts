@@ -94,9 +94,9 @@ export type Verein = {
   missionEyebrow: string
   missionHeading: string
   missionParagraphs: string[]
-  quoteText: string
-  quoteAttribution: string
   stats: { value: string; sub: string }[]
+  links: { icon: string; title: string; description: string; href: string; cta: string }[]
+  statutenPdf: string | null
   ctaHeading: string
   ctaText: string
 }

@@ -56,7 +56,7 @@ export default function TransparenzPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-28 pb-12 bg-rosa-50 border-b border-rosa-100">
+      <section className="pt-40 pb-12 bg-rosa-50 border-b border-rosa-100">
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">
             Offenheit & Vertrauen

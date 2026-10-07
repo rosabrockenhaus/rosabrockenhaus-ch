@@ -31,7 +31,7 @@ export default function ShopTeaser() {
           </div>
           <motion.div variants={reduced ? noAnimation : fadeUpVariant}>
             <Link
-              href="/shop"
+              href="/brockenhaus"
               className="hidden sm:inline-flex items-center gap-2 text-rosa-600 text-sm font-medium hover:gap-3 transition-all duration-200 min-h-[44px]"
             >
               Alle Abteilungen <ArrowRight size={15} />
@@ -61,7 +61,7 @@ export default function ShopTeaser() {
           className="mt-10 text-center"
         >
           <Link
-            href="/shop"
+            href="/brockenhaus"
             className="inline-flex items-center gap-2.5 bg-rosa-600 hover:bg-rosa-800 text-white rounded-full px-8 py-3.5 font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 group min-h-[48px]"
           >
             Alle Abteilungen entdecken

@@ -50,7 +50,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-28 pb-16 bg-rosa-50 border-b border-rosa-100">
+      <section className="pt-40 pb-16 bg-rosa-50 border-b border-rosa-100">
         <div className="container-base">
           <motion.div
             variants={prefersReducedMotion ? noAnimation : staggerContainer}
