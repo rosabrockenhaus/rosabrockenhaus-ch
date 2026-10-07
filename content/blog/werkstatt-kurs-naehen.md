@@ -22,4 +22,4 @@ Ihr habt bereits Nähkenntnisse und möchtet lernen, wie man Kleidung repariert,
 
 **Kosten:** CHF 120.– pro Kurs (Material inklusive)
 
-Anmeldung per E-Mail an mail@rosabrockenhaus.ch oder telefonisch unter 031 991 77 00.
+Anmeldung per E-Mail an [mail@rosabrockenhaus.ch](mailto:mail@rosabrockenhaus.ch) oder telefonisch unter [+41 31 991 77 00](tel:+41319917700).
