@@ -1,0 +1,266 @@
+<!doctype html>
+<!-- Source of public/media/verein/rosa-brockenhaus-statuten.pdf. Text is verbatim from the statutes on the old site (rosabrockenhaus.ch/verein). Regenerate: chrome --headless=new --no-pdf-header-footer --allow-file-access-from-files --print-to-pdf=out.pdf docs/reference/statuten.html -->
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Statuten — Rosa Brockenhaus Hilfswerkverein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=block" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Roughneck';
+    src: url('../../public/fonts/rosa_brockenhaus.ttf');
+  }
+  :root {
+    --rosa: #C6046F; --rosa-dark: #73024B; --rosa-50: #FEEBF5; --rosa-100: #FDD2E9;
+    --stamp: #FF3DC8; --cream: #FAF8F5; --ink: #1f1a1d; --muted: #6b6168;
+  }
+  @page { size: A4; margin: 22mm 20mm 24mm 20mm; }
+  @page :first { margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', Arial, sans-serif; font-size: 10pt; line-height: 1.6; color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  /* ── Cover ───────────────────────────────── */
+  .cover {
+    height: 297mm; width: 210mm; position: relative; overflow: hidden;
+    background: var(--cream); page-break-after: always;
+    padding: 24mm 22mm;
+    display: flex; flex-direction: column;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: -60mm; right: -60mm; width: 190mm; height: 190mm;
+    border-radius: 50%; background: radial-gradient(circle, var(--rosa-100) 0%, rgba(253,210,233,0) 70%);
+  }
+  .stamp {
+    position: relative; display: inline-block; align-self: flex-start;
+    background: var(--stamp); padding: 9mm 10mm 8mm;
+    font-family: 'Roughneck', 'Arial Black', sans-serif; font-size: 34pt; line-height: 1.04;
+    color: #000; letter-spacing: -0.01em;
+  }
+  .stamp span { display: block; }
+  .cover-sub {
+    position: relative; margin-top: 6mm; font-size: 9pt; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--rosa); font-weight: 600;
+  }
+  .cover-main { position: relative; margin-top: auto; }
+  .cover-eyebrow {
+    font-size: 9pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rosa); font-weight: 600;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 64pt;
+    line-height: 1; letter-spacing: -0.03em; margin: 4mm 0 6mm; color: var(--ink);
+  }
+  .cover h1 em { font-style: normal; color: var(--rosa); }
+  .cover-lead { font-size: 12pt; color: var(--muted); max-width: 120mm; margin: 0; }
+  .cover-rule { height: 1.2mm; width: 28mm; background: var(--rosa); margin: 10mm 0 6mm; }
+  .cover-meta { display: flex; gap: 14mm; font-size: 9pt; color: var(--muted); }
+  .cover-meta b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 1mm; }
+
+  /* ── Body ────────────────────────────────── */
+  .doc-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 0.4mm solid var(--rosa-100); padding-bottom: 4mm; margin-bottom: 8mm;
+  }
+  .doc-head .mini-stamp {
+    background: var(--stamp); padding: 1.6mm 2.2mm; font-family: 'Roughneck', 'Arial Black', sans-serif;
+    font-size: 8pt; line-height: 1.05; color: #000;
+  }
+  .doc-head .mini-stamp span { display: block; }
+  .doc-head .label { font-size: 8pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rosa); font-weight: 600; }
+
+  section.chapter { margin-bottom: 7mm; }
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 16pt;
+    color: var(--ink); margin: 0 0 4mm; display: flex; align-items: baseline; gap: 3mm;
+    page-break-after: avoid; break-after: avoid;
+  }
+  h2 .num {
+    font-family: 'Inter', Arial, sans-serif; font-size: 9pt; font-weight: 600; color: #fff;
+    background: var(--rosa); border-radius: 99px; padding: 0.6mm 3mm; letter-spacing: 0.05em;
+    transform: translateY(-1mm);
+  }
+  .art { display: grid; grid-template-columns: 20mm 1fr; gap: 4mm; margin-bottom: 4.5mm; break-inside: avoid; }
+  .art-no {
+    font-size: 8.5pt; font-weight: 600; color: var(--rosa); text-transform: uppercase;
+    letter-spacing: 0.1em; padding-top: 0.6mm; border-top: 0.5mm solid var(--rosa);
+  }
+  .art p { margin: 0 0 2mm; }
+  .art p:last-child { margin-bottom: 0; }
+  ol { margin: 1mm 0 2mm; padding-left: 6mm; }
+  ol li { margin-bottom: 1.2mm; padding-left: 1mm; }
+  ol li::marker { color: var(--rosa); font-weight: 600; }
+  ul.dots { list-style: none; padding-left: 0; margin: 1mm 0 2mm; }
+  ul.dots li { position: relative; padding-left: 5mm; margin-bottom: 1mm; }
+  ul.dots li::before { content: ''; position: absolute; left: 0; top: 2.2mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--rosa); }
+  .sub { color: var(--muted); }
+
+  .closing {
+    margin-top: 10mm; background: var(--rosa-50); border-left: 1.2mm solid var(--rosa);
+    border-radius: 0 3mm 3mm 0; padding: 6mm 7mm; break-inside: avoid;
+  }
+  .closing .label { font-size: 8pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rosa); font-weight: 600; margin-bottom: 2mm; }
+  .closing p { margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="stamp"><span>ROSA</span><span>BROCKEN</span><span>HAUS</span></div>
+  <div class="cover-sub">Gemeinnütziger Verein · Bern</div>
+
+  <div class="cover-main">
+    <div class="cover-eyebrow">Rosa Brockenhaus Hilfswerkverein</div>
+    <h1><em>Statuten</em></h1>
+    <p class="cover-lead">Genehmigt an der Mitgliederversammlung vom Montag, 22.&nbsp;März&nbsp;2010.</p>
+    <div class="cover-rule"></div>
+    <div class="cover-meta">
+      <div><b>Vereinsadresse</b>Wankdorffeldstr. 96<br>3014 Bern</div>
+      <div><b>Kontakt</b>mail@rosabrockenhaus.ch<br>031 991 77 00</div>
+      <div><b>Web</b>www.rosabrockenhaus.ch</div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-head">
+  <div class="mini-stamp"><span>ROSA</span><span>BROCKEN</span><span>HAUS</span></div>
+  <div class="label">Statuten</div>
+</div>
+
+<section class="chapter">
+  <h2><span class="num">I</span> Sitz und Zweck</h2>
+  <div class="art"><div class="art-no">Art. 1</div><div>
+    <p>Unter dem Namen Rosa Brockenhaus Hilfswerkverein besteht mit Sitz in Bern ein Verein, dessen Dauer unbestimmt ist.</p>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 2</div><div>
+    <p>Der Verein führt das Rosa Brockenhaus und die Werkstätte. Der Verein hat gemeinnützigen, Selbsttragenden Charakter und verfolgt keinen wirtschaftlichen Zweck. Die Brocki Rosa nimmt Gebrauchsgüter jeglicher Art unentgeltlich entgegen, welche sie zu Gunsten der Öffentlichkeit wiederverwertet. Der Rosa Brockenhaus Hilfswerkverein Bern bietet Arbeitsplätze für psychisch behinderte Mitmenschen Migrationen und Arbeitslosen. Der Gewinn der Brocki Rosa dient zur Äuffnung von Reserven, welche zu einem sozialen Zweck eingesetzt werden.</p>
+  </div></div>
+</section>
+
+<section class="chapter">
+  <h2><span class="num">II</span> Vereinskapital, Haftbarkeit</h2>
+  <div class="art"><div class="art-no">Art. 3</div><div>
+    <p>Die finanziellen Bedürfnisse werden erbracht durch:</p>
+    <ol>
+      <li>Mitgliederbeiträge</li>
+      <li>Einnahmen aus dem Brockenhaus</li>
+      <li>Kapitalerträge</li>
+      <li>Spenden und Legate</li>
+    </ol>
+    <p>Die Mitgliederbeiträge betragen 100.- pro Person 250.- pro Institution. Für die Verbindlichkeiten des Vereins haftet nur das Vereinsvermögen. Eine persönliche Haftung der Mitglieder ist ausgeschlossen.</p>
+  </div></div>
+</section>
+
+<section class="chapter">
+  <h2><span class="num">III</span> Mitgliedschaft</h2>
+  <div class="art"><div class="art-no">Art. 4</div><div>
+    <p>Mitglied des Vereins kann jede natürliche Einzelperson sowie Institutionen werden. Die Aufnahme erfolgt durch den Vorstand. Das Aufnahmegesuch ist schriftlich an den Präsident zu richten.</p>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 5</div><div>
+    <p>Die Mitgliedschaft erlischt durch:</p>
+    <ol>
+      <li>Austritt. Der Austritt erfolgt durch eine schriftliche Mitteilung an den Präsidenten. Er ist jederzeit unter Einhaltung einer Frist von 3 Monaten zulässig.</li>
+      <li>Ausschluss. Ein Mitglied kann bei nicht Bezahlung des Mitgliederbeitrages nach erfolgter schriftlicher Mahnung, ohne weitere Begründung vom Vorstand ausgeschlossen werden.</li>
+      <li>Tod</li>
+    </ol>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 6</div><div>
+    <p>Ausscheidende Mitglieder oder deren Rechtsnachfolger haben keinen Anspruch auf das Vereinsvermögen oder Teile davon.</p>
+  </div></div>
+</section>
+
+<section class="chapter">
+  <h2><span class="num">IV</span> Organe</h2>
+  <div class="art"><div class="art-no" style="border-top:0"></div><div>
+    <ol>
+      <li>Mitgliederversammlung (Generalversammlung)</li>
+      <li>Vereinsvorstand
+        <p class="sub" style="margin:1.5mm 0 1mm">Der Vorstand besteht mindestens aus:</p>
+        <ul class="dots">
+          <li>Präsident</li>
+          <li>Kassier: Zeichnungsberechtigung<br><span class="sub">Einzeln: Geschäftsführer · Kollektiv: 2 Vorstandsmitglieder</span></li>
+          <li>Geschäftsführung</li>
+        </ul>
+      </li>
+      <li>Rechnungsrevisoren</li>
+    </ol>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 7</div><div>
+    <p>Die ordentliche Mitgliederversammlung findet 3-4 Monate nach Abschluss des Geschäftsjahres statt. Die Einladung zur Mitgliederversammlung erfolgt spätestens zwei Wochen vor der Versammlung schriftlich. Anträge gelangen spätestens vier Wochen vor der Versammlung schriftlich an den Vorstand.</p>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 8</div><div>
+    <p>Die Aufgaben der Mitgliederversammlung sind:</p>
+    <ol>
+      <li>Wahl der Vorstandsmitglieder, der Beisitzer und der Rechnungsrevisoren für eine Dauer von 4 Jahren.</li>
+      <li>Statutenänderungen</li>
+      <li>Beschlussfassung über die vom Vorstand überwiesenen Geschäfte.</li>
+      <li>Abnahme des Jahresberichtes des Präsidenten.</li>
+      <li>Abnahme der Jahresrechnung und des Revisorenberichtes.</li>
+      <li>Festsetzung des Jahresbeitrages.</li>
+    </ol>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 9</div><div>
+    <p>Der Vereinsvorstand besteht aus 4 - 7 Mitgliedern. Er konstituiert sich selbst. Die strategischen Aufgaben des Vorstands sind:</p>
+    <ol>
+      <li>Beschlussfassung in allen Vereinsangelegenheiten, die nicht ausdrücklich der Mitgliederversammlung oder anderen Organen übertragen sind. Insbesondere steht ihm die gesamte Geschäftsführung und die allgemeine Überwachung der Interessen des Vereins zu.</li>
+      <li>Der Vorstand entscheidet über die Zuteilung des Erlöses im Sinne von Art. 2, Abs. 2, der Statuten.</li>
+      <li>Vertretung des Vereins nach aussen. Er bestimmt die zeichnungsberechtigten Personen und die Art der Zeichnung.</li>
+      <li>Einberufung der Mitgliederversammlung.</li>
+      <li>Der Vorstand bestimmt die aus ca. 4 Mitgliedern bestehende Betriebskommission, ist verantwortlich für die Anstellung des Geschäftsführers und der Angestellten sowie deren Lohnfestsetzung.</li>
+      <li>Entscheidung über Lancierung von Prozessen und Aktivitäten und die Beendigung von solchen.</li>
+      <li>Beschlussfassung über Finanz-Anträge der Betriebskommission über Fr. 1'000.-.</li>
+    </ol>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 10</div><div>
+    <p>Die operativen Aufgaben der Betriebskommission sind:</p>
+    <ol>
+      <li>Beratung und Überwachung des Geschäftsganges und der Personalbeschaffung.</li>
+      <li>Ausarbeitung von Pflichtenheftern für Geschäftsführer, Angestellte und MitarbeiterInnen Programmeinsätze.</li>
+      <li>Ausarbeitung von Arbeitsverträgen.</li>
+    </ol>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 11</div><div>
+    <p>Aufgaben des Geschäftsführers:</p>
+    <ol>
+      <li>Verantwortung für eine einwandfreie Geschäftsführung.</li>
+      <li>Personalführung</li>
+    </ol>
+  </div></div>
+</section>
+
+<section class="chapter">
+  <h2><span class="num">V</span> Rechnungswesen</h2>
+  <div class="art"><div class="art-no">Art. 12</div><div>
+    <p>Das Geschäftsjahr ist das Kalenderjahr.</p>
+    <p>Betriebsrechnung und Bilanz liegen zwecks Einsicht durch die Mitglieder während zwei Wochen vor der Jahresversammlung am Geschäftssitz des Vereins auf.</p>
+  </div></div>
+  <div class="art"><div class="art-no">Art. 13</div><div>
+    <p>Der Vorstand wählt für die Dauer von 3 Jahren 2 Revisoren, die nicht Vereinsangehörige sein müssen. Sie prüfen und verifizieren Rechnungen, Buchführung, Belege, Kassabestand und legen der Mitgliederversammlung einen schriftlichen Bericht über die Jahresrechnung und die Ergebnisse ihrer Revisionstätigkeit vor.</p>
+  </div></div>
+</section>
+
+<section class="chapter">
+  <h2><span class="num">VI</span> Auflösung des Vereins</h2>
+  <div class="art"><div class="art-no">Art. 14</div><div>
+    <p>Eine Auflösung des Vereins erfolgt nach den gesetzlichen Vorschriften. Das Vereinsvermögen ist in jedem Fall und unwiderruflich für soziale Zwecke gemäss Art. 2 zu verwenden.</p>
+  </div></div>
+</section>
+
+<section class="chapter">
+  <h2><span class="num">VII</span> Bekanntmachungen</h2>
+  <div class="art"><div class="art-no">Art. 15</div><div>
+    <p>Bekanntmachungen des Vereins an die Mitglieder erfolgen schriftlich. Vorstehende Statutenänderungen wurden an der Mitgliederversammlung vom Montag 22. März 2010 genehmigt. Weitere Statutenänderungen werden von der Mitgliederversammlung verabschiedet.</p>
+  </div></div>
+</section>
+
+<div class="closing">
+  <div class="label">Vereinsadresse</div>
+  <p><b>Rosa Brockenhaus Hilfswerkverein</b><br>Wankdorffeldstr. 96, 3014 Bern<br>mail@rosabrockenhaus.ch · www.rosabrockenhaus.ch</p>
+</div>
+
+</body>
+</html>

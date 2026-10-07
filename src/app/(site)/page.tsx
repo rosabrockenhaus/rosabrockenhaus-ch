@@ -5,10 +5,10 @@ import PromosSection from '@/components/home/PromosSection'
 import ServicesGrid from '@/components/home/ServicesGrid'
 import ShopTeaser from '@/components/home/ShopTeaser'
 import { getAllBlogPosts } from '@/lib/blog'
-import { homepage, contact } from '@/lib/content'
+import { homepage } from '@/lib/content'
 
 export const metadata: Metadata = {
-  title: 'Rosa Brockenhaus Bern – Shop, Werkstätten & Services',
+  title: 'Rosa Brockenhaus Bern – Brockenhaus, Werkstätte & Services',
   description:
     'Gemeinnütziger Brockenhaus-Verein in Bern. Secondhand kaufen, abgeben und entsorgen — Umzug, Räumung & Reinigung. 50% auf alles.',
 }
@@ -18,9 +18,9 @@ export default function HomePage() {
 
   return (
     <>
-      <Hero content={homepage.hero} contact={contact} />
-      <Aktuell posts={posts} />
+      <Hero content={homepage.hero} />
       <PromosSection promos={homepage.promos} />
+      <Aktuell posts={posts} />
       <ServicesGrid />
       <ShopTeaser />
     </>

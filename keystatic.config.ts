@@ -37,12 +37,12 @@ export default config({
         category: fields.select({
           label: 'Kategorie',
           options: [
-            { label: 'Shop', value: 'Shop' },
+            { label: 'Brockenhaus', value: 'Brockenhaus' },
             { label: 'Nachhaltigkeit', value: 'Nachhaltigkeit' },
             { label: 'Verein', value: 'Verein' },
-            { label: 'Werkstätten', value: 'Werkstätten' },
+            { label: 'Werkstätte', value: 'Werkstätte' },
           ],
-          defaultValue: 'Shop',
+          defaultValue: 'Brockenhaus',
         }),
         readingTime: fields.integer({ label: 'Lesezeit (Minuten)', defaultValue: 2 }),
         body: fields.markdoc({ label: 'Inhalt' }),
@@ -60,7 +60,7 @@ export default config({
         discount: fields.text({ label: "Rabatt-Highlight (z.B. '50%')" }),
         message: fields.text({ label: 'Nachricht', multiline: true }),
         ctaLabel: fields.text({ label: 'Button-Text' }),
-        ctaHref: fields.text({ label: 'Button-Link (z.B. /shop)' }),
+        ctaHref: fields.text({ label: 'Button-Link (z.B. /brockenhaus)' }),
       },
     }),
 
@@ -118,8 +118,6 @@ export default config({
           label: 'Mission: Absätze',
           itemLabel: (p) => p.value.slice(0, 60),
         }),
-        quoteText: fields.text({ label: 'Zitat', multiline: true }),
-        quoteAttribution: fields.text({ label: 'Zitat-Quelle' }),
         stats: fields.array(
           fields.object({
             value: fields.text({ label: 'Wert (z.B. "2010")' }),
@@ -127,6 +125,30 @@ export default config({
           }),
           { label: 'Statistiken', itemLabel: (p) => `${p.fields.value.value} — ${p.fields.sub.value}` },
         ),
+        links: fields.array(
+          fields.object({
+            icon: fields.select({
+              label: 'Icon',
+              options: [
+                { label: 'Werkzeug (Wrench)', value: 'Wrench' },
+                { label: 'Aktentasche (Briefcase)', value: 'Briefcase' },
+                { label: 'Herz (Heart)', value: 'Heart' },
+              ],
+              defaultValue: 'Wrench',
+            }),
+            title: fields.text({ label: 'Titel' }),
+            description: fields.text({ label: 'Beschreibung', multiline: true }),
+            href: fields.text({ label: 'Link (z.B. /verein/werkstaette)' }),
+            cta: fields.text({ label: 'Link-Text' }),
+          }),
+          { label: 'Link-Karten (neben der Mission)', itemLabel: (p) => p.fields.title.value },
+        ),
+        statutenPdf: fields.file({
+          label: 'Statuten (PDF)',
+          description: 'Wird als Download-Link unter dem Vorstand angezeigt.',
+          directory: 'public/media/verein',
+          publicPath: '/media/verein/',
+        }),
         ctaHeading: fields.text({ label: 'Abschluss-CTA: Titel' }),
         ctaText: fields.text({ label: 'Abschluss-CTA: Text', multiline: true }),
       },
@@ -150,7 +172,7 @@ export default config({
     }),
 
     vereinWerkstaetten: singleton({
-      label: 'Verein — Werkstätten',
+      label: 'Verein — Werkstätte',
       path: 'content/verein-werkstaetten',
       format: { data: 'json' },
       schema: {
@@ -161,7 +183,7 @@ export default config({
             name: fields.text({ label: 'Name' }),
             description: fields.text({ label: 'Beschreibung', multiline: true }),
           }),
-          { label: 'Werkstätten', itemLabel: (p) => p.fields.name.value },
+          { label: 'Werkstätte', itemLabel: (p) => p.fields.name.value },
         ),
       },
     }),
@@ -261,7 +283,7 @@ export default config({
     }),
 
     categories: singleton({
-      label: 'Shop-Kategorien',
+      label: 'Brockenhaus-Kategorien',
       path: 'content/categories',
       format: { data: 'json' },
       schema: {

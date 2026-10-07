@@ -9,16 +9,23 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/co
 import { cn } from '@/lib/utils'
 import { StampLogo } from '@/components/ui/Logo'
 
-function WordmarkLogo() {
+function WordmarkLogo({ onDark = false }: { onDark?: boolean }) {
   return (
     <span className="flex flex-col" aria-label="Rosa Brockenhaus — Gemeinnütziger Verein, Bern">
       <span
-        className="text-rosa-600 leading-none tracking-tight"
-        style={{ fontFamily: 'var(--font-stamp, sans-serif)', fontSize: '1.25rem' }}
+        className={cn('flex flex-col leading-[0.9] tracking-tight', onDark ? 'text-rosa-400' : 'text-rosa-600')}
+        style={{ fontFamily: 'var(--font-stamp, sans-serif)', fontSize: '0.875rem' }}
       >
-        ROSA BROCKENHAUS
+        <span>ROSA</span>
+        <span>BROCKEN</span>
+        <span>HAUS</span>
       </span>
-      <span className="text-[10px] text-gray-400 font-sans tracking-wide leading-none mt-1">
+      <span
+        className={cn(
+          'text-[10px] font-sans tracking-wide leading-none mt-0.5',
+          onDark ? 'text-gray-300' : 'text-gray-400'
+        )}
+      >
         Gemeinnütziger Verein
       </span>
     </span>
@@ -27,7 +34,7 @@ function WordmarkLogo() {
 import { useBanner } from '@/contexts/BannerContext'
 
 const navLinks = [
-  { href: '/shop', label: 'Shop' },
+  { href: '/brockenhaus', label: 'Brockenhaus' },
   { href: '/services', label: 'Services' },
   { href: '/blog', label: 'Blog' },
   {
@@ -35,7 +42,7 @@ const navLinks = [
     label: 'Verein',
     children: [
       { href: '/verein', label: 'Über uns' },
-      { href: '/verein/werkstaetten', label: 'Werkstätten' },
+      { href: '/verein/werkstaette', label: 'Werkstätte' },
       { href: '/verein/angebot', label: 'Angebot' },
     ],
   },
@@ -64,22 +71,20 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: [0.0, 0.0, 0.2, 1.0] }}
       style={{ top: bannerVisible ? '48px' : '0px' }}
       className={cn(
-        'fixed left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-rosa-100 shadow-sm'
-          : 'bg-transparent'
+        'fixed left-0 right-0 z-50 bg-black transition-shadow duration-300',
+        scrolled && 'shadow-lg'
       )}
     >
       <div className="container-base">
-        <div className="flex items-center justify-between py-3">
+        <div className="flex items-center justify-between py-2">
 
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center min-h-[44px] focus-visible:outline-2 focus-visible:outline-rosa-600"
+            className="flex items-center min-h-[44px] py-1 focus-visible:outline-2 focus-visible:outline-rosa-600"
             aria-label="Rosa Brockenhaus — Startseite"
           >
-            <WordmarkLogo />
+            <WordmarkLogo onDark />
           </Link>
 
           {/* Desktop nav */}
@@ -98,8 +103,8 @@ export default function Navbar() {
                     className={cn(
                       'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px]',
                       isActive(link.href)
-                        ? 'text-rosa-600 bg-rosa-50'
-                        : 'text-gray-600 hover:text-rosa-600 hover:bg-gray-50'
+                        ? 'text-white bg-white/15'
+                        : 'text-gray-200 hover:text-white hover:bg-white/10'
                     )}
                   >
                     {link.label}
@@ -137,15 +142,15 @@ export default function Navbar() {
                   className={cn(
                     'relative px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px] flex items-center',
                     isActive(link.href)
-                      ? 'text-rosa-600 bg-rosa-50'
-                      : 'text-gray-600 hover:text-rosa-600 hover:bg-gray-50'
+                      ? 'text-white'
+                      : 'text-gray-200 hover:text-white hover:bg-white/10'
                   )}
                 >
                   {link.label}
                   {isActive(link.href) && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-rosa-50 rounded-lg -z-10"
+                      className="absolute inset-0 bg-white/15 rounded-lg -z-10"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -158,7 +163,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <Link
               href="/kontakt"
-              className="hidden sm:inline-flex items-center text-sm text-gray-600 hover:text-rosa-600 font-medium px-3 py-2 transition-colors min-h-[44px]"
+              className="hidden sm:inline-flex items-center text-sm text-gray-200 hover:text-white font-medium px-3 py-2 transition-colors min-h-[44px]"
             >
               Kontakt
             </Link>
@@ -171,7 +176,7 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-              <SheetTrigger className="lg:hidden p-2.5 rounded-lg text-gray-700 hover:text-rosa-600 hover:bg-gray-50 transition-colors bg-transparent border-0 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center">
+              <SheetTrigger className="lg:hidden p-2.5 rounded-lg text-white hover:bg-white/10 transition-colors bg-transparent border-0 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center">
                 <Menu size={20} />
                 <span className="sr-only">Menü öffnen</span>
               </SheetTrigger>

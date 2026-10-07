@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 }
 
 const categoryColors: Record<string, string> = {
-  Shop: 'bg-blue-50 text-blue-700',
+  Brockenhaus: 'bg-blue-50 text-blue-700',
   Nachhaltigkeit: 'bg-green-50 text-green-700',
   Verein: 'bg-rosa-50 text-rosa-700',
-  Werkstätten: 'bg-amber-50 text-amber-700',
+  Werkstätte: 'bg-amber-50 text-amber-700',
 }
 
 const categoryEmoji: Record<string, string> = {
-  Shop: '🛋️',
+  Brockenhaus: '🛋️',
   Nachhaltigkeit: '🌱',
   Verein: '🤝',
-  Werkstätten: '🧵',
+  Werkstätte: '🧵',
 }
 
 export default function BlogPage() {
@@ -28,7 +28,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-28 pb-12 bg-cream-50 border-b border-rosa-100">
+      <section className="pt-40 pb-12 bg-cream-50 border-b border-rosa-100">
         <div className="container-base">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">
             Aktuell

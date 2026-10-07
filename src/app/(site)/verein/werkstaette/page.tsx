@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { vereinWerkstaetten } from '@/lib/content'
 
 export const metadata: Metadata = {
-  title: 'Werkstätten — Rosa Brockenhaus Bern',
-  description: 'Fünf Werkstätten für eine zweite Chance: Textil, Elektro, Möbel, Geschirr und Velo.',
+  title: 'Werkstätte — Rosa Brockenhaus Bern',
+  description: 'Werkstätte für eine zweite Chance: Textil, Elektro, Möbel, Geschirr und Velo.',
 }
 
 export default function WerkstaettenPage() {
@@ -11,7 +11,7 @@ export default function WerkstaettenPage() {
 
   return (
     <>
-      <section className="pt-28 pb-12 bg-rosa-50 border-b border-rosa-100">
+      <section className="pt-40 pb-12 bg-rosa-50 border-b border-rosa-100">
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">Verein</p>
           <h1 className="text-gray-900 mb-4">{title}</h1>

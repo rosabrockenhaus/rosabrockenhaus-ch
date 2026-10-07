@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <section className="pt-28 pb-12 bg-cream-50 border-b border-rosa-100">
+      <section className="pt-40 pb-12 bg-cream-50 border-b border-rosa-100">
         <div className="container-base max-w-3xl">
           <Link
             href="/blog"

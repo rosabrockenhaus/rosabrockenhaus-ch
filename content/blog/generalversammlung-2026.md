@@ -9,7 +9,7 @@ readingTime: 3
 Am 22. Mai 2026 fand die ordentliche Generalversammlung des Rosa Brockenhaus Hilfswerkverein statt. Wir blicken auf einen erfolgreichen Abend zurück.
 
 **Jahresbericht 2025**
-Präsident Rudi Keller präsentierte den Jahresbericht: Im vergangenen Jahr haben wir über 1'200 Einsätze in den Bereichen Umzug, Räumung, Reinigung und Entsorgung geleistet. Der Shop verzeichnete einen Besucherrekord.
+Präsident Rudi Keller präsentierte den Jahresbericht: Im vergangenen Jahr haben wir über 1'200 Einsätze in den Bereichen Umzug, Räumung, Reinigung und Entsorgung geleistet. Das Brockenhaus verzeichnete einen Besucherrekord.
 
 **Vorstand**
 Geschäftsführer Saim Agca und Kassier Willy Wihler führen die operative Leitung fort, unterstützt von Leiterin Mürside Agca.
