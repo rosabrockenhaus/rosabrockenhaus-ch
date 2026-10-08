@@ -25,12 +25,12 @@
     {
       "icon": "Briefcase",
       "title": "Angebot",
-      "description": "Wir bieten Arbeits- und Praktikumsplätze für Menschen nach Burnout, mit Behinderung oder in Reintegration.",
+      "description": "Befristeter Praktikumplatz für ersten Arbeitsmarkt oder Beschäftigungsprogramm ",
       "href": "/verein/angebot",
       "cta": "Für wen wir da sind"
     }
   ],
+  "statutenPdf": "/media/verein/statutenPdf.pdf",
   "ctaHeading": "Teil der Gemeinschaft werden",
-  "ctaText": "Als Mitglied oder Spender unterstützen Sie direkt die Arbeit des Rosa Brockenhaus.",
-  "statutenPdf": "/media/verein/rosa-brockenhaus-statuten.pdf"
+  "ctaText": "Als Mitglied oder Spender unterstützen Sie direkt die Arbeit des Rosa Brockenhaus."
 }
