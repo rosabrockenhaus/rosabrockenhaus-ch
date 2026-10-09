@@ -1,38 +1,5 @@
 {
-  "years": [
-    {
-      "year": "2025",
-      "docs": [
-        "Jahresbericht",
-        "Jahresrechnung",
-        "Protokoll GV"
-      ]
-    },
-    {
-      "year": "2024",
-      "docs": [
-        "Jahresbericht",
-        "Jahresrechnung",
-        "Protokoll GV"
-      ]
-    },
-    {
-      "year": "2023",
-      "docs": [
-        "Jahresbericht",
-        "Jahresrechnung",
-        "Protokoll GV"
-      ]
-    },
-    {
-      "year": "2022",
-      "docs": [
-        "Jahresbericht",
-        "Jahresrechnung",
-        "Protokoll GV"
-      ]
-    }
-  ],
+  "years": [],
   "membershipIntro": "Als Vereinsmitglied unterstützen Sie unsere Arbeit direkt und haben Stimmrecht an der Generalversammlung.",
   "membershipOptions": [
     {
