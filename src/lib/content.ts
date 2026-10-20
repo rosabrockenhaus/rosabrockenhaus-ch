@@ -7,7 +7,6 @@ import servicesData from '../../content/services.json'
 import vereinData from '../../content/verein.json'
 import vereinAngebotData from '../../content/verein-angebot.json'
 import vereinWerkstaettenData from '../../content/verein-werkstaetten.json'
-import vereinTransparenzData from '../../content/verein-transparenz.json'
 import contactData from '../../content/contact.json'
 
 export type Banner = {
@@ -118,21 +117,6 @@ export type VereinWerkstaetten = {
 }
 
 export const vereinWerkstaetten: VereinWerkstaetten = vereinWerkstaettenData
-
-export type VereinTransparenz = {
-  disclosureText: string
-  years: { year: string; docs: string[] }[]
-  membershipIntro: string
-  membershipOptions: { title: string; price: string; description: string }[]
-  donationIntro: string
-  iban: string
-  bankName: string
-  beneficiaryName: string
-  beneficiaryAddress: string
-  donationConfirmationEmail: string
-}
-
-export const vereinTransparenz: VereinTransparenz = vereinTransparenzData
 
 export type Contact = {
   phone: string
