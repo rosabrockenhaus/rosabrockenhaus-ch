@@ -2,7 +2,8 @@
   "hero": {
     "headlineHighlight": "Rosa",
     "headlineRest": "räumt Ihr Haus aus.",
-    "subcopy": "Brockenhaus · Werkstätte · Umzug · Räumung · Reinigung · Abholung — gemeinnützig in Bern.",
+    "subcopy": "Umzug · Räumung · Reinigung · Abholung",
+    "imageCaption": "Gemeinnütziger Verein",
     "primaryCtaLabel": "Services",
     "primaryCtaHref": "/services",
     "secondaryCtaLabel": "Brockenhaus",

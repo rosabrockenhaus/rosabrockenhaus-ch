@@ -110,15 +110,9 @@ export default function ServicesPage() {
                   </motion.h2>
                   <motion.p
                     variants={prefersReducedMotion ? noAnimation : fadeUpVariant}
-                    className="text-rosa-600 font-medium mb-5"
+                    className="text-rosa-600 font-medium mb-8"
                   >
                     {service.subtitle}
-                  </motion.p>
-                  <motion.p
-                    variants={prefersReducedMotion ? noAnimation : fadeUpVariant}
-                    className="text-gray-600 leading-relaxed mb-8"
-                  >
-                    {service.description}
                   </motion.p>
 
                   <motion.ul

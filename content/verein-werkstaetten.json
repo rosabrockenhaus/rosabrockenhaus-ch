@@ -1,6 +1,7 @@
 {
   "title": "Unsere Werkstätte",
-  "intro": "Im Rosa Brockenhaus befinden sich unsere Werkstätte zur Auffrischung und Reparatur der eingelieferten Waren. Inzwischen sind auch diverse Werkstätte entstanden, welche von verschiedenen Mitarbeiterinnen und Mitarbeiter betreut werden",
+  "subtitle": "Textil, Elektro, Möbel, Geschirr, Velo — Werkstätte für eine zweite Chance.",
+  "intro": "Unsere Werkstätte geben Gegenständen eine zweite Chance — und Menschen die Möglichkeit, neue Fähigkeiten zu entwickeln und in den Arbeitsmarkt zurückzufinden.",
   "workshops": [
     {
       "name": "Textilwerkstatt",

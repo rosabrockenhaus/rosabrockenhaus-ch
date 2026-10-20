@@ -18,14 +18,12 @@
     {
       "icon": "Wrench",
       "title": "Werkstätte",
-      "description": "Textil, Elektro, Möbel, Geschirr und Velowerkstat",
       "href": "/verein/werkstaette",
       "cta": "Unsere Werkstätte"
     },
     {
       "icon": "Briefcase",
       "title": "Angebot",
-      "description": "Praktikumplatz einstieg für ersten Arbeitsmarkt oder Beschäftigungsprogramm für wieder Eigliederung",
       "href": "/verein/angebot",
       "cta": "Für wen wir da sind"
     }

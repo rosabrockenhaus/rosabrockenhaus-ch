@@ -59,8 +59,6 @@ export default config({
         enabled: fields.checkbox({ label: 'Banner anzeigen', defaultValue: true }),
         discount: fields.text({ label: "Rabatt-Highlight (z.B. '50%')" }),
         message: fields.text({ label: 'Nachricht', multiline: true }),
-        ctaLabel: fields.text({ label: 'Button-Text' }),
-        ctaHref: fields.text({ label: 'Button-Link (z.B. /brockenhaus)' }),
       },
     }),
 
@@ -74,6 +72,7 @@ export default config({
             headlineHighlight: fields.text({ label: "Titel-Highlight (z.B. 'Rosa')" }),
             headlineRest: fields.text({ label: 'Titel (Rest des Satzes)' }),
             subcopy: fields.text({ label: 'Untertext', multiline: true }),
+            imageCaption: fields.text({ label: 'Untertitel unter dem Bild' }),
             primaryCtaLabel: fields.text({ label: 'Haupt-Button Text' }),
             primaryCtaHref: fields.text({ label: 'Haupt-Button Link' }),
             secondaryCtaLabel: fields.text({ label: 'Zweiter Button Text' }),
@@ -137,8 +136,10 @@ export default config({
               defaultValue: 'Wrench',
             }),
             title: fields.text({ label: 'Titel' }),
-            description: fields.text({ label: 'Beschreibung', multiline: true }),
-            href: fields.text({ label: 'Link (z.B. /verein/werkstaette)' }),
+            href: fields.text({
+              label: 'Link (z.B. /verein/werkstaette)',
+              description: 'Der Untertitel der Karte wird auf der verlinkten Seite (Werkstätte / Angebot) bearbeitet.',
+            }),
             cta: fields.text({ label: 'Link-Text' }),
           }),
           { label: 'Link-Karten (neben der Mission)', itemLabel: (p) => p.fields.title.value },
@@ -160,6 +161,11 @@ export default config({
       format: { data: 'json' },
       schema: {
         title: fields.text({ label: 'Titel' }),
+        subtitle: fields.text({
+          label: 'Untertitel',
+          description: 'Wird unter dem Titel und auf der Karte unter «Über uns» angezeigt.',
+          multiline: true,
+        }),
         intro: fields.text({ label: 'Einleitungstext', multiline: true }),
         profiles: fields.array(
           fields.object({
@@ -177,6 +183,11 @@ export default config({
       format: { data: 'json' },
       schema: {
         title: fields.text({ label: 'Titel' }),
+        subtitle: fields.text({
+          label: 'Untertitel',
+          description: 'Wird unter dem Titel und auf der Karte unter «Über uns» angezeigt.',
+          multiline: true,
+        }),
         intro: fields.text({ label: 'Einleitungstext', multiline: true }),
         workshops: fields.array(
           fields.object({
@@ -185,40 +196,6 @@ export default config({
           }),
           { label: 'Werkstätte', itemLabel: (p) => p.fields.name.value },
         ),
-      },
-    }),
-
-    vereinTransparenz: singleton({
-      label: 'Verein — Transparenz',
-      path: 'content/verein-transparenz',
-      format: { data: 'json' },
-      schema: {
-        disclosureText: fields.text({ label: 'Offenlegungstext (ZGB-Hinweis)', multiline: true }),
-        years: fields.array(
-          fields.object({
-            year: fields.text({ label: 'Jahr' }),
-            docs: fields.array(fields.text({ label: 'Dokument' }), {
-              label: 'Dokumente',
-              itemLabel: (p) => p.value,
-            }),
-          }),
-          { label: 'Geschäftsjahre', itemLabel: (p) => p.fields.year.value },
-        ),
-        membershipIntro: fields.text({ label: 'Mitgliedschaft: Einleitung', multiline: true }),
-        membershipOptions: fields.array(
-          fields.object({
-            title: fields.text({ label: 'Titel' }),
-            price: fields.text({ label: 'Preis' }),
-            description: fields.text({ label: 'Beschreibung' }),
-          }),
-          { label: 'Mitgliedschaftsarten', itemLabel: (p) => p.fields.title.value },
-        ),
-        donationIntro: fields.text({ label: 'Spenden: Einleitung', multiline: true }),
-        iban: fields.text({ label: 'IBAN' }),
-        bankName: fields.text({ label: 'Bank' }),
-        beneficiaryName: fields.text({ label: 'Begünstigter' }),
-        beneficiaryAddress: fields.text({ label: 'Adresse des Begünstigten' }),
-        donationConfirmationEmail: fields.text({ label: 'E-Mail für Spendenbestätigung' }),
       },
     }),
 
@@ -310,7 +287,7 @@ export default config({
     }),
 
     services: singleton({
-      label: 'Dienstleistungen',
+      label: 'Services',
       path: 'content/services',
       format: { data: 'json' },
       schema: {
@@ -331,7 +308,6 @@ export default config({
               ],
               defaultValue: 'Truck',
             }),
-            description: fields.text({ label: 'Beschreibung', multiline: true }),
             features: fields.array(fields.text({ label: 'Merkmal' }), {
               label: 'Merkmale',
               itemLabel: (p) => p.value,

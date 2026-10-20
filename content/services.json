@@ -4,27 +4,18 @@
       "id": "umzug",
       "slug": "umzug",
       "title": "Umzug",
-      "subtitle": "Wir bewegen Ihr Zuhause – mit Sorgfalt und Respekt",
+      "subtitle": "Schnell · Zuverlässig · Sorgfältig · Speditiv",
       "icon": "Truck",
-      "description": "Ob kleiner Wohnungswechsel oder grosser Firmenumzug — wir begleiten Sie zuverlässig, mit Herzblut, als gemeinnütziger Verein.",
       "features": [
-        "Kostenlose Besichtigung und Offerte vor Ort",
+        "Kostenlose Besichtigung und Offerte",
         "Transport mit eigenem Fahrzeug",
         "Auf- und Abbau von Möbeln",
-        "Faire Preise – direkt in den Verein investiert"
+        "Faire Preise"
       ],
       "faq": [
         {
           "question": "Wie lange im Voraus muss ich einen Umzug anfragen?",
-          "answer": "Wir empfehlen, uns mindestens 2–3 Wochen vor dem geplanten Umzugsdatum zu kontaktieren. In dringenden Fällen versuchen wir jedoch immer, eine Lösung zu finden."
-        },
-        {
-          "question": "Gibt es eine Mindestanzahl an Stunden?",
-          "answer": "Ja, wir rechnen mindestens 2 Stunden pro Einsatz. Der genaue Stundensatz wird bei der Offerte mitgeteilt."
-        },
-        {
-          "question": "Transportiert ihr auch Klaviere oder schwere Gegenstände?",
-          "answer": "Ja, wir haben Erfahrung mit schweren und sperriger Gegenständen. Sprechen Sie uns bitte bei der Anfrage explizit darauf an."
+          "answer": "Wir empfehlen, uns mindestens 3 Wochen vor dem geplanten Umzugsdatum zu kontaktieren. In dringenden Fällen versuchen wir jedoch immer, eine Lösung zu finden."
         },
         {
           "question": "Seid ihr versichert?",
@@ -38,7 +29,6 @@
       "title": "Räumung",
       "subtitle": "Klarer Raum, freier Kopf – wir räumen für Sie",
       "icon": "Home",
-      "description": "Nachlässe, Entrümpelungen, Wohnungsauflösungen — wir räumen Keller, Estrich, Wohnungen und Liegenschaften jeder Grösse. Brauchbares fliesst direkt in unser Brockenhaus.",
       "features": [
         "Wohnungsauflösungen und Nachlässe",
         "Sortenreine Trennung von Wertstoffen",
@@ -66,7 +56,6 @@
       "title": "Reinigung",
       "subtitle": "Blitzsauber – mit Abgabegarantie",
       "icon": "Sparkles",
-      "description": "Professionelle Endreinigung mit Abgabegarantie — wir sind erst fertig, wenn der Vermieter zufrieden ist.",
       "features": [
         "Endreinigung mit Abgabegarantie",
         "Küchen- und Badreinigung inkl. Kalkentfernung",
@@ -94,7 +83,6 @@
       "title": "Entsorgung",
       "subtitle": "Umweltbewusst entsorgen – für eine saubere Zukunft",
       "icon": "Recycle",
-      "description": "Alte Möbel, Elektrogeräte, Sperrgut oder Bauschutt — wir entsorgen umweltgerecht und nach gesetzlichen Vorschriften.",
       "features": [
         "Sperrgut, Elektroschrott und Altgeräte",
         "Bauschutt und Renovationsabfälle",
@@ -122,7 +110,6 @@
       "title": "Abholung",
       "subtitle": "Wir kommen zu Ihnen — unkompliziert und flexibel",
       "icon": "PackageCheck",
-      "description": "Möbel, Kleider, Elektrogeräte oder anderes, das Sie nicht mehr brauchen — wir holen es direkt bei Ihnen ab.",
       "features": [
         "Möbel, Kleider, Elektro, Geschirr, Fahrräder & mehr",
         "Flexible Terminvereinbarung",
