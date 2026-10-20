@@ -28,7 +28,7 @@ const services = cmsServices.map((s) => ({
   id: s.id,
   icon: iconMap[s.icon] ?? Truck,
   title: s.title,
-  description: s.description,
+  subtitle: s.subtitle,
   href: `/services#${s.slug}`,
   ...(layoutById[s.id] ?? { badge: null, accent: 'bg-rosa-50', size: 'small' as const }),
 }))
@@ -83,7 +83,7 @@ export default function ServicesGrid() {
                     <Icon size={22} className="text-rosa-600" />
                   </div>
                   <h3 className="text-gray-900 font-display text-xl mb-3">{service.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{service.subtitle}</p>
                 </div>
                 <Link
                   href={service.href}
@@ -117,7 +117,7 @@ export default function ServicesGrid() {
                     )}
                   </div>
                   <h3 className="text-gray-900 font-display text-lg mb-2">{service.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{service.subtitle}</p>
                 </div>
                 <Link
                   href={service.href}

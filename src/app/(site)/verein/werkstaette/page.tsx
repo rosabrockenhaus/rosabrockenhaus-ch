@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 }
 
 export default function WerkstaettenPage() {
-  const { title, intro, workshops } = vereinWerkstaetten
+  const { title, subtitle, intro, workshops } = vereinWerkstaetten
 
   return (
     <>
@@ -15,6 +15,7 @@ export default function WerkstaettenPage() {
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">Verein</p>
           <h1 className="text-gray-900 mb-4">{title}</h1>
+          {subtitle && <p className="text-rosa-600 font-medium mb-4">{subtitle}</p>}
           <p className="text-gray-600">{intro}</p>
         </div>
       </section>

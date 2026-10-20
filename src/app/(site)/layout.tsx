@@ -15,8 +15,6 @@ export default function SiteLayout({
         <AnnouncementBanner
           discount={banner.discount}
           message={banner.message}
-          ctaLabel={banner.ctaLabel}
-          ctaHref={banner.ctaHref}
         />
       )}
       <Navbar />

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Heart, Wrench, Briefcase, FileText } from 'lucide-react'
-import { team, verein } from '@/lib/content'
+import { team, verein, vereinAngebot, vereinWerkstaetten } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Über uns – Verein',
@@ -13,6 +13,12 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Wrench,
   Briefcase,
   Heart,
+}
+
+// Card subtitles come from the linked page's own Keystatic config
+const subtitleByHref: Record<string, string> = {
+  '/verein/werkstaette': vereinWerkstaetten.subtitle,
+  '/verein/angebot': vereinAngebot.subtitle,
 }
 
 export default function VereinPage() {
@@ -72,8 +78,9 @@ export default function VereinPage() {
               ))}
 
               {/* Link cards (Werkstätte / Angebot) — editable in Keystatic */}
-              {verein.links.map(({ icon, title, description, href, cta }) => {
+              {verein.links.map(({ icon, title, href, cta }) => {
                 const Icon = iconMap[icon] ?? Wrench
+                const description = subtitleByHref[href]
                 return (
                 <Link
                   key={title}
@@ -150,14 +157,14 @@ export default function VereinPage() {
           <p className="text-rosa-200 mb-8 max-w-md mx-auto">{verein.ctaText}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/verein/transparenz#mitglied"
+              href="/kontakt"
               className="inline-flex items-center gap-2 bg-white text-rosa-600 hover:bg-rosa-50 rounded-full px-7 py-3 font-medium transition-colors"
             >
               Mitglied werden
               <ArrowRight size={16} />
             </Link>
             <Link
-              href="/verein/transparenz#spenden"
+              href="/kontakt"
               className="inline-flex items-center gap-2 border border-rosa-400 text-white hover:bg-rosa-700 rounded-full px-7 py-3 font-medium transition-colors"
             >
               Spenden

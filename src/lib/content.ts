@@ -14,8 +14,6 @@ export type Banner = {
   enabled: boolean
   discount: string
   message: string
-  ctaLabel: string
-  ctaHref: string
 }
 
 export const banner: Banner = bannerData
@@ -24,6 +22,7 @@ export type HeroContent = {
   headlineHighlight: string
   headlineRest: string
   subcopy: string
+  imageCaption: string
   primaryCtaLabel: string
   primaryCtaHref: string
   secondaryCtaLabel: string
@@ -80,7 +79,6 @@ export type Service = {
   title: string
   subtitle: string
   icon: string
-  description: string
   features: string[]
   faq: { question: string; answer: string }[]
 }
@@ -95,7 +93,7 @@ export type Verein = {
   missionHeading: string
   missionParagraphs: string[]
   stats: { value: string; sub: string }[]
-  links: { icon: string; title: string; description: string; href: string; cta: string }[]
+  links: { icon: string; title: string; href: string; cta: string }[]
   statutenPdf: string | null
   ctaHeading: string
   ctaText: string
@@ -105,6 +103,7 @@ export const verein: Verein = vereinData
 
 export type VereinAngebot = {
   title: string
+  subtitle: string
   intro: string
   profiles: { title: string; description: string }[]
 }
@@ -113,6 +112,7 @@ export const vereinAngebot: VereinAngebot = vereinAngebotData
 
 export type VereinWerkstaetten = {
   title: string
+  subtitle: string
   intro: string
   workshops: { name: string; description: string }[]
 }

@@ -112,7 +112,7 @@ export default function Hero({ content }: { content: HeroContent }) {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.0, 0.0, 0.2, 1.0] }}
-            className="relative hidden lg:flex"
+            className="relative hidden lg:flex flex-col items-center gap-4"
           >
             {/* Logo */}
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] w-full bg-white flex items-center justify-center p-10 card-shadow">
@@ -125,6 +125,11 @@ export default function Hero({ content }: { content: HeroContent }) {
                 sizes="420px"
               />
             </div>
+            {content.imageCaption && (
+              <p className="text-sm font-medium tracking-wide text-gray-600">
+                {content.imageCaption}
+              </p>
+            )}
           </motion.div>
         </div>
       </div>

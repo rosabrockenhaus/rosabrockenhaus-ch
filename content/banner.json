@@ -1,7 +1,5 @@
 {
   "enabled": true,
   "discount": "50%",
-  "message": "Gesamtes Sortiment reduziert. Jetzt vorbeikommen!",
-  "ctaLabel": "Brockenhaus ansehen",
-  "ctaHref": "/brockenhaus"
+  "message": "Gesamtes Sortiment reduziert. Jetzt vorbeikommen!"
 }

@@ -18,14 +18,12 @@
     {
       "icon": "Wrench",
       "title": "Werkstätte",
-      "description": "Textil, Elektro, Möbel, Geschirr, Velo — Werkstätte für eine zweite Chance.",
       "href": "/verein/werkstaette",
       "cta": "Unsere Werkstätte"
     },
     {
       "icon": "Briefcase",
       "title": "Angebot",
-      "description": "Wir bieten Arbeits- und Praktikumsplätze für Menschen nach Burnout, mit Behinderung oder in Reintegration.",
       "href": "/verein/angebot",
       "cta": "Für wen wir da sind"
     }

@@ -31,7 +31,6 @@ function WordmarkLogo({ onDark = false }: { onDark?: boolean }) {
     </span>
   )
 }
-import { useBanner } from '@/contexts/BannerContext'
 
 const navLinks = [
   { href: '/brockenhaus', label: 'Brockenhaus' },
@@ -53,7 +52,6 @@ export default function Navbar() {
   const [vereinOpen, setVereinOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
-  const { visible: bannerVisible } = useBanner()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -69,9 +67,8 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.0, 0.0, 0.2, 1.0] }}
-      style={{ top: bannerVisible ? '48px' : '0px' }}
       className={cn(
-        'fixed left-0 right-0 z-50 bg-black transition-shadow duration-300',
+        'fixed top-0 left-0 right-0 z-50 bg-black transition-shadow duration-300',
         scrolled && 'shadow-lg'
       )}
     >
