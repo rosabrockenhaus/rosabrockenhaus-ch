@@ -150,6 +150,32 @@ export default config({
           directory: 'public/media/verein',
           publicPath: '/media/verein/',
         }),
+        spenden: fields.object(
+          {
+            title: fields.text({ label: 'Titel' }),
+            text: fields.text({ label: 'Text', multiline: true }),
+            bankName: fields.text({ label: 'Bank' }),
+            iban: fields.text({ label: 'IBAN' }),
+            beneficiary: fields.text({ label: 'Begünstigter (Name, Adresse)' }),
+          },
+          { label: 'Spenden (Karte vor dem Vorstand)' }
+        ),
+        mitgliedschaft: fields.object(
+          {
+            title: fields.text({ label: 'Titel' }),
+            text: fields.text({ label: 'Text', multiline: true }),
+            fees: fields.array(
+              fields.object({
+                label: fields.text({ label: 'Art (z.B. Einzelmitglied)' }),
+                price: fields.text({ label: 'Beitrag (z.B. Fr. 100.00 / Jahr)' }),
+              }),
+              { label: 'Beiträge', itemLabel: (p) => `${p.fields.label.value} — ${p.fields.price.value}` }
+            ),
+            ctaLabel: fields.text({ label: 'Button-Text' }),
+            ctaHref: fields.text({ label: 'Button-Link (z.B. /kontakt)' }),
+          },
+          { label: 'Mitglied werden (Karte vor dem Vorstand)' }
+        ),
         ctaHeading: fields.text({ label: 'Abschluss-CTA: Titel' }),
         ctaText: fields.text({ label: 'Abschluss-CTA: Text', multiline: true }),
       },

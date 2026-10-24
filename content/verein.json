@@ -29,6 +29,29 @@
     }
   ],
   "statutenPdf": "/media/verein/statutenPdf.pdf",
+  "spenden": {
+    "title": "Spenden",
+    "text": "Um unsere Arbeit für, sind wir vermehrt auf private Spenden angewiesen.",
+    "bankName": "Berner Kantonalbank",
+    "iban": "CH36 0079 0042 4848 2986 8",
+    "beneficiary": "Rosa Brockenhaus Hilfswerkverein, Wankdorffeldstrasse 96, 3014 Bern"
+  },
+  "mitgliedschaft": {
+    "title": "Mitglied werden",
+    "text": "Als Vereinsmitglied unterstützen Sie unsere Arbeit direkt und haben Stimmrecht an der Generalversammlung.",
+    "fees": [
+      {
+        "label": "Einzelmitglied",
+        "price": "Fr. 100.00 / Jahr"
+      },
+      {
+        "label": "Firma",
+        "price": "Fr. 250.00 / Jahr"
+      }
+    ],
+    "ctaLabel": "Mitglied werden",
+    "ctaHref": "/kontakt"
+  },
   "ctaHeading": "Teil der Gemeinschaft werden",
   "ctaText": "Als Mitglied oder Spender unterstützen Sie die Leistungen des Rosa Brockenhaus."
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Heart, Wrench, Briefcase, FileText } from 'lucide-react'
+import { ArrowRight, Heart, Wrench, Briefcase, FileText, HandHeart, Users } from 'lucide-react'
 import { team, verein, vereinAngebot, vereinWerkstaetten } from '@/lib/content'
+import CopyIban from '@/components/verein/CopyIban'
 
 export const metadata: Metadata = {
   title: 'Über uns – Verein',
@@ -103,6 +104,67 @@ export default function VereinPage() {
         </div>
       </section>
 
+      {/* Spenden + Mitglied werden — editable in Keystatic */}
+      <section className="section-padding bg-rosa-50">
+        <div className="container-base max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Spenden */}
+            <div id="spenden" className="scroll-mt-28 bg-white border border-rosa-100 rounded-3xl p-8 flex flex-col">
+              <div className="w-11 h-11 rounded-2xl bg-rosa-50 flex items-center justify-center mb-5">
+                <HandHeart size={20} className="text-rosa-600" />
+              </div>
+              <h2 className="text-gray-900 font-display text-2xl mb-3">{verein.spenden.title}</h2>
+              <p className="text-gray-600 leading-relaxed mb-6">{verein.spenden.text}</p>
+              <div className="mt-auto bg-cream-50 border border-cream-200 rounded-2xl p-5 space-y-3 text-sm">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-xs text-gray-500 uppercase tracking-wider">IBAN</p>
+                    <CopyIban iban={verein.spenden.iban} />
+                  </div>
+                  <p className="font-mono text-base text-gray-900 break-all">{verein.spenden.iban}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">Bank</p>
+                  <p className="text-gray-900">{verein.spenden.bankName}</p>
+                </div>
+                {verein.spenden.beneficiary && (
+                  <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">Begünstigter</p>
+                    <p className="text-gray-900">{verein.spenden.beneficiary}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Mitglied werden */}
+            <div id="mitglied" className="scroll-mt-28 bg-white border border-rosa-100 rounded-3xl p-8 flex flex-col">
+              <div className="w-11 h-11 rounded-2xl bg-rosa-50 flex items-center justify-center mb-5">
+                <Users size={20} className="text-rosa-600" />
+              </div>
+              <h2 className="text-gray-900 font-display text-2xl mb-3">{verein.mitgliedschaft.title}</h2>
+              <p className="text-gray-600 leading-relaxed mb-6">{verein.mitgliedschaft.text}</p>
+              <div className="space-y-3 mb-6">
+                {verein.mitgliedschaft.fees.map((fee) => (
+                  <div
+                    key={fee.label}
+                    className="flex items-center justify-between gap-4 bg-cream-50 border border-cream-200 rounded-2xl px-5 py-4"
+                  >
+                    <span className="text-gray-700">{fee.label}</span>
+                    <span className="font-medium text-rosa-600 whitespace-nowrap">{fee.price}</span>
+                  </div>
+                ))}
+              </div>
+              <Link
+                href={verein.mitgliedschaft.ctaHref}
+                className="mt-auto inline-flex items-center justify-center gap-2 bg-rosa-600 hover:bg-rosa-800 text-white rounded-full px-7 py-3 font-medium transition-colors min-h-[48px]"
+              >
+                {verein.mitgliedschaft.ctaLabel} <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Vorstand */}
       <section className="section-padding bg-cream-50">
         <div className="container-base max-w-3xl">
@@ -157,14 +219,14 @@ export default function VereinPage() {
           <p className="text-rosa-200 mb-8 max-w-md mx-auto">{verein.ctaText}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/kontakt"
+              href="#mitglied"
               className="inline-flex items-center gap-2 bg-white text-rosa-600 hover:bg-rosa-50 rounded-full px-7 py-3 font-medium transition-colors"
             >
               Mitglied werden
               <ArrowRight size={16} />
             </Link>
             <Link
-              href="/kontakt"
+              href="#spenden"
               className="inline-flex items-center gap-2 border border-rosa-400 text-white hover:bg-rosa-700 rounded-full px-7 py-3 font-medium transition-colors"
             >
               Spenden
