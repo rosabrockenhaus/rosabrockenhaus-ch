@@ -58,7 +58,7 @@ export default function KontaktPage() {
           <h1 className="text-gray-900 mb-4">Kontakt</h1>
           <p className="text-gray-600 max-w-lg">
             Haben Sie Fragen, möchten einen Termin vereinbaren oder eine Offerte anfordern?
-            Schreiben Sie uns – wir antworten innerhalb von 24 Stunden.
+            Schreiben Sie uns.
           </p>
         </div>
       </section>
@@ -197,14 +197,19 @@ export default function KontaktPage() {
                     <Mail size={15} className="text-rosa-400 shrink-0" />
                     {contact.email}
                   </a>
-                  <div className="flex items-start gap-3 text-gray-700">
+                  <a
+                    href={contact.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-3 text-gray-700 hover:text-rosa-600 transition-colors"
+                  >
                     <MapPin size={15} className="text-rosa-400 shrink-0 mt-0.5" />
                     <span>
                       {contact.addressLine1}
                       <br />
                       {contact.addressLine2}
                     </span>
-                  </div>
+                  </a>
                 </div>
               </div>
 
@@ -257,6 +262,15 @@ export default function KontaktPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Rosa Brockenhaus Standort"
                 />
+                <a
+                  href={contact.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-white border-t border-rosa-100 py-3 text-sm font-medium text-rosa-600 hover:bg-rosa-50 transition-colors"
+                >
+                  <MapPin size={14} />
+                  In Google Maps öffnen
+                </a>
               </div>
             </div>
           </div>

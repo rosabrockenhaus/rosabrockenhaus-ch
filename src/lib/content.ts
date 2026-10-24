@@ -123,6 +123,7 @@ export type Contact = {
   email: string
   addressLine1: string
   addressLine2: string
+  mapsUrl: string
   whatsappNumber: string
   mapEmbedUrl: string
   instagramUrl: string

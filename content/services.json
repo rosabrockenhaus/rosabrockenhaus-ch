@@ -30,16 +30,16 @@
       "subtitle": "Win-win · Wiederverwendung",
       "icon": "Home",
       "features": [
-        "Wohnung oder Messiwohnung räumen",
-        "Sortierung die Wahre",
-        "Wiedervervendbahre Gegenstände zu verkaufen",
-        "Nach der Raumung entfernen die Nagel und die Schraube an die Wände",
-        "Besenrein inklusive"
+        "Räumung von Wohnungen und Messie-Wohnungen",
+        "Sortierung der Gegenstände",
+        "Wiederverwendbare Gegenstände werden im Brockenhaus verkauft",
+        "Nach der Räumung entfernen wir Nägel und Schrauben aus den Wänden",
+        "Besenreine Übergabe inklusive"
       ],
       "faq": [
         {
-          "question": "Nehmt ihr auch die Gegenstände an, die ihr nicht brauchen könnt?",
-          "answer": "Nein, wir entsorgen die Gegenstände, die nicht mehr verwendbar sind – umweltbewusst und fachgerechtig entsorgen."
+          "question": "Nehmt ihr auch Gegenstände mit, die ihr nicht mehr brauchen könnt?",
+          "answer": "Nicht für den Verkauf – Gegenstände, die nicht mehr verwendbar sind, entsorgen wir umweltbewusst und fachgerecht."
         },
         {
           "question": "Kann ich bei der Räumung dabei sein?",
@@ -47,7 +47,7 @@
         },
         {
           "question": "Wie schnell kann eine Räumung durchgeführt werden?",
-          "answer": "Das hängt von Grösse und Zustand die Wohnung."
+          "answer": "Das hängt von der Grösse und dem Zustand der Wohnung ab."
         }
       ]
     },
@@ -66,7 +66,7 @@
       "faq": [
         {
           "question": "Was bedeutet Abgabegarantie?",
-          "answer": "Wir reinigen Ihre Wohnung so gründlich, dass sie bei der Übergabe an den Vermieter akzeptiert wird. Wenn die Nachreinigung nötig ist, ist auch inklusive."
+          "answer": "Wir reinigen Ihre Wohnung so gründlich, dass sie bei der Übergabe an den Vermieter akzeptiert wird. Falls eine Nachreinigung nötig ist, ist diese inklusive."
         },
         {
           "question": "Bringt ihr das Reinigungsmaterial mit?",
@@ -82,7 +82,7 @@
       "id": "entsorgung",
       "slug": "entsorgung",
       "title": "Entsorgung",
-      "subtitle": "Umweltbewusst · Sortieren · Fachgerechtig",
+      "subtitle": "Umweltbewusst · Sortiert · Fachgerecht",
       "icon": "Recycle",
       "features": [
         "Sperrgut, Elektroschrott und Altgeräte"
@@ -90,7 +90,7 @@
       "faq": [
         {
           "question": "Entsorgt ihr auch gefährliche Abfälle wie Farben oder Chemikalien?",
-          "answer": "Ja, aber die speziel sind teuer."
+          "answer": "Ja, Sonderabfälle sind jedoch mit Zusatzkosten verbunden."
         },
         {
           "question": "Gibt es eine Mindestmenge?",
@@ -111,7 +111,7 @@
       "faq": [
         {
           "question": "Ist die Abholung kostenlos?",
-          "answer": "Ja, Bern und Umgebung ist die Abholung kostenlos."
+          "answer": "Ja, in Bern und Umgebung ist die Abholung kostenlos."
         },
         {
           "question": "Welche Gegenstände nehmt ihr mit?",
@@ -119,7 +119,7 @@
         },
         {
           "question": "Wie schnell kann eine Abholung organisiert werden?",
-          "answer": "Wir können wir innerhalb von wenigen Werktagen einen Termin finden. Kontaktieren Sie uns telefonisch oder per E-Mail."
+          "answer": "In der Regel finden wir innerhalb weniger Werktage einen Termin. Kontaktieren Sie uns telefonisch oder per E-Mail."
         }
       ]
     }

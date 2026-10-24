@@ -3,12 +3,13 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Heart, Radio, Phone, MapPin } from 'lucide-react'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
+import { contact } from '@/lib/content'
 
-const items = [
+const items: { icon: typeof Heart; value: string; label: string; sublabel: string; href?: string }[] = [
   { icon: Heart,  value: 'Verein', label: 'Gemeinnützig',        sublabel: 'Non-profit · Bern' },
   { icon: Radio,  value: 'SRF',    label: 'Mitenand',            sublabel: 'In den Medien' },
   { icon: Phone,  value: '+41 31', label: '991 77 00',           sublabel: 'Jetzt anrufen' },
-  { icon: MapPin, value: 'Bern',   label: 'Wankdorffeldstr. 96', sublabel: '3014 Bern' },
+  { icon: MapPin, value: 'Bern',   label: 'Wankdorffeldstr. 96', sublabel: '3014 Bern', href: contact.mapsUrl },
 ]
 
 export default function TrustBar() {
@@ -35,10 +36,17 @@ export default function TrustBar() {
                 <div className="w-10 h-10 rounded-full bg-rosa-50 flex items-center justify-center shrink-0 border border-rosa-100">
                   <Icon size={16} className="text-rosa-500" />
                 </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900 leading-tight">{item.label}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">{item.sublabel}</p>
-                </div>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="group">
+                    <p className="text-sm font-medium text-gray-900 leading-tight group-hover:text-rosa-600 transition-colors">{item.label}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{item.sublabel}</p>
+                  </a>
+                ) : (
+                  <div>
+                    <p className="text-sm font-medium text-gray-900 leading-tight">{item.label}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{item.sublabel}</p>
+                  </div>
+                )}
               </motion.div>
             )
           })}
