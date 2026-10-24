@@ -54,11 +54,16 @@ export default function Footer() {
               <ul className="space-y-3 text-sm">
                 <li className="flex items-start gap-2.5">
                   <MapPin size={14} className="mt-0.5 text-rosa-400 shrink-0" />
-                  <span className="text-gray-400">
+                  <a
+                    href={contact.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
                     {contact.addressLine1}
                     <br />
                     {contact.addressLine2}
-                  </span>
+                  </a>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Phone size={14} className="text-rosa-400 shrink-0" />
@@ -107,7 +112,7 @@ export default function Footer() {
               <p className="text-xs font-semibold text-white/40 uppercase tracking-[0.15em] mb-5">Navigation</p>
               <ul className="space-y-1">
                 {navLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       className="text-sm text-gray-400 hover:text-white hover:pl-1 transition-all duration-200 min-h-[44px] flex items-center"
@@ -124,7 +129,7 @@ export default function Footer() {
               <p className="text-xs font-semibold text-white/40 uppercase tracking-[0.15em] mb-5">Verein</p>
               <ul className="space-y-1">
                 {vereinLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       className="text-sm text-gray-400 hover:text-white hover:pl-1 transition-all duration-200 min-h-[44px] flex items-center"

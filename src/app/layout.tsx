@@ -69,6 +69,7 @@ const jsonLd = {
     addressLocality: 'Bern',
     addressCountry: 'CH',
   },
+  hasMap: 'https://maps.app.goo.gl/VAe9Us6892JBg7GZ9',
   telephone: '+41319917700',
   email: 'mail@rosabrockenhaus.ch',
   openingHours: ['Mo-Fr 12:00-18:00', 'Sa 10:00-17:00'],

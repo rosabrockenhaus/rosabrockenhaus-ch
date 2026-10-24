@@ -43,7 +43,7 @@ function VideoCard({ src, label, tag }: { src: string; label: string; tag: 'Vorh
   )
 }
 
-function Photo({ src, alt, tag }: { src: string; alt: string; tag: 'Vorher' | 'Nachher' }) {
+export function Photo({ src, alt, tag }: { src: string; alt: string; tag: 'Vorher' | 'Nachher' }) {
   return (
     <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
       <Image src={src} alt={alt} fill className="object-cover" sizes="200px" />

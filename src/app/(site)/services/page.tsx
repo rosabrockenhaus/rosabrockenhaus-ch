@@ -11,6 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { services } from '@/lib/content'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
 import ReinigungShowcase from '@/components/services/ReinigungShowcase'
+import RaeumungShowcase from '@/components/services/RaeumungShowcase'
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Truck,
@@ -143,8 +144,9 @@ export default function ServicesPage() {
                   </motion.div>
                 </div>
 
-                {/* Visual: before/after results for Reinigung, FAQ for the rest */}
+                {/* Visual: photos for Räumung / Reinigung, then FAQ */}
                 <motion.div variants={prefersReducedMotion ? noAnimation : fadeUpVariant} className="space-y-6">
+                  {service.slug === 'raeumung' && <RaeumungShowcase />}
                   {service.slug === 'reinigung' && <ReinigungShowcase />}
                   <div>
                     <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">

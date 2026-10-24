@@ -208,10 +208,19 @@ export default config({
         email: fields.text({ label: 'E-Mail' }),
         addressLine1: fields.text({ label: 'Adresse Zeile 1 (Strasse)' }),
         addressLine2: fields.text({ label: 'Adresse Zeile 2 (PLZ Ort)' }),
+        mapsUrl: fields.text({
+          label: 'Google-Maps-Link',
+          description: 'Die Adresse auf der Website verlinkt auf diese Seite (z.B. https://maps.app.goo.gl/…).',
+        }),
         whatsappNumber: fields.text({
           label: "WhatsApp-Nummer (nur Ziffern mit Landesvorwahl, z.B. '41319917700')",
         }),
-        mapEmbedUrl: fields.text({ label: 'Google Maps Embed-URL', multiline: true }),
+        mapEmbedUrl: fields.text({
+          label: 'Google Maps Embed-URL',
+          description:
+            'Karte auf der Kontaktseite. Format: https://maps.google.com/maps?q=<Name, Adresse>&z=17&output=embed',
+          multiline: true,
+        }),
         instagramUrl: fields.text({ label: 'Instagram-Link' }),
         facebookUrl: fields.text({ label: 'Facebook-Link' }),
         footerTagline: fields.text({ label: 'Footer: Kurzbeschreibung', multiline: true }),

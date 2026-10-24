@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { MapPin, Clock, Tag } from 'lucide-react'
 import { staggerContainer, fadeUpVariant, viewportOnce, noAnimation } from '@/lib/animations'
-import { shopCategories } from '@/lib/content'
+import { shopCategories, contact } from '@/lib/content'
 import CategoryCard from '@/components/shop/CategoryCard'
 
 export default function ShopPageClient() {
@@ -36,8 +36,8 @@ export default function ShopPageClient() {
               variants={reduced ? noAnimation : fadeUpVariant}
               className="text-gray-600 max-w-xl"
             >
-              Täglich neue Fundstücke — Möbel, Kleidung, Bücher, Elektronik und vieles mehr.
-              Das Sortiment wechselt laufend: Kommen Sie vorbei und lassen Sie sich überraschen.
+              Ständig neue Ware — Möbel, Kleider, Bücher, Elektronik und vieles mehr.
+              Kommen Sie vorbei und stöbern Sie.
             </motion.p>
 
             {/* Info chips */}
@@ -48,16 +48,31 @@ export default function ShopPageClient() {
               {[
                 { icon: Tag, text: '50% auf alles' },
                 { icon: Clock, text: 'Mo–Fr 12–18 · Sa 10–17' },
-                { icon: MapPin, text: 'Wankdorffeldstrasse 96, Bern' },
-              ].map(({ icon: Icon, text }) => (
-                <span
-                  key={text}
-                  className="inline-flex items-center gap-2 bg-white border border-rosa-100 rounded-full px-4 py-1.5 text-sm text-gray-600"
-                >
-                  <Icon size={13} className="text-rosa-500 shrink-0" aria-hidden />
-                  {text}
-                </span>
-              ))}
+                { icon: MapPin, text: 'Wankdorffeldstrasse 96, Bern', href: contact.mapsUrl },
+              ].map(({ icon: Icon, text, href }) => {
+                const className = 'inline-flex items-center gap-2 bg-white border border-rosa-100 rounded-full px-4 py-1.5 text-sm text-gray-600'
+                const inner = (
+                  <>
+                    <Icon size={13} className="text-rosa-500 shrink-0" aria-hidden />
+                    {text}
+                  </>
+                )
+                return href ? (
+                  <a
+                    key={text}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${className} hover:border-rosa-300 hover:text-rosa-600 transition-colors`}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <span key={text} className={className}>
+                    {inner}
+                  </span>
+                )
+              })}
             </motion.div>
           </motion.div>
         </div>
