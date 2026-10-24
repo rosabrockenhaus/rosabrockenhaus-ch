@@ -32,8 +32,8 @@ const vereinLinks = [
   { href: '/verein', label: 'Über uns' },
   { href: '/verein/werkstaette', label: 'Werkstätte' },
   { href: '/verein/angebot', label: 'Angebote' },
-  { href: '/kontakt', label: 'Mitglied werden' },
-  { href: '/kontakt', label: 'Spenden' },
+  { href: '/verein#mitglied', label: 'Mitglied werden' },
+  { href: '/verein#spenden', label: 'Spenden' },
 ]
 
 export default function Footer() {

@@ -94,6 +94,14 @@ export type Verein = {
   stats: { value: string; sub: string }[]
   links: { icon: string; title: string; href: string; cta: string }[]
   statutenPdf: string | null
+  spenden: { title: string; text: string; bankName: string; iban: string; beneficiary: string }
+  mitgliedschaft: {
+    title: string
+    text: string
+    fees: { label: string; price: string }[]
+    ctaLabel: string
+    ctaHref: string
+  }
   ctaHeading: string
   ctaText: string
 }
