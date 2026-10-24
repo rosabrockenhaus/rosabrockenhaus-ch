@@ -27,26 +27,27 @@
       "id": "raeumung",
       "slug": "raeumung",
       "title": "Räumung",
-      "subtitle": "Klarer Raum, freier Kopf – wir räumen für Sie",
+      "subtitle": "Win-win · Wiederverwendung",
       "icon": "Home",
       "features": [
-        "Wohnungsauflösungen und Nachlässe",
-        "Sortenreine Trennung von Wertstoffen",
-        "Direktübernahme brauchbarer Waren für das Brockenhaus",
-        "Diskrete und respektvolle Abwicklung"
+        "Wohnung oder Messiwohnung räumen",
+        "Sortierung die Wahre",
+        "Wiedervervendbahre Gegenstände zu verkaufen",
+        "Nach der Raumung entfernen die Nagel und die Schraube an die Wände",
+        "Besenrein inklusive"
       ],
       "faq": [
         {
-          "question": "Nehmt ihr auch Gegenstände an, die ihr nicht brauchen könnt?",
-          "answer": "Ja, wir entsorgen auch Gegenstände, die nicht mehr verwendbar sind – umweltgerecht und nach gesetzlichen Vorschriften."
+          "question": "Nehmt ihr auch die Gegenstände an, die ihr nicht brauchen könnt?",
+          "answer": "Nein, wir entsorgen die Gegenstände, die nicht mehr verwendbar sind – umweltbewusst und fachgerechtig entsorgen."
         },
         {
           "question": "Kann ich bei der Räumung dabei sein?",
-          "answer": "Selbstverständlich. Viele Kunden möchten persönliche Gegenstände selbst aussortieren. Wir passen uns Ihren Wünschen an."
+          "answer": "Selbstverständlich. Wir passen uns Ihren Wünschen an."
         },
         {
           "question": "Wie schnell kann eine Räumung durchgeführt werden?",
-          "answer": "Das hängt von Grösse und Zustand des zu räumenden Objekts ab. Ein Keller kann oft innerhalb eines Tages geräumt werden, eine ganze Wohnung braucht manchmal 2–3 Tage."
+          "answer": "Das hängt von Grösse und Zustand die Wohnung."
         }
       ]
     },
@@ -54,26 +55,26 @@
       "id": "reinigung",
       "slug": "reinigung",
       "title": "Reinigung",
-      "subtitle": "Blitzsauber – mit Abgabegarantie",
+      "subtitle": "Sauber · Ökologisch",
       "icon": "Sparkles",
       "features": [
         "Endreinigung mit Abgabegarantie",
-        "Küchen- und Badreinigung inkl. Kalkentfernung",
+        "Küchen- und Badreinigung",
         "Fenster- und Rahmenreinigung",
         "Flexible Terminvereinbarung"
       ],
       "faq": [
         {
           "question": "Was bedeutet Abgabegarantie?",
-          "answer": "Wir reinigen Ihre Wohnung so gründlich, dass sie bei der Übergabe an den Vermieter akzeptiert wird. Gibt es Beanstandungen, kommen wir nochmals kostenlos nach."
+          "answer": "Wir reinigen Ihre Wohnung so gründlich, dass sie bei der Übergabe an den Vermieter akzeptiert wird. Wenn die Nachreinigung nötig ist, ist auch inklusive."
         },
         {
           "question": "Bringt ihr das Reinigungsmaterial mit?",
-          "answer": "Ja, wir kommen mit allem notwendigen Material und Reinigungsmitteln. Sie müssen nichts vorbereiten."
+          "answer": "Ja, wir kommen mit allem notwendigen Material und Reinigungsmitteln."
         },
         {
           "question": "Wie lange dauert eine Endreinigung?",
-          "answer": "Das hängt von der Grösse und dem Zustand der Wohnung ab. Eine 2-Zimmer-Wohnung dauert in der Regel 3–4 Stunden, eine grössere Wohnung entsprechend länger."
+          "answer": "Das hängt von der Grösse und dem Zustand der Wohnung ab."
         }
       ]
     },
@@ -81,26 +82,19 @@
       "id": "entsorgung",
       "slug": "entsorgung",
       "title": "Entsorgung",
-      "subtitle": "Umweltbewusst entsorgen – für eine saubere Zukunft",
+      "subtitle": "Umweltbewusst · Sortieren · Fachgerechtig",
       "icon": "Recycle",
       "features": [
-        "Sperrgut, Elektroschrott und Altgeräte",
-        "Bauschutt und Renovationsabfälle",
-        "Sortenreine Trennung nach Materialien",
-        "Entsorgungsnachweis auf Anfrage"
+        "Sperrgut, Elektroschrott und Altgeräte"
       ],
       "faq": [
         {
           "question": "Entsorgt ihr auch gefährliche Abfälle wie Farben oder Chemikalien?",
-          "answer": "Nein, für Sondermüll wie Farben, Chemikalien oder Asbestmaterial müssen Sie die Sonderabfallsammelstellen der Gemeinde nutzen. Wir helfen Ihnen aber gerne bei der Orientierung."
+          "answer": "Ja, aber die speziel sind teuer."
         },
         {
           "question": "Gibt es eine Mindestmenge?",
-          "answer": "Wir nehmen grundsätzlich auch kleinere Mengen an. Der Mindestbetrag für einen Einsatz beträgt CHF 80.–."
-        },
-        {
-          "question": "Kann ich auch einfach Sachen abgeben?",
-          "answer": "Wenn Sie brauchbare Gegenstände haben, nehmen wir diese gerne für unser Brockenhaus entgegen. Kontaktieren Sie uns für eine Vorabkontrolle."
+          "answer": "Wir nehmen grundsätzlich auch kleinere Mengen an."
         }
       ]
     },
@@ -108,18 +102,16 @@
       "id": "abholung",
       "slug": "abholung",
       "title": "Abholung",
-      "subtitle": "Wir kommen zu Ihnen — unkompliziert und flexibel",
+      "subtitle": "Verkaufbare Ware · Gratis",
       "icon": "PackageCheck",
       "features": [
         "Möbel, Kleider, Elektro, Geschirr, Fahrräder & mehr",
-        "Flexible Terminvereinbarung",
-        "Wiederverwertung: brauchbares wird im Brockenhaus verkauft",
-        "Kostenlos (je nach Menge und Distanz)"
+        "Flexible Terminvereinbarung"
       ],
       "faq": [
         {
           "question": "Ist die Abholung kostenlos?",
-          "answer": "Für kleinere Mengen und in der Nähe von Bern ist die Abholung in der Regel kostenlos. Bei grösseren Mengen oder weiteren Distanzen nennen wir Ihnen vorher einen Preis."
+          "answer": "Ja, Bern und Umgebung ist die Abholung kostenlos."
         },
         {
           "question": "Welche Gegenstände nehmt ihr mit?",
@@ -127,7 +119,7 @@
         },
         {
           "question": "Wie schnell kann eine Abholung organisiert werden?",
-          "answer": "In der Regel können wir innerhalb von wenigen Werktagen einen Termin finden. Kontaktieren Sie uns telefonisch oder per E-Mail."
+          "answer": "Wir können wir innerhalb von wenigen Werktagen einen Termin finden. Kontaktieren Sie uns telefonisch oder per E-Mail."
         }
       ]
     }
