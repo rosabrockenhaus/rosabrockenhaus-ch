@@ -51,8 +51,8 @@
       ]
     },
     {
-      "id": "reinigung",
-      "slug": "reinigung",
+      "id": "Reinigung",
+      "slug": "Reinigung",
       "title": "Reinigung",
       "subtitle": "Blitzsauber – mit Abgabegarantie",
       "icon": "Sparkles",
@@ -69,7 +69,7 @@
         },
         {
           "question": "Bringt ihr das Reinigungsmaterial mit?",
-          "answer": "Ja, wir kommen mit allem notwendigen Material und Reinigungsmitteln. Sie müssen nichts vorbereiten."
+          "answer": "Ja, wir kommen mit allen notwendigen Materialen und Reinigungsmitteln. Sie müssen nichts vorbereiten."
         },
         {
           "question": "Wie lange dauert eine Endreinigung?",
