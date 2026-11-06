@@ -2,12 +2,11 @@
   "hero": {
     "headlineHighlight": "Rosa",
     "headlineRest": "räumt Ihr Haus aus.",
-    "subcopy": "Umzug · Räumung · Reinigung · Abholung",
-    "imageCaption": "Gemeinnütziger Verein",
+    "subcopy": "Brockenhaus · Werkstätte\nUmzug · Räumung · Reinigung · Abholung ",
     "primaryCtaLabel": "Services",
     "primaryCtaHref": "/services",
     "secondaryCtaLabel": "Brockenhaus",
-    "secondaryCtaHref": "/brockenhaus"
+    "secondaryCtaHref": "/Brockenhaus"
   },
   "promos": [
     {
@@ -26,7 +25,7 @@
       "summary": "Fr. 20.– Rabatt nach 10 Einkäufen",
       "details": [
         "Fr. 20.– Rabatt nach 10 Einkäufen",
-        "Mindesteinkauf Fr. 10.–",
+        "Mindesteinkauf Fr. 10.– pro Besuch",
         "Karte kostenlos und sofort an der Kasse erhältlich"
       ]
     },
@@ -36,7 +35,7 @@
       "summary": "Gutscheine kaufen & verschenken",
       "details": [
         "Erhältlich in verschiedenen Beträgen",
-        "Einlösbar auf das gesamte Sortiment im Brockenhaus",
+        "Einlösbar auf das gesamte Sortiment im Shop",
         "Das ideale Geschenk — sinnvoll und nachhaltig",
         "Direkt an der Kasse erhältlich"
       ]
