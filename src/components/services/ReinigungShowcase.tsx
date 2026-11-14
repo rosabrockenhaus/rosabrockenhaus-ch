@@ -66,22 +66,22 @@ export default function ReinigungShowcase() {
       </p>
       <div className="grid grid-cols-2 gap-3">
         <Photo
-          src="/media/rosa-brockenhaus-reinigung-kueche-raucherwohnung-vorher.jpg"
+          src="/static/rosa-brockenhaus-reinigung-kueche-raucherwohnung-vorher.jpg"
           alt="Küche einer Raucherwohnung vor der Reinigung — stark verschmutzte Oberschränke"
           tag="Vorher"
         />
         <Photo
-          src="/media/rosa-brockenhaus-reinigung-kueche-nachher.jpg"
+          src="/static/rosa-brockenhaus-reinigung-kueche-nachher.jpg"
           alt="Dieselbe Küche nach professioneller Reinigung durch Rosa Brockenhaus Bern"
           tag="Nachher"
         />
         <VideoCard
-          src="/media/rosa-brockenhaus-reinigung-dusche-vorher.mp4"
+          src="/static/rosa-brockenhaus-reinigung-dusche-vorher.mp4"
           label="Dusche vorher"
           tag="Vorher"
         />
         <VideoCard
-          src="/media/rosa-brockenhaus-reinigung-dusche-nachher.mp4"
+          src="/static/rosa-brockenhaus-reinigung-dusche-nachher.mp4"
           label="Dusche nachher"
           tag="Nachher"
         />

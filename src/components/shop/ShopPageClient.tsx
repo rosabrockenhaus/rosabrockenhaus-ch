@@ -4,10 +4,16 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { MapPin, Clock, Tag } from 'lucide-react'
 import { staggerContainer, fadeUpVariant, viewportOnce, noAnimation } from '@/lib/animations'
-import { shopCategories, contact } from '@/lib/content'
+import type { ShopCategory, Contact } from '@/lib/content'
 import CategoryCard from '@/components/shop/CategoryCard'
 
-export default function ShopPageClient() {
+export default function ShopPageClient({
+  shopCategories,
+  contact,
+}: {
+  shopCategories: readonly ShopCategory[]
+  contact: Contact
+}) {
   const reduced = useReducedMotion()
 
   return (

@@ -5,7 +5,7 @@ import PromosSection from '@/components/home/PromosSection'
 import ServicesGrid from '@/components/home/ServicesGrid'
 import ShopTeaser from '@/components/home/ShopTeaser'
 import { getAllBlogPosts } from '@/lib/blog'
-import { homepage } from '@/lib/content'
+import { getHomepage, getServices, getFeaturedCategories } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Rosa Brockenhaus Bern – Brockenhaus, Werkstätte & Services',
@@ -13,16 +13,21 @@ export const metadata: Metadata = {
     'Gemeinnütziger Brockenhaus-Verein in Bern. Secondhand kaufen, abgeben und entsorgen — Umzug, Räumung & Reinigung. 50% auf alles.',
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   const posts = getAllBlogPosts().slice(0, 6)
+  const [homepage, services, featuredCategories] = await Promise.all([
+    getHomepage(),
+    getServices(),
+    getFeaturedCategories(),
+  ])
 
   return (
     <>
       <Hero content={homepage.hero} />
       <PromosSection promos={homepage.promos} />
       <Aktuell posts={posts} />
-      <ServicesGrid />
-      <ShopTeaser />
+      <ServicesGrid services={services} />
+      <ShopTeaser categories={featuredCategories} />
     </>
   )
 }

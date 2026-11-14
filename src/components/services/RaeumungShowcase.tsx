@@ -8,12 +8,12 @@ export default function RaeumungShowcase() {
       </p>
       <div className="grid grid-cols-2 gap-3">
         <Photo
-          src="/media/rosa-brockenhaus-bern-raeumung-zimmer-vorher.jpg"
+          src="/static/rosa-brockenhaus-bern-raeumung-zimmer-vorher.jpg"
           alt="Vollgestelltes Zimmer vor der Räumung durch Rosa Brockenhaus Bern"
           tag="Vorher"
         />
         <Photo
-          src="/media/rosa-brockenhaus-bern-raeumung-wohnzimmer-vorher.jpg"
+          src="/static/rosa-brockenhaus-bern-raeumung-wohnzimmer-vorher.jpg"
           alt="Wohnzimmer voller Möbel, Kartons und Hausrat vor der Wohnungsräumung in Bern"
           tag="Vorher"
         />

@@ -4,10 +4,10 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
-import { featuredCategories } from '@/lib/content'
+import type { ShopCategory } from '@/lib/content'
 import CategoryCard from '@/components/shop/CategoryCard'
 
-export default function ShopTeaser() {
+export default function ShopTeaser({ categories: featuredCategories }: { categories: readonly ShopCategory[] }) {
   const reduced = useReducedMotion()
 
   return (

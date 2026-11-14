@@ -11,7 +11,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Gift,
 }
 
-export default function PromosSection({ promos }: { promos: Promo[] }) {
+export default function PromosSection({ promos }: { promos: readonly Promo[] }) {
   const [open, setOpen] = useState<string | null>(null)
   const reduced = useReducedMotion()
 
