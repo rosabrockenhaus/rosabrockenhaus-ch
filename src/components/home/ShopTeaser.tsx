@@ -48,7 +48,7 @@ export default function ShopTeaser({ categories: featuredCategories }: { categor
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
         >
           {featuredCategories.map((category) => (
-            <CategoryCard key={category.id} category={category} />
+            <CategoryCard key={category.name} category={category} />
           ))}
         </motion.div>
 

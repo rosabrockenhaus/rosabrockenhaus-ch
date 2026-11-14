@@ -84,7 +84,7 @@ export default function ServicesPageClient({ services }: { services: readonly Se
         return (
           <section
             key={service.id}
-            id={service.slug}
+            id={service.id}
             className={`section-padding ${isEven ? 'bg-white' : 'bg-cream-50'}`}
           >
             <div className="container-base">
@@ -146,8 +146,8 @@ export default function ServicesPageClient({ services }: { services: readonly Se
 
                 {/* Visual: photos for Räumung / Reinigung, then FAQ */}
                 <motion.div variants={prefersReducedMotion ? noAnimation : fadeUpVariant} className="space-y-6">
-                  {service.slug === 'raeumung' && <RaeumungShowcase />}
-                  {service.slug === 'reinigung' && <ReinigungShowcase />}
+                  {service.id === 'raeumung' && <RaeumungShowcase />}
+                  {service.id === 'reinigung' && <ReinigungShowcase />}
                   <div>
                     <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
                       Häufige Fragen

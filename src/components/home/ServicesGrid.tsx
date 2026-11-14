@@ -30,7 +30,7 @@ function toGridItems(cmsServices: readonly Service[]) {
   icon: iconMap[s.icon] ?? Truck,
   title: s.title,
   subtitle: s.subtitle,
-  href: `/services#${s.slug}`,
+  href: `/services#${s.id}`,
   ...(layoutById[s.id] ?? { badge: null, accent: 'bg-rosa-50', size: 'small' as const }),
   }))
 }

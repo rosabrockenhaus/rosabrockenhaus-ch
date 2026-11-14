@@ -1,7 +1,6 @@
 {
   "categories": [
     {
-      "id": "Kleidung",
       "name": "Kleidung & Textilien",
       "description": "Jacken, Hosen, Kleider, Bettwäsche und Vorhänge — für alle Jahreszeiten.",
       "image": "/media/categories/0/image.jpg",
@@ -15,7 +14,6 @@
       "featured": true
     },
     {
-      "id": "buecher",
       "name": "Bücher & Medien",
       "description": "Bücher, DVDs, CDs und Videospiele — alphabetisch geordnet und leicht zu finden.",
       "image": "/media/categories/1/image.jpg",
@@ -29,7 +27,6 @@
       "featured": true
     },
     {
-      "id": "Elektronik",
       "name": "Elektronik & HiFi",
       "description": "Vintage HiFi-Anlagen, Verstärker, Tuner und Plattenspieler — für echte Audiophile.",
       "image": "/media/categories/2/image.jpg",
@@ -43,7 +40,6 @@
       "featured": true
     },
     {
-      "id": "Elektrogeraete",
       "name": "Elektrogeräte",
       "description": "Staubsauger, Mikrowellen, Kaffeemaschinen und alles für den Haushalt — geprüft und funktionsfähig.",
       "image": "/media/categories/3/image.jpg",
@@ -57,7 +53,6 @@
       "featured": true
     },
     {
-      "id": "Kueche",
       "name": "Küche & Haushalt",
       "description": "Töpfe, Pfannen, Geschirr, Besteck und Küchengeräte — alles für Ihren gedeckten Tisch.",
       "image": "/media/categories/4/image.jpg",
@@ -71,7 +66,6 @@
       "featured": false
     },
     {
-      "id": "velos",
       "name": "Velos & Sport",
       "description": "Stadt- und Tourenvelos, Sportgeräte und Zubehör — günstig und bereit für die Probefahrt.",
       "image": "/media/categories/5/image.jpg",
@@ -85,7 +79,6 @@
       "featured": false
     },
     {
-      "id": "Moebel",
       "name": "Möbel & Wohnen",
       "description": "Sofas, Tische, Stühle, Schränke, Lampen und Dekoration — das Sortiment wechselt täglich.",
       "image": "/media/categories/6/image.jpg",
