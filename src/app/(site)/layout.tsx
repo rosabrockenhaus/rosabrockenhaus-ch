@@ -2,13 +2,15 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import AnnouncementBanner from '@/components/home/AnnouncementBanner'
 import { BannerProvider } from '@/contexts/BannerContext'
-import { banner } from '@/lib/content'
+import { getBanner } from '@/lib/content'
 
-export default function SiteLayout({
+export default async function SiteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const banner = await getBanner()
+
   return (
     <BannerProvider initialVisible={banner.enabled}>
       {banner.enabled && (

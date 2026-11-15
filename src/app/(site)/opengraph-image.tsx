@@ -7,7 +7,7 @@ export const contentType = 'image/png'
 
 export default function OGImage() {
   const imgData = readFileSync(
-    join(process.cwd(), 'public/media/rosa-brockenhaus-bern-moebel-wohnen-secondhand-1.jpg')
+    join(process.cwd(), 'public/static/rosa-brockenhaus-bern-moebel-wohnen-secondhand-1.jpg')
   )
   const imgSrc = `data:image/jpeg;base64,${imgData.toString('base64')}`
 

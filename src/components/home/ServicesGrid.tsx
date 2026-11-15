@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { Truck, Home, Sparkles, Recycle, PackageCheck, ArrowRight } from 'lucide-react'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
-import { services as cmsServices } from '@/lib/content'
+import type { Service } from '@/lib/content'
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Truck,
@@ -24,16 +24,19 @@ const layoutById: Record<string, { badge: string | null; accent: string; size: '
   abholung: { badge: null, accent: 'bg-rosa-50', size: 'small' },
 }
 
-const services = cmsServices.map((s) => ({
+function toGridItems(cmsServices: readonly Service[]) {
+  return cmsServices.map((s) => ({
   id: s.id,
   icon: iconMap[s.icon] ?? Truck,
   title: s.title,
   subtitle: s.subtitle,
-  href: `/services#${s.slug}`,
+  href: `/services#${s.id}`,
   ...(layoutById[s.id] ?? { badge: null, accent: 'bg-rosa-50', size: 'small' as const }),
-}))
+  }))
+}
 
-export default function ServicesGrid() {
+export default function ServicesGrid({ services: cmsServices }: { services: readonly Service[] }) {
+  const services = toGridItems(cmsServices)
   const prefersReducedMotion = useReducedMotion()
 
   return (

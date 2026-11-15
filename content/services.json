@@ -2,7 +2,6 @@
   "services": [
     {
       "id": "umzug",
-      "slug": "umzug",
       "title": "Umzug",
       "subtitle": "Schnell · Zuverlässig · Sorgfältig ",
       "icon": "Truck",
@@ -25,7 +24,6 @@
     },
     {
       "id": "raeumung",
-      "slug": "raeumung",
       "title": "Räumung",
       "subtitle": "win-win situation, wieder verwenden",
       "icon": "Home",
@@ -51,8 +49,7 @@
       ]
     },
     {
-      "id": "Reinigung",
-      "slug": "Reinigung",
+      "id": "reinigung",
       "title": "Reinigung",
       "subtitle": "Blitzsauber – mit Abgabegarantie",
       "icon": "Sparkles",
@@ -78,8 +75,7 @@
       ]
     },
     {
-      "id": "Entsorgung",
-      "slug": "Entsorgung",
+      "id": "entsorgung",
       "title": "Entsorgung",
       "subtitle": "Umweltbewusst entsorgen – für eine saubere Zukunft",
       "icon": "Recycle",
@@ -105,8 +101,7 @@
       ]
     },
     {
-      "id": "Abholung",
-      "slug": "Abholung",
+      "id": "abholung",
       "title": "Abholung",
       "subtitle": "Wir kommen zu Ihnen — unkompliziert und flexibel",
       "icon": "PackageCheck",

@@ -3,16 +3,16 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Heart, Radio, Phone, MapPin } from 'lucide-react'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
-import { contact } from '@/lib/content'
 
-const items: { icon: typeof Heart; value: string; label: string; sublabel: string; href?: string }[] = [
+const getItems = (mapsUrl: string): { icon: typeof Heart; value: string; label: string; sublabel: string; href?: string }[] => [
   { icon: Heart,  value: 'Verein', label: 'Gemeinnützig',        sublabel: 'Non-profit · Bern' },
   { icon: Radio,  value: 'SRF',    label: 'Mitenand',            sublabel: 'In den Medien' },
   { icon: Phone,  value: '+41 31', label: '991 77 00',           sublabel: 'Jetzt anrufen' },
-  { icon: MapPin, value: 'Bern',   label: 'Wankdorffeldstr. 96', sublabel: '3014 Bern', href: contact.mapsUrl },
+  { icon: MapPin, value: 'Bern',   label: 'Wankdorffeldstr. 96', sublabel: '3014 Bern', href: mapsUrl },
 ]
 
-export default function TrustBar() {
+export default function TrustBar({ mapsUrl }: { mapsUrl: string }) {
+  const items = getItems(mapsUrl)
   const prefersReducedMotion = useReducedMotion()
 
   return (

@@ -85,7 +85,7 @@ export default function Hero({ content }: { content: HeroContent }) {
                     controls
                     autoPlay
                     className="w-full aspect-video"
-                    src="/media/rosa-brockenhaus-bern-portraitvideo.mp4"
+                    src="/static/rosa-brockenhaus-bern-portraitvideo.mp4"
                   />
                 </DialogContent>
               </Dialog>
@@ -117,7 +117,7 @@ export default function Hero({ content }: { content: HeroContent }) {
             {/* Logo */}
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] w-full bg-white flex items-center justify-center p-10 card-shadow">
               <Image
-                src="/media/rosa-brockenhaus-bern-logo-with-icon.jpg"
+                src="/static/rosa-brockenhaus-bern-logo-with-icon.jpg"
                 alt="Rosa Brockenhaus Bern"
                 fill
                 className="object-contain p-10"

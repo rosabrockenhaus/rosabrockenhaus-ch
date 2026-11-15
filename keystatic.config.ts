@@ -14,6 +14,74 @@ import { config, fields, collection, singleton } from '@keystatic/core'
 // The client ID itself isn't secret — it's already visible in the GitHub OAuth redirect URL.
 export const isGithubStorageConfigured = Boolean(process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID)
 
+// ─── Editor guard-rails ──────────────────────────────────────────────────────────────────────────
+// The site is maintained by non-technical editors. Everything below exists so the Keystatic form
+// itself prevents edits that would break the site — rather than relying on "nicht ändern" labels:
+//  - internal links are a dropdown of real pages (no typos / wrong casing → no 404s);
+//  - fields the layout needs are required, and short fields have a max length;
+//  - URLs, e-mail and phone numbers are checked against a pattern;
+//  - ids the code depends on (service ids) are a fixed dropdown, not free text.
+// NOTE: src/lib/content.ts reads content through Keystatic's Reader, which re-validates these rules
+// at build time. When tightening a rule, make sure the existing content in content/*.json passes.
+//
+// Media used directly by the code (logo, videos, showcase photos, OG image) lives in public/static/,
+// which Keystatic never touches. Only public/media/ is managed by Keystatic image/file fields.
+
+/** Pages of the site an internal button/link may point to. Add a page here when a new route is created. */
+const SITE_PAGES = [
+  { label: 'Startseite', value: '/' },
+  { label: 'Services', value: '/services' },
+  { label: 'Brockenhaus (Sortiment)', value: '/brockenhaus' },
+  { label: 'Aktuelles (Blog)', value: '/blog' },
+  { label: 'Verein – Über uns', value: '/verein' },
+  { label: 'Verein – Spenden', value: '/verein#spenden' },
+  { label: 'Verein – Angebot', value: '/verein/angebot' },
+  { label: 'Verein – Werkstätte', value: '/verein/werkstaette' },
+  { label: 'Kontakt', value: '/kontakt' },
+]
+
+function pageLink(label: string, defaultValue: string, description?: string) {
+  return fields.select({
+    label,
+    description: description ?? 'Seite der Website, zu der der Button führt.',
+    options: SITE_PAGES,
+    defaultValue,
+  })
+}
+
+type TextOptions = { description?: string; multiline?: boolean; max?: number }
+
+/** Required text: Keystatic refuses to save while it is empty. */
+function requiredText(label: string, { description, multiline, max }: TextOptions = {}) {
+  return fields.text({
+    label,
+    description,
+    multiline,
+    validation: { isRequired: true, length: max ? { max } : undefined },
+  })
+}
+
+/** Optional text: may be left empty — the website then simply hides it. */
+function optionalText(label: string, { description, multiline, max }: TextOptions = {}) {
+  return fields.text({
+    label,
+    description: description ?? 'Optional — leer lassen, um nichts anzuzeigen.',
+    multiline,
+    validation: { length: max ? { max } : undefined },
+  })
+}
+
+function httpsUrl(label: string, description: string) {
+  return fields.text({
+    label,
+    description,
+    validation: {
+      isRequired: true,
+      pattern: { regex: /^https:\/\/\S+$/, message: 'Bitte einen vollständigen Link angeben, der mit https:// beginnt.' },
+    },
+  })
+}
+
 export default config({
   // Falls back to 'local' storage whenever the GitHub App credentials aren't set yet (local dev,
   // or a production deploy before the GitHub App is created) — Keystatic's 'github' storage mode
@@ -23,17 +91,42 @@ export default config({
     ? { kind: 'github', repo: { owner: 'rosabrockenhaus', name: 'rosabrockenhaus-ch' } }
     : { kind: 'local' },
 
+  ui: {
+    brand: { name: 'Rosa Brockenhaus' },
+    navigation: {
+      Startseite: ['homepage', 'banner'],
+      Brockenhaus: ['categories', 'hours'],
+      Services: ['services'],
+      Verein: ['verein', 'vereinAngebot', 'vereinWerkstaetten', 'team'],
+      Allgemein: ['contact', 'blog'],
+    },
+  },
+
   collections: {
     blog: collection({
-      label: 'Blog',
+      label: 'Blog / Aktuelles',
       path: 'content/blog/*',
       slugField: 'title',
       format: { contentField: 'body' },
       schema: {
-        title: fields.slug({ name: { label: 'Titel' } }),
-        excerpt: fields.text({ label: 'Auszug', multiline: true }),
-        date: fields.text({ label: "Datum (Anzeigetext, z.B. '12. Juni 2026')" }),
-        dateISO: fields.date({ label: 'Datum (für Sortierung)' }),
+        title: fields.slug({
+          name: { label: 'Titel', validation: { isRequired: true, length: { max: 90 } } },
+          slug: {
+            label: 'Adresse (URL)',
+            description: 'Wird automatisch aus dem Titel erzeugt. Nach dem Veröffentlichen nicht mehr ändern, sonst funktionieren geteilte Links nicht mehr.',
+          },
+        }),
+        excerpt: requiredText('Auszug', {
+          description: '1–2 Sätze, die in der Übersicht unter dem Titel erscheinen.',
+          multiline: true,
+          max: 220,
+        }),
+        date: requiredText('Datum (Anzeige)', { description: "So wie es auf der Website stehen soll, z.B. '12. Juni 2026'." }),
+        dateISO: fields.date({
+          label: 'Datum (für die Sortierung)',
+          description: 'Gleiches Datum wie oben — bestimmt die Reihenfolge der Beiträge (neueste zuerst).',
+          validation: { isRequired: true },
+        }),
         category: fields.select({
           label: 'Kategorie',
           options: [
@@ -44,7 +137,11 @@ export default config({
           ],
           defaultValue: 'Brockenhaus',
         }),
-        readingTime: fields.integer({ label: 'Lesezeit (Minuten)', defaultValue: 2 }),
+        readingTime: fields.integer({
+          label: 'Lesezeit (Minuten)',
+          defaultValue: 2,
+          validation: { isRequired: true, min: 1, max: 60 },
+        }),
         body: fields.markdoc({ label: 'Inhalt' }),
       },
     }),
@@ -56,9 +153,13 @@ export default config({
       path: 'content/banner',
       format: { data: 'json' },
       schema: {
-        enabled: fields.checkbox({ label: 'Banner anzeigen', defaultValue: true }),
-        discount: fields.text({ label: "Rabatt-Highlight (z.B. '50%')" }),
-        message: fields.text({ label: 'Nachricht', multiline: true }),
+        enabled: fields.checkbox({
+          label: 'Banner anzeigen',
+          description: 'Der farbige Streifen ganz oben auf jeder Seite.',
+          defaultValue: true,
+        }),
+        discount: optionalText('Rabatt-Highlight', { description: "Hervorgehobener Teil, z.B. '50%'. Optional.", max: 12 }),
+        message: requiredText('Nachricht', { description: 'Kurz halten — eine Zeile auf dem Handy.', max: 90 }),
       },
     }),
 
@@ -69,14 +170,18 @@ export default config({
       schema: {
         hero: fields.object(
           {
-            headlineHighlight: fields.text({ label: "Titel-Highlight (z.B. 'Rosa')" }),
-            headlineRest: fields.text({ label: 'Titel (Rest des Satzes)' }),
-            subcopy: fields.text({ label: 'Untertext', multiline: true }),
-            imageCaption: fields.text({ label: 'Untertitel unter dem Bild' }),
-            primaryCtaLabel: fields.text({ label: 'Haupt-Button Text' }),
-            primaryCtaHref: fields.text({ label: 'Haupt-Button Link' }),
-            secondaryCtaLabel: fields.text({ label: 'Zweiter Button Text' }),
-            secondaryCtaHref: fields.text({ label: 'Zweiter Button Link' }),
+            headlineHighlight: requiredText('Titel – farbiger Teil', { description: "Das erste, farbig hervorgehobene Wort, z.B. 'Rosa'.", max: 20 }),
+            headlineRest: requiredText('Titel – Rest des Satzes', { max: 40 }),
+            subcopy: requiredText('Untertext', {
+              description: 'Kurzer Text unter dem Titel. Mit Enter kann eine neue Zeile begonnen werden.',
+              multiline: true,
+              max: 140,
+            }),
+            imageCaption: optionalText('Untertitel unter dem Bild', { max: 40 }),
+            primaryCtaLabel: requiredText('Haupt-Button: Text', { max: 24 }),
+            primaryCtaHref: pageLink('Haupt-Button: Ziel', '/services'),
+            secondaryCtaLabel: requiredText('Zweiter Button: Text', { max: 24 }),
+            secondaryCtaHref: pageLink('Zweiter Button: Ziel', '/brockenhaus'),
           },
           { label: 'Hero (oberster Bereich)' }
         ),
@@ -85,20 +190,24 @@ export default config({
             icon: fields.select({
               label: 'Icon',
               options: [
-                { label: 'Studierende (GraduationCap)', value: 'GraduationCap' },
-                { label: 'Kundenkarte (CreditCard)', value: 'CreditCard' },
-                { label: 'Bon (Gift)', value: 'Gift' },
+                { label: 'Studierende (Doktorhut)', value: 'GraduationCap' },
+                { label: 'Kundenkarte (Karte)', value: 'CreditCard' },
+                { label: 'Gutschein (Geschenk)', value: 'Gift' },
               ],
               defaultValue: 'Gift',
             }),
-            eyebrow: fields.text({ label: 'Kategorie (kurz)' }),
-            summary: fields.text({ label: 'Zusammenfassung' }),
-            details: fields.array(fields.text({ label: 'Detail' }), {
-              label: 'Details',
+            eyebrow: requiredText('Titel (kurz)', { description: "z.B. 'Kundenkarte'.", max: 24 }),
+            summary: requiredText('Zusammenfassung', { description: 'Eine Zeile, sichtbar ohne Aufklappen.', max: 60 }),
+            details: fields.array(requiredText('Detail', { max: 90 }), {
+              label: 'Details (beim Aufklappen sichtbar)',
               itemLabel: (p) => p.value,
             }),
           }),
-          { label: 'Aktionen & Treuevorteile', itemLabel: (p) => p.fields.eyebrow.value },
+          {
+            label: 'Aktionen & Treuevorteile',
+            itemLabel: (p) => p.fields.eyebrow.value,
+            validation: { length: { max: 4 } },
+          },
         ),
       },
     }),
@@ -108,19 +217,19 @@ export default config({
       path: 'content/verein',
       format: { data: 'json' },
       schema: {
-        eyebrow: fields.text({ label: 'Eyebrow (klein, über dem Titel)' }),
-        title: fields.text({ label: 'Titel' }),
-        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
-        missionEyebrow: fields.text({ label: 'Mission: Eyebrow' }),
-        missionHeading: fields.text({ label: 'Mission: Titel' }),
-        missionParagraphs: fields.array(fields.text({ label: 'Absatz', multiline: true }), {
+        eyebrow: optionalText('Kleiner Text über dem Titel', { max: 30 }),
+        title: requiredText('Titel', { max: 40 }),
+        intro: requiredText('Einleitungstext', { multiline: true }),
+        missionEyebrow: optionalText('Mission: kleiner Text über dem Titel', { max: 30 }),
+        missionHeading: requiredText('Mission: Titel', { max: 60 }),
+        missionParagraphs: fields.array(requiredText('Absatz', { multiline: true }), {
           label: 'Mission: Absätze',
           itemLabel: (p) => p.value.slice(0, 60),
         }),
         stats: fields.array(
           fields.object({
-            value: fields.text({ label: 'Wert (z.B. "2010")' }),
-            sub: fields.text({ label: 'Beschriftung (z.B. "gegründet")' }),
+            value: requiredText('Wert', { description: 'z.B. "2010"', max: 8 }),
+            sub: requiredText('Beschriftung', { description: 'z.B. "gegründet"', max: 20 }),
           }),
           { label: 'Statistiken', itemLabel: (p) => `${p.fields.value.value} — ${p.fields.sub.value}` },
         ),
@@ -129,18 +238,19 @@ export default config({
             icon: fields.select({
               label: 'Icon',
               options: [
-                { label: 'Werkzeug (Wrench)', value: 'Wrench' },
-                { label: 'Aktentasche (Briefcase)', value: 'Briefcase' },
-                { label: 'Herz (Heart)', value: 'Heart' },
+                { label: 'Werkzeug', value: 'Wrench' },
+                { label: 'Aktentasche', value: 'Briefcase' },
+                { label: 'Herz', value: 'Heart' },
               ],
               defaultValue: 'Wrench',
             }),
-            title: fields.text({ label: 'Titel' }),
-            href: fields.text({
-              label: 'Link (z.B. /verein/werkstaette)',
-              description: 'Der Untertitel der Karte wird auf der verlinkten Seite (Werkstätte / Angebot) bearbeitet.',
-            }),
-            cta: fields.text({ label: 'Link-Text' }),
+            title: requiredText('Titel', { max: 30 }),
+            href: pageLink(
+              'Ziel',
+              '/verein/werkstaette',
+              'Der Untertitel der Karte wird auf der verlinkten Seite (Werkstätte / Angebot) bearbeitet.'
+            ),
+            cta: requiredText('Link-Text', { max: 30 }),
           }),
           { label: 'Link-Karten (neben der Mission)', itemLabel: (p) => p.fields.title.value },
         ),
@@ -152,32 +262,39 @@ export default config({
         }),
         spenden: fields.object(
           {
-            title: fields.text({ label: 'Titel' }),
-            text: fields.text({ label: 'Text', multiline: true }),
-            bankName: fields.text({ label: 'Bank' }),
-            iban: fields.text({ label: 'IBAN' }),
-            beneficiary: fields.text({ label: 'Begünstigter (Name, Adresse)' }),
+            title: requiredText('Titel', { max: 40 }),
+            text: requiredText('Text', { multiline: true }),
+            bankName: requiredText('Bank'),
+            iban: fields.text({
+              label: 'IBAN',
+              description: 'z.B. CH93 0076 2011 6238 5295 7',
+              validation: {
+                isRequired: true,
+                pattern: { regex: /^[A-Z]{2}\d{2}[A-Z0-9 ]{10,32}$/, message: 'Bitte eine gültige IBAN eingeben (z.B. CH93 0076 2011 6238 5295 7).' },
+              },
+            }),
+            beneficiary: optionalText('Begünstigter (Name, Adresse)'),
           },
           { label: 'Spenden (Karte vor dem Vorstand)' }
         ),
         mitgliedschaft: fields.object(
           {
-            title: fields.text({ label: 'Titel' }),
-            text: fields.text({ label: 'Text', multiline: true }),
+            title: requiredText('Titel', { max: 40 }),
+            text: requiredText('Text', { multiline: true }),
             fees: fields.array(
               fields.object({
-                label: fields.text({ label: 'Art (z.B. Einzelmitglied)' }),
-                price: fields.text({ label: 'Beitrag (z.B. Fr. 100.00 / Jahr)' }),
+                label: requiredText('Art', { description: 'z.B. Einzelmitglied', max: 40 }),
+                price: requiredText('Beitrag', { description: 'z.B. Fr. 100.00 / Jahr', max: 30 }),
               }),
               { label: 'Beiträge', itemLabel: (p) => `${p.fields.label.value} — ${p.fields.price.value}` }
             ),
-            ctaLabel: fields.text({ label: 'Button-Text' }),
-            ctaHref: fields.text({ label: 'Button-Link (z.B. /kontakt)' }),
+            ctaLabel: requiredText('Button: Text', { max: 30 }),
+            ctaHref: pageLink('Button: Ziel', '/kontakt'),
           },
           { label: 'Mitglied werden (Karte vor dem Vorstand)' }
         ),
-        ctaHeading: fields.text({ label: 'Abschluss-CTA: Titel' }),
-        ctaText: fields.text({ label: 'Abschluss-CTA: Text', multiline: true }),
+        ctaHeading: requiredText('Abschluss-Bereich: Titel', { max: 60 }),
+        ctaText: requiredText('Abschluss-Bereich: Text', { multiline: true }),
       },
     }),
 
@@ -186,17 +303,17 @@ export default config({
       path: 'content/verein-angebot',
       format: { data: 'json' },
       schema: {
-        title: fields.text({ label: 'Titel' }),
-        subtitle: fields.text({
-          label: 'Untertitel',
+        title: requiredText('Titel', { max: 40 }),
+        subtitle: requiredText('Untertitel', {
           description: 'Wird unter dem Titel und auf der Karte unter «Über uns» angezeigt.',
           multiline: true,
+          max: 160,
         }),
-        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        intro: requiredText('Einleitungstext', { multiline: true }),
         profiles: fields.array(
           fields.object({
-            title: fields.text({ label: 'Titel' }),
-            description: fields.text({ label: 'Beschreibung', multiline: true }),
+            title: requiredText('Titel', { max: 60 }),
+            description: requiredText('Beschreibung', { multiline: true }),
           }),
           { label: 'Zielgruppen', itemLabel: (p) => p.fields.title.value },
         ),
@@ -208,17 +325,17 @@ export default config({
       path: 'content/verein-werkstaetten',
       format: { data: 'json' },
       schema: {
-        title: fields.text({ label: 'Titel' }),
-        subtitle: fields.text({
-          label: 'Untertitel',
+        title: requiredText('Titel', { max: 40 }),
+        subtitle: requiredText('Untertitel', {
           description: 'Wird unter dem Titel und auf der Karte unter «Über uns» angezeigt.',
           multiline: true,
+          max: 160,
         }),
-        intro: fields.text({ label: 'Einleitungstext', multiline: true }),
+        intro: requiredText('Einleitungstext', { multiline: true }),
         workshops: fields.array(
           fields.object({
-            name: fields.text({ label: 'Name' }),
-            description: fields.text({ label: 'Beschreibung', multiline: true }),
+            name: requiredText('Name', { max: 60 }),
+            description: requiredText('Beschreibung', { multiline: true }),
           }),
           { label: 'Werkstätte', itemLabel: (p) => p.fields.name.value },
         ),
@@ -230,29 +347,52 @@ export default config({
       path: 'content/contact',
       format: { data: 'json' },
       schema: {
-        phone: fields.text({ label: "Telefon (international, z.B. '+41 31 991 77 00')" }),
-        email: fields.text({ label: 'E-Mail' }),
-        addressLine1: fields.text({ label: 'Adresse Zeile 1 (Strasse)' }),
-        addressLine2: fields.text({ label: 'Adresse Zeile 2 (PLZ Ort)' }),
-        mapsUrl: fields.text({
-          label: 'Google-Maps-Link',
-          description: 'Die Adresse auf der Website verlinkt auf diese Seite (z.B. https://maps.app.goo.gl/…).',
+        phone: fields.text({
+          label: 'Telefon',
+          description: "Mit Landesvorwahl, z.B. '+41 31 991 77 00'. Wird überall auf der Website angezeigt.",
+          validation: {
+            isRequired: true,
+            pattern: { regex: /^\+\d[\d ]{6,20}$/, message: "Bitte im Format '+41 31 991 77 00' eingeben." },
+          },
         }),
+        email: fields.text({
+          label: 'E-Mail',
+          validation: {
+            isRequired: true,
+            pattern: { regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Bitte eine gültige E-Mail-Adresse eingeben.' },
+          },
+        }),
+        addressLine1: requiredText('Adresse Zeile 1 (Strasse)', { max: 60 }),
+        addressLine2: requiredText('Adresse Zeile 2 (PLZ Ort)', { max: 40 }),
+        mapsUrl: httpsUrl(
+          'Google-Maps-Link',
+          'Die Adresse auf der Website verlinkt auf diese Seite (z.B. https://maps.app.goo.gl/…).'
+        ),
         whatsappNumber: fields.text({
-          label: "WhatsApp-Nummer (nur Ziffern mit Landesvorwahl, z.B. '41319917700')",
+          label: 'WhatsApp-Nummer',
+          description: "Nur Ziffern mit Landesvorwahl, ohne + und ohne Leerzeichen, z.B. '41319917700'.",
+          validation: {
+            isRequired: true,
+            pattern: { regex: /^\d{8,15}$/, message: "Nur Ziffern, ohne + und Leerzeichen (z.B. '41319917700')." },
+          },
         }),
         mapEmbedUrl: fields.text({
           label: 'Google Maps Embed-URL',
           description:
-            'Karte auf der Kontaktseite. Format: https://maps.google.com/maps?q=<Name, Adresse>&z=17&output=embed',
+            'Karte auf der Kontaktseite. Nur ändern, wenn sich die Adresse ändert. Format: https://maps.google.com/maps?q=<Name, Adresse>&z=17&output=embed',
           multiline: true,
+          validation: {
+            isRequired: true,
+            pattern: { regex: /^https:\/\/\S+output=embed\S*$/, message: 'Der Link muss mit https:// beginnen und "output=embed" enthalten.' },
+          },
         }),
-        instagramUrl: fields.text({ label: 'Instagram-Link' }),
-        facebookUrl: fields.text({ label: 'Facebook-Link' }),
-        footerTagline: fields.text({ label: 'Footer: Kurzbeschreibung', multiline: true }),
-        serviceNote: fields.text({
-          label: 'Hinweis unter Öffnungszeiten (z.B. Services ausserhalb der Öffnungszeiten)',
+        instagramUrl: httpsUrl('Instagram-Link', 'Vollständiger Link zum Profil, z.B. https://www.instagram.com/…'),
+        facebookUrl: httpsUrl('Facebook-Link', 'Vollständiger Link zur Seite, z.B. https://www.facebook.com/…'),
+        footerTagline: requiredText('Footer: Kurzbeschreibung', { multiline: true, max: 160 }),
+        serviceNote: optionalText('Hinweis unter den Öffnungszeiten', {
+          description: 'z.B. dass Services auch ausserhalb der Öffnungszeiten möglich sind. Optional.',
           multiline: true,
+          max: 160,
         }),
       },
     }),
@@ -264,10 +404,11 @@ export default config({
       schema: {
         members: fields.array(
           fields.object({
-            name: fields.text({ label: 'Name' }),
-            role: fields.text({ label: 'Rolle' }),
+            name: requiredText('Name', { max: 50 }),
+            role: requiredText('Rolle', { max: 50 }),
             photo: fields.image({
               label: 'Foto',
+              description: 'Quadratisches Foto, am besten kleiner als 1 MB. Ohne Foto wird ein Symbol angezeigt.',
               directory: 'public/media/verein',
               publicPath: '/media/verein/',
             }),
@@ -282,14 +423,14 @@ export default config({
       path: 'content/hours',
       format: { data: 'json' },
       schema: {
-        label: fields.text({ label: 'Titel' }),
-        note: fields.text({ label: 'Hinweis', multiline: true }),
+        label: requiredText('Titel', { max: 40 }),
+        note: optionalText('Hinweis', { multiline: true, max: 160 }),
         hours: fields.array(
           fields.object({
-            days: fields.text({ label: 'Tage' }),
-            time: fields.text({ label: "Zeit (oder 'geschlossen')" }),
+            days: requiredText('Tage', { description: "z.B. 'Di–Fr'", max: 20 }),
+            time: requiredText('Zeit', { description: "z.B. '10:00–18:00' oder 'geschlossen'", max: 20 }),
           }),
-          { label: 'Zeiten', itemLabel: (p) => p.fields.days.value },
+          { label: 'Zeiten', itemLabel: (p) => `${p.fields.days.value}: ${p.fields.time.value}` },
         ),
       },
     }),
@@ -301,20 +442,23 @@ export default config({
       schema: {
         categories: fields.array(
           fields.object({
-            id: fields.text({ label: 'ID (intern, z.B. "kleidung" — nicht ändern)' }),
-            name: fields.text({ label: 'Name' }),
-            description: fields.text({ label: 'Beschreibung', multiline: true }),
+            name: requiredText('Name', { max: 30 }),
+            description: requiredText('Beschreibung', { multiline: true, max: 160 }),
             image: fields.image({
               label: 'Foto',
+              description: 'Querformat, am besten kleiner als 1 MB.',
               directory: 'public/media',
               publicPath: '/media/',
             }),
-            alt: fields.text({ label: 'Alt-Text (Bildbeschreibung für Screenreader)' }),
-            examples: fields.array(fields.text({ label: 'Beispiel' }), {
+            alt: requiredText('Bildbeschreibung', {
+              description: 'Was ist auf dem Foto zu sehen? (für blinde Besucher und Google)',
+              max: 140,
+            }),
+            examples: fields.array(requiredText('Beispiel', { max: 30 }), {
               label: 'Beispiele',
               itemLabel: (p) => p.value,
             }),
-            featured: fields.checkbox({ label: 'Auf Startseite zeigen', defaultValue: false }),
+            featured: fields.checkbox({ label: 'Auf der Startseite zeigen', defaultValue: false }),
           }),
           { label: 'Kategorien', itemLabel: (p) => p.fields.name.value },
         ),
@@ -328,31 +472,43 @@ export default config({
       schema: {
         services: fields.array(
           fields.object({
-            id: fields.text({ label: 'ID (intern, nicht ändern)' }),
-            slug: fields.text({ label: 'Slug (für Anker-Link, nicht ändern)' }),
-            title: fields.text({ label: 'Titel' }),
-            subtitle: fields.text({ label: 'Untertitel' }),
+            // The code keys layout, badges, photo showcases and #anchor links on this id, so it
+            // is a fixed dropdown rather than free text. A new service type needs a developer.
+            id: fields.select({
+              label: 'Service-Typ',
+              description: 'Bestimmt Layout, Fotos und Link-Adresse dieses Services. Jeden Typ nur einmal verwenden.',
+              options: [
+                { label: 'Umzug', value: 'umzug' },
+                { label: 'Räumung', value: 'raeumung' },
+                { label: 'Reinigung', value: 'reinigung' },
+                { label: 'Entsorgung', value: 'entsorgung' },
+                { label: 'Abholung', value: 'abholung' },
+              ],
+              defaultValue: 'umzug',
+            }),
+            title: requiredText('Titel', { max: 30 }),
+            subtitle: requiredText('Untertitel', { max: 80 }),
             icon: fields.select({
               label: 'Icon',
               options: [
-                { label: 'Umzug (Truck)', value: 'Truck' },
-                { label: 'Räumung (Home)', value: 'Home' },
-                { label: 'Reinigung (Sparkles)', value: 'Sparkles' },
-                { label: 'Entsorgung (Recycle)', value: 'Recycle' },
-                { label: 'Abholung (PackageCheck)', value: 'PackageCheck' },
+                { label: 'Lastwagen (Umzug)', value: 'Truck' },
+                { label: 'Haus (Räumung)', value: 'Home' },
+                { label: 'Funkeln (Reinigung)', value: 'Sparkles' },
+                { label: 'Recycling (Entsorgung)', value: 'Recycle' },
+                { label: 'Paket (Abholung)', value: 'PackageCheck' },
               ],
               defaultValue: 'Truck',
             }),
-            features: fields.array(fields.text({ label: 'Merkmal' }), {
+            features: fields.array(requiredText('Merkmal', { max: 90 }), {
               label: 'Merkmale',
               itemLabel: (p) => p.value,
             }),
             faq: fields.array(
               fields.object({
-                question: fields.text({ label: 'Frage' }),
-                answer: fields.text({ label: 'Antwort', multiline: true }),
+                question: requiredText('Frage', { max: 140 }),
+                answer: requiredText('Antwort', { multiline: true }),
               }),
-              { label: 'FAQ', itemLabel: (p) => p.fields.question.value },
+              { label: 'Häufige Fragen', itemLabel: (p) => p.fields.question.value },
             ),
           }),
           { label: 'Services', itemLabel: (p) => p.fields.title.value },

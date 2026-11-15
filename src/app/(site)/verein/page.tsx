@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Heart, Wrench, Briefcase, FileText, HandHeart, Users } from 'lucide-react'
-import { team, verein, vereinAngebot, vereinWerkstaetten } from '@/lib/content'
+import { getTeam, getVerein, getVereinAngebot, getVereinWerkstaetten } from '@/lib/content'
 import CopyIban from '@/components/verein/CopyIban'
 
 export const metadata: Metadata = {
@@ -16,13 +16,20 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Heart,
 }
 
-// Card subtitles come from the linked page's own Keystatic config
-const subtitleByHref: Record<string, string> = {
-  '/verein/werkstaette': vereinWerkstaetten.subtitle,
-  '/verein/angebot': vereinAngebot.subtitle,
-}
+export default async function VereinPage() {
+  const [team, verein, vereinAngebot, vereinWerkstaetten] = await Promise.all([
+    getTeam(),
+    getVerein(),
+    getVereinAngebot(),
+    getVereinWerkstaetten(),
+  ])
 
-export default function VereinPage() {
+  // Card subtitles come from the linked page's own Keystatic config
+  const subtitleByHref: Record<string, string> = {
+    '/verein/werkstaette': vereinWerkstaetten.subtitle,
+    '/verein/angebot': vereinAngebot.subtitle,
+  }
+
   return (
     <>
       {/* Hero */}
@@ -41,7 +48,7 @@ export default function VereinPage() {
         <div className="container-base max-w-5xl pb-16">
           <div className="relative rounded-3xl overflow-hidden aspect-[21/9]">
             <Image
-              src="/media/verein/rosa-brockenhaus-verein-source-01.jpg"
+              src="/static/rosa-brockenhaus-verein-source-01.jpg"
               alt="Team der Werkstätte im Rosa Brockenhaus bei der Arbeit"
               fill
               className="object-cover"
@@ -180,8 +187,12 @@ export default function VereinPage() {
                 key={person.name}
                 className="flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-xl"
               >
-                <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 bg-rosa-100">
-                  <Image src={person.photo} alt={person.name} fill className="object-cover" sizes="56px" />
+                <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 bg-rosa-100 flex items-center justify-center">
+                  {person.photo ? (
+                    <Image src={person.photo} alt={person.name} fill className="object-cover" sizes="56px" />
+                  ) : (
+                    <Users size={22} className="text-rosa-400" />
+                  )}
                 </div>
                 <div>
                   <p className="font-medium text-gray-900 text-sm">{person.name}</p>

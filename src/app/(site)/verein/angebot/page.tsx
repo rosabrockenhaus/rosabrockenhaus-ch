@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { vereinAngebot } from '@/lib/content'
+import { getVereinAngebot } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Angebot — Rosa Brockenhaus Bern',
   description: 'Arbeits- und Praktikumsplätze für Menschen in Reintegration, nach Burnout, mit Behinderung oder in beruflicher Neuorientierung.',
 }
 
-export default function AngebotPage() {
-  const { title, subtitle, intro, profiles } = vereinAngebot
+export default async function AngebotPage() {
+  const { title, subtitle, intro, profiles } = await getVereinAngebot()
 
   return (
     <>

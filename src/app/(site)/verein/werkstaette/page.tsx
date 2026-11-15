@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { vereinWerkstaetten } from '@/lib/content'
+import { getVereinWerkstaetten } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Werkstätte — Rosa Brockenhaus Bern',
   description: 'Werkstätte für eine zweite Chance: Textil, Elektro, Möbel, Geschirr und Velo.',
 }
 
-export default function WerkstaettenPage() {
-  const { title, subtitle, intro, workshops } = vereinWerkstaetten
+export default async function WerkstaettenPage() {
+  const { title, subtitle, intro, workshops } = await getVereinWerkstaetten()
 
   return (
     <>

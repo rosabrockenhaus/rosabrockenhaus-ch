@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { MapPin, Phone, Mail, Clock, Heart } from 'lucide-react'
 import { StampLogo } from '@/components/ui/Logo'
-import { shopHours, contact } from '@/lib/content'
+import { getShopHours, getContact } from '@/lib/content'
 import { telHref } from '@/lib/utils'
 
 function InstagramIcon({ size = 15 }: { size?: number }) {
@@ -36,7 +36,9 @@ const vereinLinks = [
   { href: '/verein#spenden', label: 'Spenden' },
 ]
 
-export default function Footer() {
+export default async function Footer() {
+  const [shopHours, contact] = await Promise.all([getShopHours(), getContact()])
+
   return (
     <footer style={{ background: '#1a0f14' }} className="text-gray-400">
       {/* Top band */}

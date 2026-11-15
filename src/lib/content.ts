@@ -1,143 +1,46 @@
-import bannerData from '../../content/banner.json'
-import homepageData from '../../content/homepage.json'
-import teamData from '../../content/team.json'
-import hoursData from '../../content/hours.json'
-import categoriesData from '../../content/categories.json'
-import servicesData from '../../content/services.json'
-import vereinData from '../../content/verein.json'
-import vereinAngebotData from '../../content/verein-angebot.json'
-import vereinWerkstaettenData from '../../content/verein-werkstaetten.json'
-import contactData from '../../content/contact.json'
+import 'server-only'
+import { cache } from 'react'
+import { createReader, type Entry } from '@keystatic/core/reader'
+import keystaticConfig from '../../keystatic.config'
 
-export type Banner = {
-  enabled: boolean
-  discount: string
-  message: string
-}
+// All CMS content is read through Keystatic's Reader instead of importing the JSON files directly.
+// The Reader parses every file against the schema in keystatic.config.ts, so:
+//  - a text field the editors cleared (Keystatic then drops the key from the JSON) comes back as ''
+//    instead of `undefined`, so the build no longer breaks on a missing key;
+//  - the types below are derived from the schema itself, so code and CMS form can't drift apart.
+// Reading uses the filesystem, so this module is server-only: client components get the data as
+// props from their server parent and import only the types (`import type`).
 
-export const banner: Banner = bannerData
+const reader = createReader(process.cwd(), keystaticConfig)
 
-export type HeroContent = {
-  headlineHighlight: string
-  headlineRest: string
-  subcopy: string
-  imageCaption: string
-  primaryCtaLabel: string
-  primaryCtaHref: string
-  secondaryCtaLabel: string
-  secondaryCtaHref: string
-}
+type Singletons = (typeof keystaticConfig)['singletons']
 
-export type Promo = {
-  icon: string
-  eyebrow: string
-  summary: string
-  details: string[]
-}
+export type Banner = Entry<Singletons['banner']>
+export type Homepage = Entry<Singletons['homepage']>
+export type HeroContent = Homepage['hero']
+export type Promo = Homepage['promos'][number]
+export type TeamMember = Entry<Singletons['team']>['members'][number]
+export type ShopHours = Entry<Singletons['hours']>
+export type ShopCategory = Entry<Singletons['categories']>['categories'][number]
+export type Service = Entry<Singletons['services']>['services'][number]
+export type Verein = Entry<Singletons['verein']>
+export type VereinAngebot = Entry<Singletons['vereinAngebot']>
+export type VereinWerkstaetten = Entry<Singletons['vereinWerkstaetten']>
+export type Contact = Entry<Singletons['contact']>
 
-export type Homepage = {
-  hero: HeroContent
-  promos: Promo[]
-}
-
-export const homepage: Homepage = homepageData
-
-export type TeamMember = {
-  name: string
-  role: string
-  photo: string
-}
-
-export const team: TeamMember[] = (teamData as { members: TeamMember[] }).members
-
-export type ShopHours = {
-  label: string
-  note: string
-  hours: { days: string; time: string }[]
-}
-
-export const shopHours: ShopHours = hoursData
-
-export type ShopCategory = {
-  id: string
-  name: string
-  description: string
-  image: string | null
-  alt: string
-  examples: string[]
-  featured?: boolean
-}
-
-export const shopCategories: ShopCategory[] = (categoriesData as { categories: ShopCategory[] }).categories
-
-export const featuredCategories = shopCategories.filter((c) => c.featured)
-
-export type Service = {
-  id: string
-  slug: string
-  title: string
-  subtitle: string
-  icon: string
-  features: string[]
-  faq: { question: string; answer: string }[]
-}
-
-export const services: Service[] = (servicesData as { services: Service[] }).services
-
-export type Verein = {
-  eyebrow: string
-  title: string
-  intro: string
-  missionEyebrow: string
-  missionHeading: string
-  missionParagraphs: string[]
-  stats: { value: string; sub: string }[]
-  links: { icon: string; title: string; href: string; cta: string }[]
-  statutenPdf: string | null
-  spenden: { title: string; text: string; bankName: string; iban: string; beneficiary: string }
-  mitgliedschaft: {
-    title: string
-    text: string
-    fees: { label: string; price: string }[]
-    ctaLabel: string
-    ctaHref: string
-  }
-  ctaHeading: string
-  ctaText: string
-}
-
-export const verein: Verein = vereinData
-
-export type VereinAngebot = {
-  title: string
-  subtitle: string
-  intro: string
-  profiles: { title: string; description: string }[]
-}
-
-export const vereinAngebot: VereinAngebot = vereinAngebotData
-
-export type VereinWerkstaetten = {
-  title: string
-  subtitle: string
-  intro: string
-  workshops: { name: string; description: string }[]
-}
-
-export const vereinWerkstaetten: VereinWerkstaetten = vereinWerkstaettenData
-
-export type Contact = {
-  phone: string
-  email: string
-  addressLine1: string
-  addressLine2: string
-  mapsUrl: string
-  whatsappNumber: string
-  mapEmbedUrl: string
-  instagramUrl: string
-  facebookUrl: string
-  footerTagline: string
-  serviceNote: string
-}
-
-export const contact: Contact = contactData
+// `cache` dedupes reads within one render (e.g. layout + page both asking for contact data).
+export const getBanner = cache(() => reader.singletons.banner.readOrThrow())
+export const getHomepage = cache(() => reader.singletons.homepage.readOrThrow())
+export const getTeam = cache(async () => (await reader.singletons.team.readOrThrow()).members)
+export const getShopHours = cache(() => reader.singletons.hours.readOrThrow())
+export const getShopCategories = cache(
+  async () => (await reader.singletons.categories.readOrThrow()).categories
+)
+export const getFeaturedCategories = cache(async () =>
+  (await getShopCategories()).filter((c) => c.featured)
+)
+export const getServices = cache(async () => (await reader.singletons.services.readOrThrow()).services)
+export const getVerein = cache(() => reader.singletons.verein.readOrThrow())
+export const getVereinAngebot = cache(() => reader.singletons.vereinAngebot.readOrThrow())
+export const getVereinWerkstaetten = cache(() => reader.singletons.vereinWerkstaetten.readOrThrow())
+export const getContact = cache(() => reader.singletons.contact.readOrThrow())
