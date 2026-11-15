@@ -51,7 +51,7 @@ export default async function Footer() {
               <Link href="/" className="inline-flex mb-5" aria-label="Rosa Brockenhaus — Startseite">
                 <StampLogo size="sm" />
               </Link>
-              <p className="text-sm text-gray-500 leading-relaxed mb-6">{contact.footerTagline}</p>
+              <p className="text-sm text-gray-500 leading-relaxed mb-6 whitespace-pre-line">{contact.footerTagline}</p>
 
               <ul className="space-y-3 text-sm">
                 <li className="flex items-start gap-2.5">
@@ -161,7 +161,7 @@ export default async function Footer() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 pt-3 border-t border-white/5 text-xs text-gray-600 leading-relaxed italic">
+                <p className="mt-4 pt-3 border-t border-white/5 text-xs text-gray-600 leading-relaxed italic whitespace-pre-line">
                   {shopHours.note}
                 </p>
               </div>

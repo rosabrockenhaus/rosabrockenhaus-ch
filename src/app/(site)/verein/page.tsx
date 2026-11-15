@@ -39,7 +39,7 @@ export default async function VereinPage() {
             {verein.eyebrow}
           </p>
           <h1 className="text-gray-900 mb-5">{verein.title}</h1>
-          <p className="text-gray-600 text-lg leading-relaxed">{verein.intro}</p>
+          <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line">{verein.intro}</p>
         </div>
       </section>
 
@@ -69,7 +69,7 @@ export default async function VereinPage() {
               <h2 className="text-gray-900 mb-5">{verein.missionHeading}</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 {verein.missionParagraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                  <p key={paragraph} className="whitespace-pre-line">{paragraph}</p>
                 ))}
               </div>
             </div>
@@ -99,7 +99,7 @@ export default async function VereinPage() {
                     <Icon size={20} className="text-rosa-600" />
                   </div>
                   <h3 className="text-gray-900 font-display text-lg mb-2 leading-snug">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed flex-1">{description}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1 whitespace-pre-line">{description}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-rosa-600 text-sm font-medium group-hover:gap-2.5 transition-all duration-200">
                     {cta} <ArrowRight size={14} />
                   </span>
@@ -121,7 +121,7 @@ export default async function VereinPage() {
                 <HandHeart size={20} className="text-rosa-600" />
               </div>
               <h2 className="text-gray-900 font-display text-2xl mb-3">{verein.spenden.title}</h2>
-              <p className="text-gray-600 leading-relaxed mb-6">{verein.spenden.text}</p>
+              <p className="text-gray-600 leading-relaxed mb-6 whitespace-pre-line">{verein.spenden.text}</p>
               <div className="mt-auto bg-cream-50 border border-cream-200 rounded-2xl p-5 space-y-3 text-sm">
                 <div>
                   <div className="flex items-center justify-between gap-3">
@@ -149,7 +149,7 @@ export default async function VereinPage() {
                 <Users size={20} className="text-rosa-600" />
               </div>
               <h2 className="text-gray-900 font-display text-2xl mb-3">{verein.mitgliedschaft.title}</h2>
-              <p className="text-gray-600 leading-relaxed mb-6">{verein.mitgliedschaft.text}</p>
+              <p className="text-gray-600 leading-relaxed mb-6 whitespace-pre-line">{verein.mitgliedschaft.text}</p>
               <div className="space-y-3 mb-6">
                 {verein.mitgliedschaft.fees.map((fee) => (
                   <div
@@ -227,7 +227,7 @@ export default async function VereinPage() {
         <div className="container-base text-center">
           <Heart size={32} className="text-rosa-200 mx-auto mb-4" />
           <h2 className="text-white mb-4">{verein.ctaHeading}</h2>
-          <p className="text-rosa-200 mb-8 max-w-md mx-auto">{verein.ctaText}</p>
+          <p className="text-rosa-200 mb-8 max-w-md mx-auto whitespace-pre-line">{verein.ctaText}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="#mitglied"

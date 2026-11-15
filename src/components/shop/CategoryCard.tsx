@@ -38,7 +38,7 @@ export default function CategoryCard({ category }: { category: ShopCategory }) {
 
       {/* Info */}
       <div className="p-4 flex flex-col flex-1">
-        <p className="text-sm text-gray-500 leading-relaxed flex-1">{category.description}</p>
+        <p className="text-sm text-gray-500 leading-relaxed flex-1 whitespace-pre-line">{category.description}</p>
         <ul className="mt-3 flex flex-wrap gap-1.5">
           {category.examples.map((ex) => (
             <li

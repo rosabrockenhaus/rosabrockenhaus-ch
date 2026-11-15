@@ -237,7 +237,7 @@ export default function KontaktPageClient({
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-xs text-gray-500">{contact.serviceNote}</p>
+                <p className="mt-4 text-xs text-gray-500 whitespace-pre-line">{contact.serviceNote}</p>
               </div>
 
               {/* WhatsApp */}

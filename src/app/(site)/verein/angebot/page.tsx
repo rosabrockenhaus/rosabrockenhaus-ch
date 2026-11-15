@@ -15,8 +15,8 @@ export default async function AngebotPage() {
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">Verein</p>
           <h1 className="text-gray-900 mb-4">{title}</h1>
-          {subtitle && <p className="text-rosa-600 font-medium mb-4">{subtitle}</p>}
-          <p className="text-gray-600">{intro}</p>
+          {subtitle && <p className="text-rosa-600 font-medium mb-4 whitespace-pre-line">{subtitle}</p>}
+          <p className="text-gray-600 whitespace-pre-line">{intro}</p>
         </div>
       </section>
 
@@ -31,7 +31,7 @@ export default async function AngebotPage() {
                 <span className="w-2 h-2 rounded-full bg-rosa-400 shrink-0 mt-2" aria-hidden />
                 <div>
                   <h3 className="text-gray-900 font-medium mb-1.5">{p.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{p.description}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">{p.description}</p>
                 </div>
               </div>
             ))}

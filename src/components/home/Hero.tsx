@@ -45,7 +45,7 @@ export default function Hero({ content }: { content: HeroContent }) {
 
             <motion.p
               variants={itemVariants}
-              className="text-gray-600 text-lg leading-[1.7] mb-10"
+              className="text-gray-600 text-lg leading-[1.7] mb-10 whitespace-pre-line"
               style={{ maxWidth: '52ch' }}
             >
               {content.subcopy}
