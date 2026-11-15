@@ -67,7 +67,7 @@ export default function BlogPage() {
                     </span>
                   </div>
                   <h3 className="text-gray-900 text-base leading-snug mb-2">{post.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 flex-1 mb-4">
+                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 flex-1 mb-4 whitespace-pre-line">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">

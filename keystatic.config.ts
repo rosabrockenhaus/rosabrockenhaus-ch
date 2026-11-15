@@ -51,11 +51,19 @@ function pageLink(label: string, defaultValue: string, description?: string) {
 
 type TextOptions = { description?: string; multiline?: boolean; max?: number }
 
+// Multiline fields keep the editor's line breaks: the site renders them with `whitespace-pre-line`.
+const LINE_BREAK_HINT = 'Enter = neue Zeile, leere Zeile = neuer Absatz.'
+
+function withLineBreakHint(description: string | undefined, multiline: boolean | undefined) {
+  if (!multiline) return description
+  return description ? `${description} ${LINE_BREAK_HINT}` : LINE_BREAK_HINT
+}
+
 /** Required text: Keystatic refuses to save while it is empty. */
 function requiredText(label: string, { description, multiline, max }: TextOptions = {}) {
   return fields.text({
     label,
-    description,
+    description: withLineBreakHint(description, multiline),
     multiline,
     validation: { isRequired: true, length: max ? { max } : undefined },
   })
@@ -65,7 +73,7 @@ function requiredText(label: string, { description, multiline, max }: TextOption
 function optionalText(label: string, { description, multiline, max }: TextOptions = {}) {
   return fields.text({
     label,
-    description: description ?? 'Optional — leer lassen, um nichts anzuzeigen.',
+    description: withLineBreakHint(description ?? 'Optional — leer lassen, um nichts anzuzeigen.', multiline),
     multiline,
     validation: { length: max ? { max } : undefined },
   })
@@ -173,7 +181,7 @@ export default config({
             headlineHighlight: requiredText('Titel – farbiger Teil', { description: "Das erste, farbig hervorgehobene Wort, z.B. 'Rosa'.", max: 20 }),
             headlineRest: requiredText('Titel – Rest des Satzes', { max: 40 }),
             subcopy: requiredText('Untertext', {
-              description: 'Kurzer Text unter dem Titel. Mit Enter kann eine neue Zeile begonnen werden.',
+              description: 'Kurzer Text unter dem Titel.',
               multiline: true,
               max: 140,
             }),

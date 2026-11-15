@@ -162,7 +162,7 @@ export default function ServicesPageClient({ services }: { services: readonly Se
                         <AccordionTrigger className="text-sm font-medium text-gray-900 py-4 hover:no-underline hover:text-rosa-600">
                           {item.question}
                         </AccordionTrigger>
-                        <AccordionContent className="text-sm text-gray-600 leading-relaxed pb-4">
+                        <AccordionContent className="text-sm text-gray-600 leading-relaxed pb-4 whitespace-pre-line">
                           {item.answer}
                         </AccordionContent>
                       </AccordionItem>

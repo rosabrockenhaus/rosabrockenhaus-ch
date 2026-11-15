@@ -15,8 +15,8 @@ export default async function WerkstaettenPage() {
         <div className="container-base max-w-3xl">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">Verein</p>
           <h1 className="text-gray-900 mb-4">{title}</h1>
-          {subtitle && <p className="text-rosa-600 font-medium mb-4">{subtitle}</p>}
-          <p className="text-gray-600">{intro}</p>
+          {subtitle && <p className="text-rosa-600 font-medium mb-4 whitespace-pre-line">{subtitle}</p>}
+          <p className="text-gray-600 whitespace-pre-line">{intro}</p>
         </div>
       </section>
 
@@ -29,7 +29,7 @@ export default async function WerkstaettenPage() {
                 className="bg-rosa-50 border border-rosa-100 rounded-2xl p-6"
               >
                 <h3 className="text-gray-900 font-medium mb-2">{ws.name}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{ws.description}</p>
+                <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">{ws.description}</p>
               </div>
             ))}
           </div>

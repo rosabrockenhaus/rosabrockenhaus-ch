@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
             </span>
           </div>
           <h1 className="text-gray-900 mb-4">{post.title}</h1>
-          <p className="text-gray-600 text-lg leading-relaxed">{post.excerpt}</p>
+          <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line">{post.excerpt}</p>
         </div>
       </section>
 

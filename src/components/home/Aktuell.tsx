@@ -84,7 +84,7 @@ export default function Aktuell({ posts }: { posts: BlogPost[] }) {
                 <h3 className="text-gray-900 font-medium text-base mb-2 leading-snug group-hover:text-rosa-700 transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3">{post.excerpt}</p>
+                <p className="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3 whitespace-pre-line">{post.excerpt}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-rosa-600 text-sm font-medium group-hover:gap-2.5 transition-all duration-200">
                   Lesen <ArrowRight size={13} />
                 </span>
