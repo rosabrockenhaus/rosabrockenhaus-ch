@@ -24,7 +24,6 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/brockenhaus', label: 'Brockenhaus' },
   { href: '/services', label: 'Services' },
-  { href: '/blog', label: 'Blog' },
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
@@ -32,6 +31,7 @@ const vereinLinks = [
   { href: '/verein', label: 'Über uns' },
   { href: '/verein/werkstaette', label: 'Werkstätte' },
   { href: '/verein/angebot', label: 'Angebote' },
+  { href: '/blog', label: 'Blog' },
   { href: '/verein#mitglied', label: 'Mitglied werden' },
   { href: '/verein#spenden', label: 'Spenden' },
 ]
