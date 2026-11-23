@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
     return [
       { source: '/shop', destination: '/brockenhaus', permanent: true },
       { source: '/verein/werkstaetten', destination: '/verein/werkstaette', permanent: true },
+      // Blog cleanup (Nov 2026): renamed post + event posts that were removed.
+      { source: '/blog/neue-moebellieferung', destination: '/blog/neue-ware-alle-3-4-tage', permanent: true },
+      { source: '/blog/generalversammlung-2026', destination: '/verein', permanent: true },
+      { source: '/blog/werkstatt-kurs-naehen', destination: '/verein/werkstaette', permanent: true },
     ]
   },
 };

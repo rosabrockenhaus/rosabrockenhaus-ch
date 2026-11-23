@@ -129,11 +129,13 @@ export default config({
           multiline: true,
           max: 220,
         }),
-        date: requiredText('Datum (Anzeige)', { description: "So wie es auf der Website stehen soll, z.B. '12. Juni 2026'." }),
-        dateISO: fields.date({
-          label: 'Datum (für die Sortierung)',
-          description: 'Gleiches Datum wie oben — bestimmt die Reihenfolge der Beiträge (neueste zuerst).',
-          validation: { isRequired: true },
+        // Blog posts are evergreen (they describe the shop, not an event), so no dates are shown;
+        // editors choose the order instead.
+        order: fields.integer({
+          label: 'Reihenfolge',
+          description: '1 = wird zuerst angezeigt, 2 = danach, usw.',
+          defaultValue: 10,
+          validation: { isRequired: true, min: 1, max: 99 },
         }),
         category: fields.select({
           label: 'Kategorie',

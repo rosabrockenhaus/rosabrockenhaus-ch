@@ -7,8 +7,8 @@ export type BlogPost = {
   title: string
   excerpt: string
   content: string
-  date: string
-  dateISO: string
+  /** Display order chosen in Keystatic: 1 comes first. */
+  order: number
   category: string
   readingTime: number
 }
@@ -24,7 +24,7 @@ export function getAllBlogPosts(): BlogPost[] {
       const { data, content } = matter(fs.readFileSync(path.join(blogDir, file), 'utf8'))
       return { slug, content: content.trim(), ...data } as BlogPost
     })
-    .sort((a, b) => b.dateISO.localeCompare(a.dateISO))
+    .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, 'de'))
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
