@@ -376,14 +376,6 @@ export default config({
           'Google-Maps-Link',
           'Die Adresse auf der Website verlinkt auf diese Seite (z.B. https://maps.app.goo.gl/…).'
         ),
-        whatsappNumber: fields.text({
-          label: 'WhatsApp-Nummer',
-          description: "Nur Ziffern mit Landesvorwahl, ohne + und ohne Leerzeichen, z.B. '41319917700'.",
-          validation: {
-            isRequired: true,
-            pattern: { regex: /^\d{8,15}$/, message: "Nur Ziffern, ohne + und Leerzeichen (z.B. '41319917700')." },
-          },
-        }),
         mapEmbedUrl: fields.text({
           label: 'Google Maps Embed-URL',
           description:
