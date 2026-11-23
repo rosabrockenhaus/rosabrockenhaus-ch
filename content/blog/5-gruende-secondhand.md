@@ -2,7 +2,10 @@
 title: "5 Gründe, secondhand zu kaufen"
 excerpt: "Nachhaltigkeit beginnt beim Einkaufen. Warum gebrauchte Ware nicht nur gut für die Umwelt, sondern auch für das Portemonnaie ist – und wie Sie dabei Einzigartiges finden."
 category: "Nachhaltigkeit"
-order: 2
+kind:
+  discriminant: ratgeber
+  value:
+    order: 2
 readingTime: 3
 ---
 Secondhand kaufen liegt im Trend – und das aus gutem Grund. Hier sind fünf Argumente, die für gebrauchte Ware sprechen.

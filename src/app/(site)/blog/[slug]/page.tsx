@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import React from 'react'
 import Markdoc, { type Config } from '@markdoc/markdoc'
-import { Clock, ArrowLeft } from 'lucide-react'
-import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
+import { Clock, ArrowLeft, CalendarDays, Info } from 'lucide-react'
+import { getAllBlogSlugs, getBlogPost, type AktuellPost } from '@/lib/blog'
 
 // Post bodies are Markdoc (what Keystatic's editor writes). Links are what matter most for SEO:
 // internal ones go through next/link, external ones open in a new tab.
@@ -35,8 +35,36 @@ const articleClass = [
 
 type Props = { params: Promise<{ slug: string }> }
 
+// Expired Aktuell posts are still built, so links shared on Instagram etc. keep working.
 export async function generateStaticParams() {
-  return getAllBlogPosts().map((post) => ({ slug: post.slug }))
+  return getAllBlogSlugs().map((slug) => ({ slug }))
+}
+
+// schema.org Event for Aktuell posts: lets Google show the date right in search results.
+function eventJsonLd(post: AktuellPost) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: post.title,
+    description: post.excerpt,
+    startDate: post.date,
+    endDate: post.endDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    url: `https://www.rosabrockenhaus.ch/blog/${post.slug}`,
+    location: {
+      '@type': 'Place',
+      name: 'Rosa Brockenhaus',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Wankdorffeldstrasse 96',
+        postalCode: '3014',
+        addressLocality: 'Bern',
+        addressCountry: 'CH',
+      },
+    },
+    organizer: { '@type': 'Organization', name: 'Rosa Brockenhaus', url: 'https://www.rosabrockenhaus.ch' },
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -46,6 +74,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    // An offer that is over should not show up in Google any more; the page stays for old links.
+    ...(post.kind === 'aktuell' && post.expired && { robots: { index: false, follow: true } }),
   }
 }
 
@@ -56,8 +86,17 @@ export default async function BlogPostPage({ params }: Props) {
 
   const content = Markdoc.transform(Markdoc.parse(post.content), markdocConfig)
 
+  const isAktuell = post.kind === 'aktuell'
+  const isOver = isAktuell && post.expired
+
   return (
     <>
+      {isAktuell && !isOver && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd(post)) }}
+        />
+      )}
       <section className="pt-40 pb-12 bg-cream-50 border-b border-rosa-100">
         <div className="container-base max-w-3xl">
           <Link
@@ -76,6 +115,13 @@ export default async function BlogPostPage({ params }: Props) {
               {post.readingTime} Min.
             </span>
           </div>
+          {isAktuell && (
+            <p className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full bg-rosa-600 text-white text-sm font-medium">
+              <CalendarDays size={15} />
+              {post.dateLabel}
+              {post.time && ` · ${post.time}`}
+            </p>
+          )}
           <h1 className="text-gray-900 mb-4">{post.title}</h1>
           <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line">{post.excerpt}</p>
         </div>
@@ -83,6 +129,17 @@ export default async function BlogPostPage({ params }: Props) {
 
       <section className="section-padding bg-white">
         <div className="container-base max-w-3xl">
+          {isOver && (
+            <div className="mb-10 flex gap-3 p-5 rounded-2xl bg-cream-50 border border-cream-200 text-gray-700">
+              <Info size={20} className="text-rosa-600 shrink-0 mt-0.5" />
+              <p>
+                <strong className="font-medium text-gray-900">Diese Aktion ist vorbei.</strong> Schauen
+                Sie trotzdem vorbei: Im <Link href="/brockenhaus" className="text-rosa-600 underline underline-offset-2">Brockenhaus</Link>{' '}
+                gibt es alle 3–4 Tage neue Ware. Aktuelle Aktionen finden Sie im{' '}
+                <Link href="/blog" className="text-rosa-600 underline underline-offset-2">Blog</Link>.
+              </p>
+            </div>
+          )}
           <article className={articleClass}>
             {Markdoc.renderers.react(content, React, { components: { BlogLink } })}
           </article>

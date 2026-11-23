@@ -3,6 +3,11 @@ import Footer from '@/components/layout/Footer'
 import AnnouncementBanner from '@/components/home/AnnouncementBanner'
 import { BannerProvider } from '@/contexts/BannerContext'
 import { getBanner } from '@/lib/content'
+import { getAllBlogPosts, todayInBern } from '@/lib/blog'
+
+// Pages are static, but the banner schedule and "Aktuell" blog posts depend on today's date.
+// Regenerating at most once an hour lets them appear and expire on their own, without a deploy.
+export const revalidate = 3600
 
 export default async function SiteLayout({
   children,
@@ -10,14 +15,21 @@ export default async function SiteLayout({
   children: React.ReactNode
 }>) {
   const banner = await getBanner()
+  const today = todayInBern()
+  const showBanner =
+    banner.enabled &&
+    (!banner.startDate || banner.startDate <= today) &&
+    (!banner.endDate || today <= banner.endDate)
+  // Only link to a post that is still listed (not deleted, not an expired Aktuell post).
+  const postHref =
+    banner.post && getAllBlogPosts().some((p) => p.slug === banner.post)
+      ? `/blog/${banner.post}`
+      : undefined
 
   return (
-    <BannerProvider initialVisible={banner.enabled}>
-      {banner.enabled && (
-        <AnnouncementBanner
-          discount={banner.discount}
-          message={banner.message}
-        />
+    <BannerProvider initialVisible={showBanner}>
+      {showBanner && (
+        <AnnouncementBanner discount={banner.discount} message={banner.message} href={postHref} />
       )}
       <Navbar />
       <main className="flex-1">{children}</main>
