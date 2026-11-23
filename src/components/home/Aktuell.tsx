@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
 import type { BlogPost } from '@/lib/blog'
 
-export default function Aktuell({ posts }: { posts: BlogPost[] }) {
+export default function Aktuell({ posts }: { posts: readonly BlogPost[] }) {
   const reduced = useReducedMotion()
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -82,7 +82,14 @@ export default function Aktuell({ posts }: { posts: BlogPost[] }) {
                 data-card
                 className="group snap-start shrink-0 basis-[85%] sm:basis-[calc((100%-2rem)/3)] bg-white rounded-2xl border border-gray-100 p-6 flex flex-col hover:shadow-[0_8px_32px_rgba(198,4,111,0.08)] transition-all duration-300"
               >
-                <span className="text-xs text-rosa-500 font-medium mb-3">{post.category}</span>
+                {post.kind === 'aktuell' ? (
+                  <span className="self-start text-xs font-medium mb-3 px-2.5 py-0.5 rounded-full bg-rosa-600 text-white">
+                    {post.dateLabel}
+                    {post.time && ` · ${post.time}`}
+                  </span>
+                ) : (
+                  <span className="text-xs text-rosa-500 font-medium mb-3">{post.category}</span>
+                )}
                 <h3 className="text-gray-900 font-medium text-base mb-2 leading-snug group-hover:text-rosa-700 transition-colors">
                   {post.title}
                 </h3>

@@ -129,14 +129,41 @@ export default config({
           multiline: true,
           max: 220,
         }),
-        // Blog posts are evergreen (they describe the shop, not an event), so no dates are shown;
-        // editors choose the order instead.
-        order: fields.integer({
-          label: 'Reihenfolge',
-          description: '1 = wird zuerst angezeigt, 2 = danach, usw.',
-          defaultValue: 10,
-          validation: { isRequired: true, min: 1, max: 99 },
-        }),
+        // Two kinds of posts, see src/lib/blog.ts. Only the fields of the chosen kind are shown.
+        kind: fields.conditional(
+          fields.select({
+            label: 'Art des Beitrags',
+            description:
+              'Ratgeber = gilt immer (z.B. «Neue Ware alle 3–4 Tage»). Aktuell = Aktion oder Anlass mit Datum (z.B. «50% am 12.12.») – verschwindet nach dem letzten Tag automatisch aus den Listen.',
+            options: [
+              { label: 'Ratgeber / Info (immer gültig)', value: 'ratgeber' },
+              { label: 'Aktuell (Aktion oder Anlass mit Datum)', value: 'aktuell' },
+            ],
+            defaultValue: 'ratgeber',
+          }),
+          {
+            ratgeber: fields.object({
+              order: fields.integer({
+                label: 'Reihenfolge',
+                description: '1 = wird zuerst angezeigt, 2 = danach, usw. Aktuelle Beiträge stehen immer davor.',
+                defaultValue: 10,
+                validation: { isRequired: true, min: 1, max: 99 },
+              }),
+            }),
+            aktuell: fields.object({
+              date: fields.date({
+                label: 'Datum',
+                description: 'Tag der Aktion bzw. erster Tag.',
+                validation: { isRequired: true },
+              }),
+              endDate: fields.date({
+                label: 'Letzter Tag (optional)',
+                description: 'Nur bei mehrtägigen Aktionen. Leer lassen = nur ein Tag.',
+              }),
+              time: optionalText('Uhrzeit (optional)', { description: "z.B. '10–17 Uhr'.", max: 30 }),
+            }),
+          }
+        ),
         category: fields.select({
           label: 'Kategorie',
           options: [
@@ -165,11 +192,24 @@ export default config({
       schema: {
         enabled: fields.checkbox({
           label: 'Banner anzeigen',
-          description: 'Der farbige Streifen ganz oben auf jeder Seite.',
+          description: 'Pop-up, das beim ersten Besuch der Website erscheint.',
           defaultValue: true,
+        }),
+        startDate: fields.date({
+          label: 'Anzeigen ab (optional)',
+          description: 'Leer lassen = sofort. So kann das Banner im Voraus vorbereitet werden.',
+        }),
+        endDate: fields.date({
+          label: 'Anzeigen bis und mit (optional)',
+          description: 'Leer lassen = bis es ausgeschaltet wird. Danach verschwindet es automatisch.',
         }),
         discount: optionalText('Rabatt-Highlight', { description: "Hervorgehobener Teil, z.B. '50%'. Optional.", max: 12 }),
         message: requiredText('Nachricht', { description: 'Kurz halten — eine Zeile auf dem Handy.', max: 90 }),
+        post: fields.relationship({
+          label: 'Beitrag verlinken (optional)',
+          description: 'Zeigt im Banner einen Button «Mehr erfahren» zu diesem Blog-Beitrag.',
+          collection: 'blog',
+        }),
       },
     }),
 

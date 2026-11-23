@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Pages are revalidated hourly at runtime (date-based banner and Aktuell posts), so the content
+  // files read from disk (Keystatic Reader, gray-matter) must ship with the server functions.
+  outputFileTracingIncludes: {
+    '/**': ['./content/**/*'],
+  },
   // Pages renamed: keep old URLs (bookmarks, search results, shared links) working.
   redirects() {
     return [

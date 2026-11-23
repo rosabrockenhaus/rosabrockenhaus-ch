@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Clock } from 'lucide-react'
+import { Clock, CalendarDays } from 'lucide-react'
 import { getAllBlogPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
@@ -36,8 +36,8 @@ export default function BlogPage() {
           </p>
           <h1 className="text-gray-900 mb-4">Rund ums Brockenhaus</h1>
           <p className="text-gray-600 max-w-lg">
-            Tipps und Wissenswertes rund um Secondhand, Nachhaltigkeit und das Rosa Brockenhaus in
-            Bern.
+            Aktionen, Anlässe und Wissenswertes rund um Secondhand, Nachhaltigkeit und das Rosa
+            Brockenhaus in Bern.
           </p>
         </div>
       </section>
@@ -50,10 +50,18 @@ export default function BlogPage() {
                 key={post.slug}
                 className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-rosa-200 hover:shadow-md transition-all duration-300 flex flex-col"
               >
-                {/* Image */}
-                <div className="aspect-video bg-gradient-to-br from-cream-100 to-cream-200 flex items-center justify-center text-4xl">
-                  {categoryEmoji[post.category] ?? '📝'}
-                </div>
+                {/* Image: Aktuell posts show their date, Ratgeber posts the category emoji */}
+                {post.kind === 'aktuell' ? (
+                  <div className="aspect-video bg-gradient-to-br from-rosa-500 to-rosa-700 text-white flex flex-col items-center justify-center gap-1 px-4 text-center">
+                    <span className="text-xs font-medium uppercase tracking-wider text-rosa-100">Aktuell</span>
+                    <span className="font-display text-2xl leading-tight">{post.dateLabel}</span>
+                    {post.time && <span className="text-sm text-rosa-100">{post.time}</span>}
+                  </div>
+                ) : (
+                  <div className="aspect-video bg-gradient-to-br from-cream-100 to-cream-200 flex items-center justify-center text-4xl">
+                    {categoryEmoji[post.category] ?? '📝'}
+                  </div>
+                )}
 
                 <div className="p-5 flex flex-col flex-1">
                   <div className="flex items-center gap-3 mb-3">
@@ -62,6 +70,12 @@ export default function BlogPage() {
                     >
                       {post.category}
                     </span>
+                    {post.kind === 'aktuell' && (
+                      <span className="flex items-center gap-1 text-xs text-rosa-600 font-medium">
+                        <CalendarDays size={12} />
+                        Aktuell
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-gray-900 text-base leading-snug mb-2">{post.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 flex-1 mb-4 whitespace-pre-line">
