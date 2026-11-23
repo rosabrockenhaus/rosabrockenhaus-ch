@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, Calendar } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
 import type { BlogPost } from '@/lib/blog'
 
@@ -35,8 +35,8 @@ export default function Aktuell({ posts }: { posts: BlogPost[] }) {
             className="flex items-end justify-between gap-4 mb-10 flex-wrap"
           >
             <div>
-              <p className="label-eyebrow mb-3">Aktuell</p>
-              <h2 className="text-gray-900 font-display">Neuigkeiten</h2>
+              <p className="label-eyebrow mb-3">Blog</p>
+              <h2 className="text-gray-900 font-display">Rund ums Brockenhaus</h2>
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <Link
@@ -45,6 +45,9 @@ export default function Aktuell({ posts }: { posts: BlogPost[] }) {
               >
                 Alle Beiträge <ArrowRight size={15} />
               </Link>
+              {/* Carousel arrows only make sense when the cards overflow (3 visible on desktop). */}
+              {posts.length > 3 && (
+              <>
               <button
                 type="button"
                 aria-label="Zurück"
@@ -61,6 +64,8 @@ export default function Aktuell({ posts }: { posts: BlogPost[] }) {
               >
                 <ArrowRight size={16} />
               </button>
+              </>
+              )}
             </div>
           </motion.div>
 
@@ -77,10 +82,7 @@ export default function Aktuell({ posts }: { posts: BlogPost[] }) {
                 data-card
                 className="group snap-start shrink-0 basis-[85%] sm:basis-[calc((100%-2rem)/3)] bg-white rounded-2xl border border-gray-100 p-6 flex flex-col hover:shadow-[0_8px_32px_rgba(198,4,111,0.08)] transition-all duration-300"
               >
-                <span className="inline-flex items-center gap-1.5 text-xs text-rosa-500 font-medium mb-3">
-                  <Calendar size={11} />
-                  {post.date}
-                </span>
+                <span className="text-xs text-rosa-500 font-medium mb-3">{post.category}</span>
                 <h3 className="text-gray-900 font-medium text-base mb-2 leading-snug group-hover:text-rosa-700 transition-colors">
                   {post.title}
                 </h3>

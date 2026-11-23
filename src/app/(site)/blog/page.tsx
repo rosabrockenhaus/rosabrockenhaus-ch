@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Calendar, Clock } from 'lucide-react'
+import { Clock } from 'lucide-react'
 import { getAllBlogPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Neuigkeiten aus dem Rosa Brockenhaus Bern.',
+  description:
+    'Tipps und Wissenswertes rund um Secondhand, Nachhaltigkeit und das Rosa Brockenhaus in Bern.',
 }
 
 const categoryColors: Record<string, string> = {
@@ -31,12 +32,12 @@ export default function BlogPage() {
       <section className="pt-40 pb-12 bg-cream-50 border-b border-rosa-100">
         <div className="container-base">
           <p className="text-rosa-600 text-sm font-medium uppercase tracking-wider mb-2">
-            Aktuell
+            Blog
           </p>
-          <h1 className="text-gray-900 mb-4">Aus dem Brockenhaus</h1>
+          <h1 className="text-gray-900 mb-4">Rund ums Brockenhaus</h1>
           <p className="text-gray-600 max-w-lg">
-            Neuigkeiten, Berichte und Gedanken rund um das Rosa Brockenhaus, Nachhaltigkeit und
-            das Leben in Bern.
+            Tipps und Wissenswertes rund um Secondhand, Nachhaltigkeit und das Rosa Brockenhaus in
+            Bern.
           </p>
         </div>
       </section>
@@ -60,10 +61,6 @@ export default function BlogPage() {
                       className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${categoryColors[post.category] ?? 'bg-gray-100 text-gray-600'}`}
                     >
                       {post.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs text-gray-400">
-                      <Calendar size={11} />
-                      {post.date}
                     </span>
                   </div>
                   <h3 className="text-gray-900 text-base leading-snug mb-2">{post.title}</h3>

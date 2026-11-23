@@ -72,6 +72,18 @@ export default async function VereinPage() {
                   <p key={paragraph} className="whitespace-pre-line">{paragraph}</p>
                 ))}
               </div>
+              <figure className="mt-8">
+                <div className="relative aspect-[3/2] rounded-2xl overflow-hidden bg-rosa-50">
+                  <Image
+                    src="/static/rosa-brockenhaus-bern-verein-kunstausstellung.avif"
+                    alt="Kunstausstellung im Rosa Brockenhaus Bern: Besucher vor farbigen Gemälden"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 600px"
+                  />
+                </div>
+                <figcaption className="mt-2 text-xs text-gray-500">Kunstausstellung im Rosa Brockenhaus</figcaption>
+              </figure>
             </div>
 
             <div className="grid grid-cols-2 gap-4">

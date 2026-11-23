@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 import { fadeUpVariant, noAnimation } from '@/lib/animations'
 import type { ShopCategory } from '@/lib/content'
 
@@ -12,8 +11,7 @@ export default function CategoryCard({ category }: { category: ShopCategory }) {
   return (
     <motion.div
       variants={reduced ? noAnimation : fadeUpVariant}
-      whileHover={reduced ? undefined : { y: -4 }}
-      className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-[0_8px_32px_rgba(153,53,86,0.1)] transition-all duration-300 flex flex-col cursor-pointer"
+      className="bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col"
     >
       {/* Photo or gradient fallback */}
       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-rosa-100 to-rosa-50">
@@ -22,7 +20,7 @@ export default function CategoryCard({ category }: { category: ShopCategory }) {
             src={category.image}
             alt={category.alt}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : (
@@ -49,14 +47,6 @@ export default function CategoryCard({ category }: { category: ShopCategory }) {
             </li>
           ))}
         </ul>
-        <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-          <span className="text-xs text-gray-400">Im Laden entdecken</span>
-          <ArrowRight
-            size={14}
-            className="text-rosa-400 group-hover:text-rosa-600 group-hover:translate-x-1 transition-all duration-200"
-            aria-hidden
-          />
-        </div>
       </div>
     </motion.div>
   )

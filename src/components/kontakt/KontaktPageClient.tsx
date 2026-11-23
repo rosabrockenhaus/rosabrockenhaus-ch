@@ -5,7 +5,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
-import { MapPin, Phone, Mail, Clock, Check, Loader2, MessageCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Check, Loader2 } from 'lucide-react'
+import { InstagramIcon, FacebookIcon } from '@/components/ui/SocialIcons'
 import type { Contact, ShopHours } from '@/lib/content'
 import { telHref } from '@/lib/utils'
 
@@ -240,21 +241,31 @@ export default function KontaktPageClient({
                 <p className="mt-4 text-xs text-gray-500 whitespace-pre-line">{contact.serviceNote}</p>
               </div>
 
-              {/* WhatsApp */}
-              <a
-                href={`https://wa.me/${contact.whatsappNumber}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-2xl p-5 hover:bg-green-100 transition-colors group"
-              >
-                <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center shrink-0">
-                  <MessageCircle size={18} className="text-white" />
+              {/* Social media */}
+              <div className="bg-white border border-rosa-100 rounded-2xl p-6">
+                <h3 className="text-gray-900 text-sm font-medium mb-1">Folgen Sie uns</h3>
+                <p className="text-xs text-gray-500 mb-4">Neue Fundstücke und Aktuelles aus dem Brocki.</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <a
+                    href={contact.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 rounded-xl border border-gray-100 px-4 py-3 text-sm font-medium text-gray-700 hover:border-rosa-300 hover:text-rosa-600 transition-colors min-h-[44px]"
+                  >
+                    <InstagramIcon size={16} />
+                    Instagram
+                  </a>
+                  <a
+                    href={contact.facebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 rounded-xl border border-gray-100 px-4 py-3 text-sm font-medium text-gray-700 hover:border-rosa-300 hover:text-rosa-600 transition-colors min-h-[44px]"
+                  >
+                    <FacebookIcon size={16} />
+                    Facebook
+                  </a>
                 </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900">WhatsApp</p>
-                  <p className="text-xs text-gray-500">Direkte Nachricht senden</p>
-                </div>
-              </a>
+              </div>
 
               {/* Map embed */}
               <div className="rounded-2xl overflow-hidden border border-rosa-100">

@@ -1,8 +1,37 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, ArrowLeft } from 'lucide-react'
+import React from 'react'
+import Markdoc, { type Config } from '@markdoc/markdoc'
+import { Clock, ArrowLeft } from 'lucide-react'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
+
+// Post bodies are Markdoc (what Keystatic's editor writes). Links are what matter most for SEO:
+// internal ones go through next/link, external ones open in a new tab.
+const markdocConfig: Config = {
+  nodes: { link: { ...Markdoc.nodes.link, render: 'BlogLink' } },
+}
+
+function BlogLink({ href, title, children }: { href: string; title?: string; children: React.ReactNode }) {
+  if (href.startsWith('/') || href.startsWith('#')) {
+    return <Link href={href} title={title}>{children}</Link>
+  }
+  return (
+    <a href={href} title={title} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  )
+}
+
+// Styles the rendered Markdoc (the project has no typography plugin).
+const articleClass = [
+  'text-gray-600 leading-relaxed space-y-4',
+  '[&_h2]:text-gray-900 [&_h2]:font-display [&_h2]:text-xl [&_h2]:mt-10 [&_h2]:mb-3',
+  '[&_h3]:text-gray-900 [&_h3]:font-medium [&_h3]:mt-6 [&_h3]:mb-2',
+  '[&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1',
+  '[&_strong]:text-gray-900 [&_strong]:font-medium',
+  '[&_a]:text-rosa-600 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-rosa-800',
+].join(' ')
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -25,25 +54,7 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getBlogPost(slug)
   if (!post) notFound()
 
-  const contentHtml = post.content
-    .split('\n\n')
-    .map((para) => {
-      if (para.startsWith('**') && para.endsWith('**')) {
-        return `<h3 class="text-gray-900 font-medium mt-6 mb-2">${para.slice(2, -2)}</h3>`
-      }
-      if (para.startsWith('- ')) {
-        const items = para
-          .split('\n')
-          .map((l) => `<li>${l.slice(2)}</li>`)
-          .join('')
-        return `<ul class="list-disc list-inside space-y-1 text-gray-600">${items}</ul>`
-      }
-      if (para.startsWith('*') && para.includes('*\n')) {
-        return `<h4 class="font-medium text-gray-800 mt-5 mb-1 italic">${para.replace(/\*/g, '')}</h4>`
-      }
-      return `<p class="text-gray-600 leading-relaxed">${para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`
-    })
-    .join('\n')
+  const content = Markdoc.transform(Markdoc.parse(post.content), markdocConfig)
 
   return (
     <>
@@ -61,10 +72,6 @@ export default async function BlogPostPage({ params }: Props) {
               {post.category}
             </span>
             <span className="flex items-center gap-1 text-xs text-gray-400">
-              <Calendar size={11} />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-1 text-xs text-gray-400">
               <Clock size={11} />
               {post.readingTime} Min.
             </span>
@@ -76,10 +83,9 @@ export default async function BlogPostPage({ params }: Props) {
 
       <section className="section-padding bg-white">
         <div className="container-base max-w-3xl">
-          <div
-            className="prose prose-sm max-w-none space-y-4"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+          <article className={articleClass}>
+            {Markdoc.renderers.react(content, React, { components: { BlogLink } })}
+          </article>
 
           <div className="mt-12 pt-8 border-t border-gray-100 flex items-center justify-between">
             <Link

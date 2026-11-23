@@ -32,10 +32,12 @@ function WordmarkLogo({ onDark = false }: { onDark?: boolean }) {
   )
 }
 
-const navLinks = [
+type NavLink = { href: string; label: string; children?: { href: string; label: string }[] }
+
+const navLinks: NavLink[] = [
+  { href: '/', label: 'Home' },
   { href: '/brockenhaus', label: 'Brockenhaus' },
   { href: '/services', label: 'Services' },
-  { href: '/blog', label: 'Blog' },
   {
     href: '/verein',
     label: 'Verein',
@@ -43,6 +45,7 @@ const navLinks = [
       { href: '/verein', label: 'Über uns' },
       { href: '/verein/werkstaette', label: 'Werkstätte' },
       { href: '/verein/angebot', label: 'Angebot' },
+      { href: '/blog', label: 'Blog' },
     ],
   },
 ]
@@ -61,6 +64,10 @@ export default function Navbar() {
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
+
+  // A dropdown is active when any of its pages is (e.g. /blog lights up "Verein").
+  const isLinkActive = (link: NavLink) =>
+    link.children ? link.children.some((child) => isActive(child.href)) : isActive(link.href)
 
   return (
     <motion.header
@@ -99,7 +106,7 @@ export default function Navbar() {
                     aria-expanded={vereinOpen}
                     className={cn(
                       'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors min-h-[44px]',
-                      isActive(link.href)
+                      isLinkActive(link)
                         ? 'text-white bg-white/15'
                         : 'text-gray-200 hover:text-white hover:bg-white/10'
                     )}
@@ -184,18 +191,6 @@ export default function Navbar() {
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="mt-8 flex flex-col gap-1">
-                  <Link
-                    href="/"
-                    onClick={() => setMobileOpen(false)}
-                    className={cn(
-                      'px-3 py-3 text-sm rounded-lg transition-colors min-h-[48px] flex items-center',
-                      pathname === '/'
-                        ? 'text-rosa-600 bg-rosa-50 font-medium'
-                        : 'text-gray-700 hover:text-rosa-600 hover:bg-rosa-50'
-                    )}
-                  >
-                    Home
-                  </Link>
                   {navLinks.map((link) =>
                     link.children ? (
                       <div key={link.href}>
