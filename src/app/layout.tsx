@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: '%s | Rosa Brockenhaus Bern',
   },
   description:
-    'Gemeinnütziger Brockenhaus-Verein in Bern. Secondhand kaufen, abgeben und entsorgen — Umzug, Räumung & Reinigung. 50% auf alles.',
+    'Gemeinnütziger Brockenhaus-Verein in Bern. Secondhand kaufen, abgeben und entsorgen — Umzug, Räumung & Reinigung.',
   keywords: ['Brockenhaus Bern', 'Secondhand Bern', 'Räumung Bern', 'Umzug Bern', 'Reinigung Bern', 'Broki Bern', 'Secondhand Möbel Bern'],
   openGraph: {
     siteName: 'Rosa Brockenhaus Bern',

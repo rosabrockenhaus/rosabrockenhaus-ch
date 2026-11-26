@@ -10,7 +10,7 @@ import { getHomepage, getServices, getFeaturedCategories } from '@/lib/content'
 export const metadata: Metadata = {
   title: 'Rosa Brockenhaus Bern – Brockenhaus, Werkstätte & Services',
   description:
-    'Gemeinnütziger Brockenhaus-Verein in Bern. Secondhand kaufen, abgeben und entsorgen — Umzug, Räumung & Reinigung. 50% auf alles.',
+    'Gemeinnütziger Brockenhaus-Verein in Bern. Secondhand kaufen, abgeben und entsorgen — Umzug, Räumung & Reinigung.',
 }
 
 export default async function HomePage() {
