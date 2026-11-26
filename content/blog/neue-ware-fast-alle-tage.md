@@ -10,7 +10,7 @@ kind:
 category: Brockenhaus
 readingTime: 2
 ---
-Wer regelmässig im Rosa Brockenhaus in Bern vorbeischaut, findet immer wieder etwas Neues. Alle drei bis vier Tage füllen wir die Regale mit frischer Secondhand-Ware auf – von Möbeln über Kleidung bis zu Büchern, Geschirr und Elektronik.
+Wer regelmässig im Rosa Brockenhaus in Bern vorbeischaut, findet immer wieder etwas Neues. Fast jeden Tage füllen wir die Regale mit frischer Secondhand-Ware auf – von Möbeln über Kleidung bis zu Büchern, Geschirr und Elektronik.
 
 ## Woher kommt die Ware?
 
