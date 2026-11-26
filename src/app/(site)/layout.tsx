@@ -22,9 +22,9 @@ export default async function SiteLayout({
     banner.enabled &&
     (!banner.startDate || banner.startDate <= today) &&
     (!lastDay || today <= lastDay)
-  // "Sa., 12.12." under the discount in the bubble
+  // "Samstag, 12. Dezember" as the banner title
   const discountDateLabel = banner.discountDate
-    ? new Intl.DateTimeFormat('de-CH', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'UTC' }).format(
+    ? new Intl.DateTimeFormat('de-CH', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).format(
         new Date(`${banner.discountDate}T00:00:00Z`)
       )
     : undefined

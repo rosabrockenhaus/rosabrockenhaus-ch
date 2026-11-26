@@ -212,7 +212,7 @@ export default config({
         discountDate: fields.date({
           label: 'Tag des Rabatts (optional)',
           description:
-            'Steht in der Bubble unter dem Rabatt, z.B. «Sa., 12.12.». Leer lassen = nur der Rabatt. Ist «Anzeigen bis» leer, verschwindet das Banner nach diesem Tag automatisch.',
+            'Wird als Titel unter der Bubble angezeigt, z.B. «Samstag, 12. Dezember». Leer lassen = «50% Rabatt im Brockenhaus». Ist «Anzeigen bis» leer, verschwindet das Banner nach diesem Tag automatisch.',
         }),
         message: requiredText('Nachricht', { description: 'Kurz halten — eine Zeile auf dem Handy.', max: 90 }),
         post: fields.relationship({
