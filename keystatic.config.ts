@@ -205,7 +205,15 @@ export default config({
           label: 'Anzeigen bis und mit (optional)',
           description: 'Leer lassen = bis es ausgeschaltet wird. Danach verschwindet es automatisch.',
         }),
-        discount: optionalText('Rabatt-Highlight', { description: "Hervorgehobener Teil, z.B. '50%'. Optional.", max: 12 }),
+        discount: optionalText('Rabatt (in der rosa Bubble)', {
+          description: "Gross in der rosa Bubble, z.B. '50%'. Leer lassen = Banner ohne Bubble (z.B. für einen Anlass).",
+          max: 6,
+        }),
+        discountDate: fields.date({
+          label: 'Tag des Rabatts (optional)',
+          description:
+            'Steht in der Bubble unter dem Rabatt, z.B. «Sa., 12.12.». Leer lassen = «auf alles». Ist «Anzeigen bis» leer, verschwindet das Banner nach diesem Tag automatisch.',
+        }),
         message: requiredText('Nachricht', { description: 'Kurz halten — eine Zeile auf dem Handy.', max: 90 }),
         post: fields.relationship({
           label: 'Beitrag verlinken (optional)',

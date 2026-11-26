@@ -16,10 +16,18 @@ export default async function SiteLayout({
 }>) {
   const banner = await getBanner()
   const today = todayInBern()
+  // Without an explicit end, a dated discount ends with its day.
+  const lastDay = banner.endDate || banner.discountDate
   const showBanner =
     banner.enabled &&
     (!banner.startDate || banner.startDate <= today) &&
-    (!banner.endDate || today <= banner.endDate)
+    (!lastDay || today <= lastDay)
+  // "Sa., 12.12." under the discount in the bubble
+  const discountDateLabel = banner.discountDate
+    ? new Intl.DateTimeFormat('de-CH', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'UTC' }).format(
+        new Date(`${banner.discountDate}T00:00:00Z`)
+      )
+    : undefined
   // Only link to a post that is still listed (not deleted, not an expired Aktuell post).
   const postHref =
     banner.post && getAllBlogPosts().some((p) => p.slug === banner.post)
@@ -29,7 +37,12 @@ export default async function SiteLayout({
   return (
     <BannerProvider initialVisible={showBanner}>
       {showBanner && (
-        <AnnouncementBanner discount={banner.discount} message={banner.message} href={postHref} />
+        <AnnouncementBanner
+          discount={banner.discount}
+          discountDate={discountDateLabel}
+          message={banner.message}
+          href={postHref}
+        />
       )}
       <Navbar />
       <main className="flex-1">{children}</main>

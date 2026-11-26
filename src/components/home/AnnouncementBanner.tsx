@@ -7,6 +7,8 @@ import { useBanner } from '@/contexts/BannerContext'
 
 type AnnouncementBannerProps = {
   discount: string
+  /** Day of the discount, already formatted ("Sa., 12.12."); replaces "auf alles" in the bubble */
+  discountDate?: string
   message: string
   /** Optional linked blog post ("Mehr erfahren") */
   href?: string
@@ -17,6 +19,7 @@ const STORAGE_KEY = 'rosa-promo-dismissed'
 
 export default function AnnouncementBanner({
   discount,
+  discountDate,
   message,
   href,
 }: AnnouncementBannerProps) {
@@ -81,11 +84,13 @@ export default function AnnouncementBanner({
               />
               <div className="relative w-full h-full rounded-full bg-rosa-600 text-white flex flex-col items-center justify-center shadow-lg animate-promo-blink motion-reduce:animate-none">
                 <span className="font-display text-5xl font-semibold leading-none">{discount}</span>
-                <span className="text-sm font-medium uppercase tracking-wider mt-1">auf alles</span>
+                <span className={`text-sm font-medium mt-1 ${discountDate ? '' : 'uppercase tracking-wider'}`}>
+                  {discountDate ?? 'auf alles'}
+                </span>
               </div>
             </div>
             <h2 id="promo-title" className="font-display text-2xl text-gray-900 mb-3">
-              {discount} Rabatt im Brockenhaus
+              {discount} Rabatt im Brockenhaus{discountDate && ` am ${discountDate}`}
             </h2>
           </>
         ) : (
