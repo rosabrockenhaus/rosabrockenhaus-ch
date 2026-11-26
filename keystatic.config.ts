@@ -119,7 +119,7 @@ export default config({
       format: { contentField: 'body' },
       schema: {
         // Editors only type the title; the URL is derived from it and locked once saved.
-        title: autoSlugTitle({ label: 'Titel', urlPrefix: '/blog/', maxLength: 90 }),
+        title: autoSlugTitle({ label: 'Titel', maxLength: 90 }),
         excerpt: requiredText('Auszug', {
           description: '1–2 Sätze, die in der Übersicht unter dem Titel erscheinen.',
           multiline: true,

@@ -1,51 +1,45 @@
 'use client'
 
-// Form part of autoSlugTitle (see autoSlug.tsx). Kept in its own client module because
+// Form part of autoSlugTitle (see autoSlug.tsx), in its own client module because
 // keystatic.config.ts is also imported on the server (Reader, API route).
-import { useState } from 'react'
-import type { fields } from '@keystatic/core'
-import { Flex } from '@keystar/ui/layout'
-import { TextField } from '@keystar/ui/text-field'
-import slugify from '@sindresorhus/slugify'
+//
+// It renders Keystatic's own slug form, so its behaviour is kept as is: the URL follows the title
+// for new entries, stays fixed for existing ones, gets "-1", "-2"… when another post already uses
+// it, and saving is blocked with a message if it is still taken. We only lock the URL input and
+// hide the "regenerate" button. If Keystatic's markup ever changes, the field simply becomes
+// editable again instead of breaking.
+import { useEffect, useRef, type ComponentType } from 'react'
 
-type InputProps = Parameters<ReturnType<typeof fields.slug>['Input']>[0] & {
-  label: string
-  urlPrefix: string
-  maxLength?: number
-}
+type Props<P> = P & { native: ComponentType<P> }
 
-export default function AutoSlugInput({ value, onChange, autoFocus, forceValidation, label, urlPrefix, maxLength }: InputProps) {
-  // Decided once when the form opens: a new entry starts with an empty slug.
-  const [isNew] = useState(() => value.slug === '')
+export default function AutoSlugInput<P extends object>({ native: Native, ...props }: Props<P>) {
+  const ref = useRef<HTMLDivElement>(null)
 
-  const nameError = !forceValidation
-    ? undefined
-    : value.name.trim() === ''
-      ? `${label} darf nicht leer sein.`
-      : maxLength && value.name.length > maxLength
-        ? `${label} darf höchstens ${maxLength} Zeichen lang sein.`
-        : undefined
+  useEffect(() => {
+    const root = ref.current
+    if (!root) return
+    const lock = () => {
+      // 1st input = title, 2nd = URL
+      const slugInput = root.querySelectorAll('input')[1]
+      if (slugInput && !slugInput.readOnly) {
+        slugInput.readOnly = true
+        slugInput.tabIndex = -1
+        slugInput.style.cursor = 'default'
+        slugInput.style.opacity = '0.7'
+      }
+      root.querySelectorAll<HTMLElement>('button[aria-label="regenerate"]').forEach((button) => {
+        button.style.display = 'none'
+      })
+    }
+    lock()
+    const observer = new MutationObserver(lock)
+    observer.observe(root, { childList: true, subtree: true })
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <Flex direction="column" gap="large">
-      <TextField
-        label={label}
-        value={value.name}
-        autoFocus={autoFocus}
-        isRequired
-        errorMessage={nameError}
-        onChange={(name) => onChange({ name, slug: isNew ? slugify(name) : value.slug })}
-      />
-      <TextField
-        label="Adresse (URL)"
-        description={
-          isNew
-            ? 'Wird automatisch aus dem Titel erzeugt. Nach dem Speichern bleibt sie fest, damit geteilte Links funktionieren.'
-            : 'Fest seit der Erstellung, auch wenn der Titel geändert wird – so funktionieren geteilte Links weiterhin.'
-        }
-        value={`${urlPrefix}${value.slug}`}
-        isReadOnly
-      />
-    </Flex>
+    <div ref={ref}>
+      <Native {...(props as P)} />
+    </div>
   )
 }
