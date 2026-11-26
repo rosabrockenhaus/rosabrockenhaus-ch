@@ -1,4 +1,5 @@
 import { config, fields, collection, singleton } from '@keystatic/core'
+import { autoSlugTitle } from './src/keystatic/autoSlug'
 
 // 'local' storage needs zero authentication — it just reads/writes the filesystem directly. That's
 // fine on a developer's own machine, but if a production deploy ever falls back to it (because the
@@ -117,13 +118,8 @@ export default config({
       slugField: 'title',
       format: { contentField: 'body' },
       schema: {
-        title: fields.slug({
-          name: { label: 'Titel', validation: { isRequired: true, length: { max: 90 } } },
-          slug: {
-            label: 'Adresse (URL)',
-            description: 'Wird automatisch aus dem Titel erzeugt. Nach dem Veröffentlichen nicht mehr ändern, sonst funktionieren geteilte Links nicht mehr.',
-          },
-        }),
+        // Editors only type the title; the URL is derived from it and locked once saved.
+        title: autoSlugTitle({ label: 'Titel', urlPrefix: '/blog/', maxLength: 90 }),
         excerpt: requiredText('Auszug', {
           description: '1–2 Sätze, die in der Übersicht unter dem Titel erscheinen.',
           multiline: true,
