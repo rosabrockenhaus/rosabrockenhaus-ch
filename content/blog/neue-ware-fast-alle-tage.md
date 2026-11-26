@@ -1,5 +1,5 @@
 ---
-title: Neue Ware alle 3–4 Tage
+title: Neue Ware fast alle Tage
 excerpt: >-
   Im Rosa Brockenhaus Bern kommt fast jeden Tage neue Secondhand-Ware in den
   Laden – aus Spenden, Räumungen und Abholungen. So lohnt sich jeder Besuch.
