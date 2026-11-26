@@ -33,6 +33,31 @@
         "Direktübernahme brauchbarer Waren für das Brockenhaus",
         "Diskrete und respektvolle Abwicklung"
       ],
+      "showcase": {
+        "title": "Kein Fall ist zu gross",
+        "items": [
+          {
+            "tag": "vorher",
+            "media": {
+              "discriminant": "photo",
+              "value": {
+                "image": "/media/services/rosa-brockenhaus-bern-raeumung-zimmer-vorher.jpg",
+                "alt": "Vollgestelltes Zimmer vor der Räumung durch Rosa Brockenhaus Bern"
+              }
+            }
+          },
+          {
+            "tag": "vorher",
+            "media": {
+              "discriminant": "photo",
+              "value": {
+                "image": "/media/services/rosa-brockenhaus-bern-raeumung-wohnzimmer-vorher.jpg",
+                "alt": "Wohnzimmer voller Möbel, Kartons und Hausrat vor der Wohnungsräumung in Bern"
+              }
+            }
+          }
+        ]
+      },
       "faq": [
         {
           "question": "Nehmt ihr auch Gegenstände an, die Ihr nicht brauchen könnt?",
@@ -55,6 +80,51 @@
         "Fenster- und Rahmenreinigung",
         "Flexible Terminvereinbarung"
       ],
+      "showcase": {
+        "title": "Unsere Arbeit spricht für sich",
+        "items": [
+          {
+            "tag": "vorher",
+            "media": {
+              "discriminant": "photo",
+              "value": {
+                "image": "/media/services/rosa-brockenhaus-reinigung-kueche-raucherwohnung-vorher.jpg",
+                "alt": "Küche einer Raucherwohnung vor der Reinigung — stark verschmutzte Oberschränke"
+              }
+            }
+          },
+          {
+            "tag": "nachher",
+            "media": {
+              "discriminant": "photo",
+              "value": {
+                "image": "/media/services/rosa-brockenhaus-reinigung-kueche-nachher.jpg",
+                "alt": "Dieselbe Küche nach professioneller Reinigung durch Rosa Brockenhaus Bern"
+              }
+            }
+          },
+          {
+            "tag": "vorher",
+            "media": {
+              "discriminant": "video",
+              "value": {
+                "file": "/media/services/rosa-brockenhaus-reinigung-dusche-vorher.mp4",
+                "label": "Dusche vorher"
+              }
+            }
+          },
+          {
+            "tag": "nachher",
+            "media": {
+              "discriminant": "video",
+              "value": {
+                "file": "/media/services/rosa-brockenhaus-reinigung-dusche-nachher.mp4",
+                "label": "Dusche nachher"
+              }
+            }
+          }
+        ]
+      },
       "faq": [
         {
           "question": "Was bedeutet Abgabegarantie?",

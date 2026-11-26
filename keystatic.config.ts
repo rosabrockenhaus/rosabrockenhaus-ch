@@ -550,7 +550,7 @@ export default config({
             // is a fixed dropdown rather than free text. A new service type needs a developer.
             id: fields.select({
               label: 'Service-Typ',
-              description: 'Bestimmt Layout, Fotos und Link-Adresse dieses Services. Jeden Typ nur einmal verwenden.',
+              description: 'Bestimmt Icon-Vorschlag und Link-Adresse (#umzug usw.) dieses Services. Jeden Typ nur einmal verwenden.',
               options: [
                 { label: 'Umzug', value: 'umzug' },
                 { label: 'Räumung', value: 'raeumung' },
@@ -596,6 +596,67 @@ export default config({
                 description: 'Ein oder mehrere Fotos, die neben den Merkmalen angezeigt werden. Leer lassen = keine Fotos.',
                 itemLabel: (p) => p.fields.alt.value || 'Foto',
               }
+            ),
+            showcase: fields.object(
+              {
+                title: optionalText('Titel über den Bildern', { description: "z.B. 'Unsere Arbeit spricht für sich'.", max: 50 }),
+                items: fields.array(
+                  fields.object({
+                    tag: fields.select({
+                      label: 'Etikett',
+                      options: [
+                        { label: 'Vorher', value: 'vorher' },
+                        { label: 'Nachher', value: 'nachher' },
+                      ],
+                      defaultValue: 'vorher',
+                    }),
+                    media: fields.conditional(
+                      fields.select({
+                        label: 'Art',
+                        options: [
+                          { label: 'Foto', value: 'photo' },
+                          { label: 'Video', value: 'video' },
+                        ],
+                        defaultValue: 'photo',
+                      }),
+                      {
+                        photo: fields.object({
+                          image: fields.image({
+                            label: 'Foto',
+                            description: 'Querformat (4:3), am besten kleiner als 1 MB.',
+                            directory: 'public/media/services',
+                            publicPath: '/media/services/',
+                            validation: { isRequired: true },
+                          }),
+                          alt: requiredText('Bildbeschreibung', {
+                            description: "Was ist zu sehen? z.B. 'Küche vor der Reinigung'.",
+                            max: 120,
+                          }),
+                        }),
+                        video: fields.object({
+                          file: fields.file({
+                            label: 'Video (MP4)',
+                            description: 'Kurzes Video im MP4-Format, möglichst kleiner als 10 MB. Keystatic zeigt hier nur den Dateinamen, keine Vorschau.',
+                            directory: 'public/media/services',
+                            publicPath: '/media/services/',
+                            validation: { isRequired: true },
+                          }),
+                          label: requiredText('Kurzbeschreibung', { description: "z.B. 'Dusche vorher'.", max: 60 }),
+                        }),
+                      }
+                    ),
+                  }),
+                  {
+                    label: 'Bilder / Videos',
+                    description: 'Am besten paarweise: Vorher, dann Nachher. Werden zu zweit nebeneinander angezeigt.',
+                    itemLabel: (p) =>
+                      `${p.fields.tag.value === 'nachher' ? 'Nachher' : 'Vorher'} · ${
+                        p.fields.media.discriminant === 'video' ? 'Video' : 'Foto'
+                      }`,
+                  }
+                ),
+              },
+              { label: 'Vorher / Nachher (optional)' }
             ),
             faq: fields.array(
               fields.object({

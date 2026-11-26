@@ -10,8 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import type { Service } from '@/lib/content'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
-import ReinigungShowcase from '@/components/services/ReinigungShowcase'
-import RaeumungShowcase from '@/components/services/RaeumungShowcase'
+import BeforeAfterShowcase from '@/components/services/BeforeAfterShowcase'
 import ServicePhotos from '@/components/services/ServicePhotos'
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
@@ -145,11 +144,10 @@ export default function ServicesPageClient({ services }: { services: readonly Se
                   </motion.div>
                 </div>
 
-                {/* Visual: photos from Keystatic, fixed before/after showcases (Räumung / Reinigung), then FAQ */}
+                {/* Visual: photos and before/after showcase (both from Keystatic), then FAQ */}
                 <motion.div variants={prefersReducedMotion ? noAnimation : fadeUpVariant} className="space-y-6">
                   <ServicePhotos photos={service.photos} />
-                  {service.id === 'raeumung' && <RaeumungShowcase />}
-                  {service.id === 'reinigung' && <ReinigungShowcase />}
+                  <BeforeAfterShowcase showcase={service.showcase} />
                   <div>
                     <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
                       Häufige Fragen
