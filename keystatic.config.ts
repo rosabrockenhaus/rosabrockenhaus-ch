@@ -205,9 +205,11 @@ export default config({
           label: 'Anzeigen bis und mit (optional)',
           description: 'Leer lassen = bis es ausgeschaltet wird. Danach verschwindet es automatisch.',
         }),
-        discount: optionalText('Rabatt (in der rosa Bubble)', {
-          description: "Gross in der rosa Bubble, z.B. '50%'. Leer lassen = Banner ohne Bubble (z.B. für einen Anlass).",
-          max: 6,
+        // A number, so the bubble always reads "50%" (no typos like "50 %" or "50 Prozent").
+        discount: fields.integer({
+          label: 'Rabatt in % (in der rosa Bubble)',
+          description: "Nur die Zahl, z.B. 50 – das %-Zeichen wird automatisch ergänzt. Leer lassen = Banner ohne Bubble (z.B. für einen Anlass).",
+          validation: { min: 1, max: 99 },
         }),
         discountDate: fields.date({
           label: 'Tag des Rabatts (optional)',
