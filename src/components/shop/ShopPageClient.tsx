@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
-import { MapPin, Clock, Tag } from 'lucide-react'
+import { MapPin, Clock, RefreshCw } from 'lucide-react'
 import { staggerContainer, fadeUpVariant, viewportOnce, noAnimation } from '@/lib/animations'
 import type { ShopCategory, Contact } from '@/lib/content'
 import CategoryCard from '@/components/shop/CategoryCard'
@@ -52,7 +52,7 @@ export default function ShopPageClient({
               className="flex flex-wrap gap-3 mt-6"
             >
               {[
-                { icon: Tag, text: '50% auf alles' },
+                { icon: RefreshCw, text: 'Neue Ware alle 3–4 Tage' },
                 { icon: Clock, text: 'Mo–Fr 12–18 · Sa 10–17' },
                 { icon: MapPin, text: 'Wankdorffeldstrasse 96, Bern', href: contact.mapsUrl },
               ].map(({ icon: Icon, text, href }) => {

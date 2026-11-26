@@ -53,7 +53,7 @@ export default function OGImage() {
                 borderRadius: '999px',
                 fontSize: '18px',
                 fontWeight: 600,
-              }}>50% auf alles</span>
+              }}>Neue Ware alle 3–4 Tage</span>
               <span style={{
                 background: 'rgba(255,255,255,0.1)',
                 color: 'rgba(255,255,255,0.8)',
