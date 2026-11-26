@@ -4,8 +4,9 @@ import matter from 'gray-matter'
 
 // Two kinds of posts (chosen in Keystatic under "Art des Beitrags"):
 //  - ratgeber: evergreen info about the shop ("Neue Ware alle 3–4 Tage"), no date, ordered by hand;
-//  - aktuell: a dated offer or event ("50% am 12.12."), listed first while it is upcoming,
-//    dropped from all lists once its last day has passed (the page itself stays, marked as over).
+//  - aktuell: a dated offer or event ("50% am 12.12."), always listed before Ratgeber posts.
+//    With a "Letzter Tag" it drops from all lists once that day has passed (the page itself stays,
+//    marked as over); without one it stays listed.
 // Pages using this are revalidated hourly (see (site)/layout.tsx), so expiry needs no redeploy.
 
 type PostBase = {
@@ -22,7 +23,7 @@ export type AktuellPost = PostBase & {
   kind: 'aktuell'
   /** First day, YYYY-MM-DD */
   date: string
-  /** Last day, YYYY-MM-DD (same as `date` for one-day events) */
+  /** Last day, YYYY-MM-DD, or '' when open-ended (stays listed until an end date is set) */
   endDate: string
   /** Free text, e.g. "10–17 Uhr" */
   time: string
@@ -61,14 +62,15 @@ function parsePost(file: string, today: string): BlogPost {
 
   if (kind?.discriminant === 'aktuell') {
     const date = isoDay(kind.value?.date)
-    const endDate = isoDay(kind.value?.endDate) || date
+    // No end date = open-ended: the post stays listed until editors set one (or delete it).
+    const endDate = isoDay(kind.value?.endDate)
     return {
       ...base,
       kind: 'aktuell',
       date,
       endDate,
       time: String(kind.value?.time ?? ''),
-      dateLabel: date ? formatDayRange(date, endDate) : '',
+      dateLabel: date ? formatDayRange(date, endDate || date) : '',
       expired: endDate !== '' && endDate < today,
     }
   }
@@ -83,7 +85,7 @@ function readPosts(): BlogPost[] {
     .map((file) => parsePost(file, today))
 }
 
-/** Posts to list: upcoming Aktuell first (soonest first), then Ratgeber by hand-picked order. */
+/** Posts to list: current Aktuell posts first (by date), then Ratgeber by hand-picked order. */
 export function getAllBlogPosts(): BlogPost[] {
   const posts = readPosts()
   const aktuell = posts

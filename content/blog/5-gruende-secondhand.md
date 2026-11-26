@@ -16,7 +16,7 @@ Jedes gebrauchte Möbelstück, das ein zweites Leben erhält, spart Ressourcen u
 
 ## 2. Einzigartige Fundstücke
 
-In einem Brockenhaus finden Sie Schätze, die es nirgends mehr zu kaufen gibt: Vintage-Stücke, Designerobjekte, Raritäten. Jeder Besuch ist ein kleines Abenteuer – besonders, weil bei uns [alle 3–4 Tage neue Ware](/blog/neue-ware-alle-3-4-tage) eintrifft.
+In einem Brockenhaus finden Sie Schätze, die es nirgends mehr zu kaufen gibt: Vintage-Stücke, Designerobjekte, Raritäten. Jeder Besuch ist ein kleines Abenteuer – besonders, weil bei uns [alle 3–4 Tage neue Ware](/blog/neue-ware-fast-alle-tage) eintrifft.
 
 ## 3. Günstigere Preise
 

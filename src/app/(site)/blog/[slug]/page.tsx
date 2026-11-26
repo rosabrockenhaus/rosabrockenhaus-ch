@@ -48,7 +48,7 @@ function eventJsonLd(post: AktuellPost) {
     name: post.title,
     description: post.excerpt,
     startDate: post.date,
-    endDate: post.endDate,
+    ...(post.endDate && { endDate: post.endDate }),
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     url: `https://www.rosabrockenhaus.ch/blog/${post.slug}`,
