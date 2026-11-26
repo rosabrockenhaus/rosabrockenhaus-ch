@@ -7,7 +7,7 @@ import { useBanner } from '@/contexts/BannerContext'
 
 type AnnouncementBannerProps = {
   discount: string
-  /** Day of the discount, already formatted ("Sa., 12.12."); replaces "auf alles" in the bubble */
+  /** Day of the discount, already formatted ("Sa., 12.12."), shown in the bubble under the discount */
   discountDate?: string
   message: string
   /** Optional linked blog post ("Mehr erfahren") */
@@ -84,9 +84,7 @@ export default function AnnouncementBanner({
               />
               <div className="relative w-full h-full rounded-full bg-rosa-600 text-white flex flex-col items-center justify-center shadow-lg animate-promo-blink motion-reduce:animate-none">
                 <span className="font-display text-5xl font-semibold leading-none">{discount}</span>
-                <span className={`text-sm font-medium mt-1 ${discountDate ? '' : 'uppercase tracking-wider'}`}>
-                  {discountDate ?? 'auf alles'}
-                </span>
+                {discountDate && <span className="text-sm font-medium mt-1">{discountDate}</span>}
               </div>
             </div>
             <h2 id="promo-title" className="font-display text-2xl text-gray-900 mb-3">
