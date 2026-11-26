@@ -179,7 +179,9 @@ export default config({
           defaultValue: 2,
           validation: { isRequired: true, min: 1, max: 60 },
         }),
-        body: fields.markdoc({ label: 'Inhalt' }),
+        // The site reads content/blog/*.md; Keystatic's default would be .mdoc, which made it
+        // list no existing posts and save new ones where the site never looks.
+        body: fields.markdoc({ label: 'Inhalt', extension: 'md' }),
       },
     }),
   },
@@ -226,6 +228,17 @@ export default config({
               description: 'Kurzer Text unter dem Titel.',
               multiline: true,
               max: 140,
+            }),
+            image: fields.image({
+              label: 'Bild rechts',
+              description:
+                'Querformat (4:3), am besten kleiner als 1 MB. Leer lassen = Logo. Wird nur auf grösseren Bildschirmen angezeigt, nicht auf dem Handy.',
+              directory: 'public/media/home',
+              publicPath: '/media/home/',
+            }),
+            imageAlt: optionalText('Bildbeschreibung', {
+              description: "Was ist auf dem Bild zu sehen? Für Google und blinde Menschen, z.B. 'Verkaufsraum mit Möbeln'.",
+              max: 120,
             }),
             imageCaption: optionalText('Untertitel unter dem Bild', { max: 40 }),
             primaryCtaLabel: requiredText('Haupt-Button: Text', { max: 24 }),

@@ -114,16 +114,27 @@ export default function Hero({ content }: { content: HeroContent }) {
             transition={{ duration: 0.7, delay: 0.25, ease: [0.0, 0.0, 0.2, 1.0] }}
             className="relative hidden lg:flex flex-col items-center gap-4"
           >
-            {/* Logo */}
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] w-full bg-white flex items-center justify-center p-10 card-shadow">
-              <Image
-                src="/static/rosa-brockenhaus-bern-logo-with-icon.jpg"
-                alt="Rosa Brockenhaus Bern"
-                fill
-                className="object-contain p-10"
-                priority
-                sizes="420px"
-              />
+            {/* Photo chosen in Keystatic, or the logo when none is set */}
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] w-full bg-white flex items-center justify-center card-shadow">
+              {content.image ? (
+                <Image
+                  src={content.image}
+                  alt={content.imageAlt || 'Rosa Brockenhaus Bern'}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="420px"
+                />
+              ) : (
+                <Image
+                  src="/static/rosa-brockenhaus-bern-logo-with-icon.jpg"
+                  alt="Rosa Brockenhaus Bern"
+                  fill
+                  className="object-contain p-10"
+                  priority
+                  sizes="420px"
+                />
+              )}
             </div>
             {content.imageCaption && (
               <p className="text-sm font-medium tracking-wide text-gray-600">
