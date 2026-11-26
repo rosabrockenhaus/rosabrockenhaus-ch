@@ -130,7 +130,7 @@ export default config({
           fields.select({
             label: 'Art des Beitrags',
             description:
-              'Ratgeber = gilt immer (z.B. «Neue Ware alle 3–4 Tage»). Aktuell = Aktion oder Anlass mit Datum (z.B. «50% am 12.12.») – verschwindet nach dem letzten Tag automatisch aus den Listen.',
+              'Ratgeber = gilt immer (z.B. «Neue Ware alle 3–4 Tage»). Aktuell = Aktion oder Anlass mit Datum (z.B. «50% am 12.12.») – steht immer zuoberst und verschwindet nach dem «Letzten Tag» automatisch (falls einer gesetzt ist).',
             options: [
               { label: 'Ratgeber / Info (immer gültig)', value: 'ratgeber' },
               { label: 'Aktuell (Aktion oder Anlass mit Datum)', value: 'aktuell' },
@@ -149,12 +149,12 @@ export default config({
             aktuell: fields.object({
               date: fields.date({
                 label: 'Datum',
-                description: 'Tag der Aktion bzw. erster Tag.',
+                description: 'Tag der Aktion bzw. ab wann der Beitrag gilt. Der Beitrag wird sofort angezeigt, auch wenn das Datum in der Zukunft liegt.',
                 validation: { isRequired: true },
               }),
               endDate: fields.date({
                 label: 'Letzter Tag (optional)',
-                description: 'Nur bei mehrtägigen Aktionen. Leer lassen = nur ein Tag.',
+                description: 'Nach diesem Tag verschwindet der Beitrag automatisch aus den Listen. Leer lassen = bleibt angezeigt, bis ein letzter Tag gesetzt oder der Beitrag gelöscht wird.',
               }),
               time: optionalText('Uhrzeit (optional)', { description: "z.B. '10–17 Uhr'.", max: 30 }),
             }),
