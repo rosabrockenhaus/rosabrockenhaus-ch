@@ -85,12 +85,12 @@ function readPosts(): BlogPost[] {
     .map((file) => parsePost(file, today))
 }
 
-/** Posts to list: current Aktuell posts first (by date), then Ratgeber by hand-picked order. */
+/** Posts to list: current Aktuell posts first (most recent date first), then Ratgeber by hand-picked order. */
 export function getAllBlogPosts(): BlogPost[] {
   const posts = readPosts()
   const aktuell = posts
     .filter((p): p is AktuellPost => p.kind === 'aktuell' && !p.expired)
-    .sort((a, b) => a.date.localeCompare(b.date))
+    .sort((a, b) => b.date.localeCompare(a.date))
   const ratgeber = posts
     .filter((p): p is RatgeberPost => p.kind === 'ratgeber')
     .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, 'de'))
