@@ -38,7 +38,7 @@ export default async function SiteLayout({
     <BannerProvider initialVisible={showBanner}>
       {showBanner && (
         <AnnouncementBanner
-          discount={banner.discount}
+          discount={banner.discount ? `${banner.discount}%` : ''}
           discountDate={discountDateLabel}
           message={banner.message}
           href={postHref}
