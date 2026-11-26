@@ -2,7 +2,7 @@
 
 // Form part of autoSlugTitle (see autoSlug.tsx). Kept in its own client module because
 // keystatic.config.ts is also imported on the server (Reader, API route).
-import { useRef } from 'react'
+import { useState } from 'react'
 import type { fields } from '@keystatic/core'
 import { Flex } from '@keystar/ui/layout'
 import { TextField } from '@keystar/ui/text-field'
@@ -16,7 +16,7 @@ type InputProps = Parameters<ReturnType<typeof fields.slug>['Input']>[0] & {
 
 export default function AutoSlugInput({ value, onChange, autoFocus, forceValidation, label, urlPrefix, maxLength }: InputProps) {
   // Decided once when the form opens: a new entry starts with an empty slug.
-  const isNew = useRef(value.slug === '').current
+  const [isNew] = useState(() => value.slug === '')
 
   const nameError = !forceValidation
     ? undefined
