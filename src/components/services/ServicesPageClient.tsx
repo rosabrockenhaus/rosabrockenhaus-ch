@@ -12,6 +12,7 @@ import type { Service } from '@/lib/content'
 import { fadeUpVariant, staggerContainer, viewportOnce, noAnimation } from '@/lib/animations'
 import ReinigungShowcase from '@/components/services/ReinigungShowcase'
 import RaeumungShowcase from '@/components/services/RaeumungShowcase'
+import ServicePhotos from '@/components/services/ServicePhotos'
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   Truck,
@@ -144,8 +145,9 @@ export default function ServicesPageClient({ services }: { services: readonly Se
                   </motion.div>
                 </div>
 
-                {/* Visual: photos for Räumung / Reinigung, then FAQ */}
+                {/* Visual: photos from Keystatic, fixed before/after showcases (Räumung / Reinigung), then FAQ */}
                 <motion.div variants={prefersReducedMotion ? noAnimation : fadeUpVariant} className="space-y-6">
+                  <ServicePhotos photos={service.photos} />
                   {service.id === 'raeumung' && <RaeumungShowcase />}
                   {service.id === 'reinigung' && <ReinigungShowcase />}
                   <div>
