@@ -14,7 +14,7 @@
       "faq": [
         {
           "question": "Wie lange im Voraus muss ich für einen Umzug anfragen?",
-          "answer": "Wir empfehlen, uns mindestens 3 Wochen vor dem geplanten Umzugsdatum zu kontaktieren. In dringenden Fällen versuchen wir jedoch immer, eine Lösung zu finden."
+          "answer": "Wir empfehlen, uns mindestens 3 Wochen vor dem geplanten Umzugsdatum zu kontaktieren. In dringenden Fällen versuchen wir jedoch, eine Lösung zu finden."
         },
         {
           "question": "Seid ihr versichert?",
@@ -25,7 +25,7 @@
     {
       "id": "raeumung",
       "title": "Räumung",
-      "subtitle": "win-win situation, wieder verwenden",
+      "subtitle": "win-win Situation, wieder verwenden",
       "icon": "Home",
       "features": [
         "Wohnungsauflösungen und Nachlässe",
@@ -35,16 +35,12 @@
       ],
       "faq": [
         {
-          "question": "Nehmt ihr auch Gegenstände an, die ihr nicht brauchen könnt?",
-          "answer": "Ja, wir entsorgen auch Gegenstände, die nicht mehr verwendbar sind – umweltgerecht und nach gesetzlichen Vorschriften."
-        },
-        {
-          "question": "Kann ich bei der Räumung dabei sein?",
-          "answer": "Selbstverständlich. Viele Kunden möchten persönliche Gegenstände selbst aussortieren. Wir passen uns Ihren Wünschen an."
+          "question": "Nehmt ihr auch Gegenstände an, die Ihr nicht brauchen könnt?",
+          "answer": "Ja, wir entsorgen auch Gegenstände, die nicht mehr verwendbar sind – fachgerecht und umweltbewusst."
         },
         {
           "question": "Wie schnell kann eine Räumung durchgeführt werden?",
-          "answer": "Das hängt von Grösse und Zustand des zu räumenden Objekts ab. Ein Keller kann oft innerhalb eines Tages geräumt werden, eine ganze Wohnung braucht manchmal 2–3 Tage."
+          "answer": "Das hängt von Grösse und Zustand des zu räumenden Objekts ab."
         }
       ]
     },
@@ -70,7 +66,7 @@
         },
         {
           "question": "Wie lange dauert eine Endreinigung?",
-          "answer": "Das hängt von der Grösse und dem Zustand der Wohnung ab. Eine 2-Zimmer-Wohnung dauert in der Regel 3–4 Stunden, eine grössere Wohnung entsprechend länger."
+          "answer": "Das hängt von der Grösse und dem Zustand der Wohnung ab."
         }
       ]
     },
@@ -81,18 +77,13 @@
       "icon": "Recycle",
       "features": [
         "Sperrgut, Elektroschrott und Altgeräte",
-        "Bauschutt und Renovationsabfälle",
-        "Sortenreine Trennung nach Materialien",
+        "Trennung nach Materialien",
         "Entsorgungsnachweis auf Anfrage"
       ],
       "faq": [
         {
-          "question": "Entsorgt ihr auch gefährliche Abfälle wie Farben oder Chemikalien?",
-          "answer": "Nein, für Sondermüll wie Farben, Chemikalien oder Asbestmaterial müssen Sie die Sonderabfallsammelstellen der Gemeinde nutzen. Wir helfen Ihnen aber gerne bei der Orientierung."
-        },
-        {
           "question": "Gibt es eine Mindestmenge?",
-          "answer": "Wir nehmen grundsätzlich auch kleinere Mengen an. Der Mindestbetrag für einen Einsatz beträgt CHF 80.–."
+          "answer": "Wir nehmen grundsätzlich auch kleinere Mengen an."
         },
         {
           "question": "Kann ich auch einfach Sachen abgeben?",
@@ -109,16 +100,12 @@
         "Möbel, Kleider, Elektro, Geschirr, Fahrräder & mehr",
         "Flexible Terminvereinbarung",
         "Wiederverwertung: brauchbares wird im Brockenhaus verkauft",
-        "Kostenlos (je nach Menge und Distanz)"
+        "Kostenlos bei wieder verkaufbaren Waren"
       ],
       "faq": [
         {
-          "question": "Ist die Abholung kostenlos?",
-          "answer": "Für kleinere Mengen und in der Nähe von Bern ist die Abholung in der Regel kostenlos. Bei grösseren Mengen oder weiteren Distanzen nennen wir Ihnen vorher einen Preis."
-        },
-        {
           "question": "Welche Gegenstände nehmt ihr mit?",
-          "answer": "Wir nehmen Möbel, Kleider, Elektrogeräte, Geschirr, Bücher, Fahrräder und vieles mehr. Gegenstände sollten grundsätzlich noch verwendbar oder reparierbar sein."
+          "answer": "Wir nehmen Möbel, Kleider, Elektrogeräte, Geschirr, Bücher, Fahrräder und vieles mehr. Gegenstände sollten noch verwendbar und verkaufbar sein."
         },
         {
           "question": "Wie schnell kann eine Abholung organisiert werden?",
