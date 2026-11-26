@@ -3,8 +3,14 @@
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Play } from 'lucide-react'
+import type { Service } from '@/lib/content'
 
-function VideoCard({ src, label, tag }: { src: string; label: string; tag: 'Vorher' | 'Nachher' }) {
+// Before/after photos and videos of a service, managed in Keystatic
+// (Services → Vorher / Nachher). Shown two per row; hidden when the list is empty.
+
+type Tag = 'Vorher' | 'Nachher'
+
+function VideoCard({ src, label, tag }: { src: string; label: string; tag: Tag }) {
   const [playing, setPlaying] = useState(false)
   const ref = useRef<HTMLVideoElement>(null)
 
@@ -43,7 +49,7 @@ function VideoCard({ src, label, tag }: { src: string; label: string; tag: 'Vorh
   )
 }
 
-export function Photo({ src, alt, tag }: { src: string; alt: string; tag: 'Vorher' | 'Nachher' }) {
+function Photo({ src, alt, tag }: { src: string; alt: string; tag: Tag }) {
   return (
     <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
       <Image src={src} alt={alt} fill className="object-cover" sizes="200px" />
@@ -58,33 +64,23 @@ export function Photo({ src, alt, tag }: { src: string; alt: string; tag: 'Vorhe
   )
 }
 
-export default function ReinigungShowcase() {
+export default function BeforeAfterShowcase({ showcase }: { showcase: Service['showcase'] }) {
+  if (showcase.items.length === 0) return null
+
   return (
     <div className="rounded-2xl border border-rosa-100 bg-white p-5">
-      <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
-        Unsere Arbeit spricht für sich
-      </p>
+      {showcase.title && (
+        <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">{showcase.title}</p>
+      )}
       <div className="grid grid-cols-2 gap-3">
-        <Photo
-          src="/static/rosa-brockenhaus-reinigung-kueche-raucherwohnung-vorher.jpg"
-          alt="Küche einer Raucherwohnung vor der Reinigung — stark verschmutzte Oberschränke"
-          tag="Vorher"
-        />
-        <Photo
-          src="/static/rosa-brockenhaus-reinigung-kueche-nachher.jpg"
-          alt="Dieselbe Küche nach professioneller Reinigung durch Rosa Brockenhaus Bern"
-          tag="Nachher"
-        />
-        <VideoCard
-          src="/static/rosa-brockenhaus-reinigung-dusche-vorher.mp4"
-          label="Dusche vorher"
-          tag="Vorher"
-        />
-        <VideoCard
-          src="/static/rosa-brockenhaus-reinigung-dusche-nachher.mp4"
-          label="Dusche nachher"
-          tag="Nachher"
-        />
+        {showcase.items.map((item, i) => {
+          const tag: Tag = item.tag === 'nachher' ? 'Nachher' : 'Vorher'
+          return item.media.discriminant === 'video' ? (
+            <VideoCard key={i} src={item.media.value.file} label={item.media.value.label} tag={tag} />
+          ) : (
+            <Photo key={i} src={item.media.value.image} alt={item.media.value.alt} tag={tag} />
+          )
+        })}
       </div>
     </div>
   )
