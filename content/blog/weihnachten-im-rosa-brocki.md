@@ -1,6 +1,8 @@
 ---
 title: Weihnachten im Rosa Brocki
-excerpt: Weihnachtsartikel
+excerpt: >-
+  Dekoration, die Geschichten erzählt, Geschenke mit Herz und ein Einkauf, der
+  Gutes bewirkt: Entdecken Sie die Weihnachtszeit im Rosa Brockenhaus Bern
 kind:
   discriminant: aktuell
   value:
